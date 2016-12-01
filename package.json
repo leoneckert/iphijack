@@ -1,0 +1,17 @@
+{
+  "name": "something",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "file-on-write": "^1.1.1",
+    "jpeg-js": "^0.2.0",
+    "mjpeg-consumer": "^1.1.0"
+  }
+}
