@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<!-- https://github.com/rctoris/mjpegcanvasjs -->
+<script type="text/javascript" src="eventemitter2.min.js" ></script>
+<script type="text/javascript" src="mjpegcanvas.js" ></script>
+
+<script type="text/javascript" type="text/javascript">
+  /**
+   * Setup all visualization elements when the page is loaded.
+   */
+  function init() {
+
+    function printPixel(imageData, x, y) {
+        var index = (x + y * imageData.width) * 4;
+        // imageData.data[index+0] = r;
+        // imageData.data[index+1] = g;
+        // imageData.data[index+2] = b;
+        // imageData.data[index+3] = a;
+
+        console.log(imageData.data[index+0]);
+        console.log(imageData.data[index+1]);
+        console.log(imageData.data[index+2]);
+        console.log(imageData.data[index+3]);
+    }
+
+      function startInteraction(){
+            var cnv = document.getElementById('mjpeg').getElementsByTagName('canvas')[0];
+            console.log(cnv);
+            var c = cnv.getContext("2d");
+            console.log(c.getImageData(10, 10, 1, 1).data);
+      }
+
+
+    // Create the main viewer.
+    var viewer = new MJPEGCANVAS.Viewer({
+      divID : 'mjpeg',
+      host : 'lke229.itp.io',
+      port: '1805',
+      width : 160,
+      height : 120
+    });
+    setTimeout(function(){
+        startInteraction();
+    }, 3000);
+  }
+</script>
+<style>
+    body{
+        margin:0;
+        text-align: center;
+    }
+    #mjpeg{
+        margin-top: 140px;
+    }
+    h3{
+        margin-top: 50px;
+    }
+</style>
+</head>
+
+<body onload="init()">
+    <h3>ipiggyback</h3>
+  <div id="mjpeg"></div>
+</body>
+</html>

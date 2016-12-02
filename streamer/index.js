@@ -44,22 +44,15 @@ var writer = new FileOnWrite({
     transform: function(data, callback){
 
         function pidx(width, height, w, h, c){
-            // how many full lines?
             var fullLines = h * width * 4;
             var sameLinePixels = w * 4;
-
             return fullLines + sameLinePixels + c
         }
 
         // console.log(data);
         try {
-            // addalert("bad call");
             rawImageData = jpeg.decode(data, true);
-            // rawImageData.data.length;
-            // console.log(rawImageData.width);
-            // console.log(rawImageData.height);
-            // console.log(rawImageData.data);
-            // console.log("-");
+
             for(var i = 0; i < 50; i+=2){
                 var fp = pidx(rawImageData.width, rawImageData.height, i, 10, 0)
                 rawImageData.data[fp] = 255;
@@ -97,13 +90,13 @@ var consumer = new MjpegConsumer();
 //////////////
 
 var w = 160; // 320 or 160 etc.
-var h = 120; // 240 or 210 etc.
+var h = 120; // 240 or 120 etc.
 // taiwan port
 // var stream = request("http://117.56.116.103/mjpg/video.mjpg").pipe(consumer).pipe(writer);
 // taiwan entrance
 // var stream = request("http://114.33.6.120:10000/mjpg/video.mjpg?resolution="+w+"x"+h+"&camera=1").pipe(consumer).pipe(writer);
 // taiwan messy room
-var stream = request("http://1.34.197.140:10000/mjpg/video.mjpg?resolution="+w+"x"+h+"&camera=1").pipe(consumer).pipe(writer);
+// var stream = request("http://1.34.197.140:10000/mjpg/video.mjpg?resolution="+w+"x"+h+"&camera=1").pipe(consumer).pipe(writer);
 // spain house
 // var stream = request("http://95.19.61.157:83/mjpg/video.mjpg?resolution="+w+"x"+h+"&camera=1").pipe(consumer).pipe(writer);
 
@@ -115,7 +108,16 @@ var stream = request("http://1.34.197.140:10000/mjpg/video.mjpg?resolution="+w+"
 // motorway
 // var stream = request("http://166.154.145.84/mjpg/video.mjpg?resolution="+w+"x"+h+"&camera=1").pipe(consumer).pipe(writer);
 // windmill
-// var stream = request("http://107.1.228.34/axis-cgi/mjpg/video.cgi?resolution="+w+"x"+h+"&camera=1").pipe(consumer).pipe(writer);
+var stream = request("http://107.1.228.34/axis-cgi/mjpg/video.cgi?resolution="+w+"x"+h+"&camera=1").pipe(consumer).pipe(writer);
+
+
+
+// ----------------------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------------------
+
+
+
+
 
 var starter = setInterval(function(){
     if(files.length >= maxNum - 1){
@@ -123,12 +125,8 @@ var starter = setInterval(function(){
         clearInterval(starter);
 
 
-
-
-
-
         http.createServer(function(req, res) {
-          console.log("Got request");
+          console.log("Got request", req);
 
           mjpegReqHandler = mjpegServer.createReqHandler(req, res);
 
@@ -158,18 +156,9 @@ var starter = setInterval(function(){
           }
 
           function checkIfFinished() {
-            // if (i > 100) {
-            //   clearInterval(timer);
             //   mjpegReqHandler.close();
-            //   console.log('End Request');
-            // }
           }
-        }).listen(8081);
-
-
-
-
-
+      }).listen(1805);
 
 
     }
