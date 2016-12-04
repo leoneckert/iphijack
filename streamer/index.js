@@ -65,38 +65,38 @@ var writer = new FileOnWrite({
 
             var fp = pidx(rawImageData.width, rawImageData.height, pixX, pixY, 0);
             // console.log(fp);
-
-            for(var i = 0; i < rawImageData.width; i+=1){
-                for(var j = 0; j < rawImageData.height; j++){
-                    if(pixelcarry[j][i] == 1){
-                        var fp = pidx(rawImageData.width, rawImageData.height, i, j, 0)
-                        var r = Math.random();
-                        var a = 0;
-                        var b = 1;
-                        var c = 2;
-
-                        if(i%3 == 1){
-                            a = 1;
-                            b = 0;
-                            c = 2;
-                        }else if(i%3 == 2){
-                            a = 2;
-                            b = 0;
-                            c = 1
-                        }
-
-                        var av = (rawImageData.data[fp+b] + rawImageData.data[fp+c])/c
-                        if(r < 0.45){
-                            rawImageData.data[fp+a] = av - 10;
-                        }else if(r < 0.90){
-                            rawImageData.data[fp+a] = av + 10;
-                        }else{
-                            rawImageData.data[fp+a] = av;
-                        }
-                    }
-
-                }
-            }
+            // 
+            // for(var i = 0; i < rawImageData.width; i+=1){
+            //     for(var j = 0; j < rawImageData.height; j++){
+            //         if(pixelcarry[j][i] == 1){
+            //             var fp = pidx(rawImageData.width, rawImageData.height, i, j, 0)
+            //             var r = Math.random();
+            //             var a = 0;
+            //             var b = 1;
+            //             var c = 2;
+            //
+            //             if(i%3 == 1){
+            //                 a = 1;
+            //                 b = 0;
+            //                 c = 2;
+            //             }else if(i%3 == 2){
+            //                 a = 2;
+            //                 b = 0;
+            //                 c = 1
+            //             }
+            //
+            //             var av = (rawImageData.data[fp+b] + rawImageData.data[fp+c])/c
+            //             if(r < 0.45){
+            //                 rawImageData.data[fp+a] = av - 10;
+            //             }else if(r < 0.90){
+            //                 rawImageData.data[fp+a] = av + 10;
+            //             }else{
+            //                 rawImageData.data[fp+a] = av;
+            //             }
+            //         }
+            //
+            //     }
+            // }
 
 
             newJPG = jpeg.encode(rawImageData, 100);
