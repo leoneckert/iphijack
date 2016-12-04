@@ -2,8 +2,11 @@
 var streamW = 160;
 var streamH = 120;
 
-var inspectX = null;
-var inspectY = null;
+// var inspectX = null;
+// var inspectY = null;
+var inspectX = 0;
+var inspectY = 0;
+
 
 function init(){
     var image = new Image();
