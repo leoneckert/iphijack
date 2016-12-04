@@ -73,16 +73,16 @@ function init(){
         }
 
         function allocateElement(idx, callback){
-            var idx = String(idx);
-            var elem = document.getElementById(idx);
+            var idx_id = String(idx);
+            var elem = document.getElementById(idx_id);
             if( elem == null){
                 elem = document.createElement('div');
-                elem.id = idx;
+                elem.id = idx_id;
                 document.getElementById("data").appendChild(elem);
 
-                var rgb = document.createElement('div');
-                elem.id = "rgb";
-                elem.appendChild(rgb);
+                // var rgb = document.createElement('div');
+                // elem.id = "rgb";
+                // elem.appendChild(rgb);
 
 
 
@@ -102,10 +102,10 @@ function init(){
                 elem.innerHTML = "";
                 elem.appendChild(p);
 
-                var coordinates = inspectX + " | " + inspectY;
-                var p2 = document.createElement('p');
-                p2.innerHTML = coordinates;
-                elem.appendChild(p2);
+                // var coordinates = inspectX + " | " + inspectY;
+                // var p2 = document.createElement('p');
+                // p2.innerHTML = coordinates;
+                // elem.appendChild(p2);
 
 
 
