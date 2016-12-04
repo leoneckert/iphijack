@@ -80,9 +80,9 @@ function init(){
                 elem.id = idx_id;
                 document.getElementById("data").appendChild(elem);
 
-                // var rgb = document.createElement('div');
-                // elem.id = "rgb";
-                // elem.appendChild(rgb);
+                var rgb = document.createElement('div');
+                rgb.id = "rgb";
+                elem.appendChild(rgb);
 
 
 
