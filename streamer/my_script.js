@@ -45,9 +45,22 @@ function init(){
         //   context.drawImage(loadingImg, 0, 0, streamW, streamH);
         }
 
+        function getPixelIdx(w,x,y){
+            return (w * 4 * y) + (x * 4);
+        }
+        function getMarker(w,x,y){
+            // square around spot:
+            var sq = {
+                getPixelIdx(w,x-2,y): 1
+            }
+            return sq;
+        }
         var selectedI = null;
         if(inspectY != null && inspectX != null){
-            selectedI = (streamW * 4 * inspectY) + (inspectX * 4);
+            // selectedI = (streamW * 4 * inspectY) + (inspectX * 4);
+            selectedI = getPixelIdx(streamW, inspectY, inspectX);
+            marker = getMarker(streamW, inspectY, inspectX);
+            console.log(marker);
         }
         imgd = context.getImageData(0, 0, streamW, streamH);
         pix = imgd.data;
