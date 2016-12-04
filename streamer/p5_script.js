@@ -19,12 +19,6 @@ function init(){
     var context = canvas.getContext('2d');
 
 
-    var whiteoverlay = document.createElement('canvas');
-    whiteoverlay.width = streamW;
-    whiteoverlay.height = streamH;
-    whiteoverlay.style.background = 'rgb(255,255,255)';
-    document.getElementById("canvasWrapper").appendChild(whiteoverlay);
-
     var picker = document.createElement('div');
     picker.style.width = streamW/2 + "px";
     picker.style.height = streamW/2 + "px";
@@ -47,8 +41,6 @@ function init(){
         // check if we have a valid image
         if (image.width * image.height > 0) {
           context.drawImage(image, 0, 0, streamW, streamH);
-          context.drawImage(whiteoverlay, 0, 0,  streamW, streamH);
-
         } else {
         //   context.drawImage(loadingImg, 0, 0, streamW, streamH);
         }
@@ -57,6 +49,14 @@ function init(){
         var pix = imgd.data;
         console.log(pix);
         picker.style.background = 'rgb('+pix[0]+', '+pix[1]+', '+pix[2]+')';
+
+        // Loop over each pixel and invert the color.
+        for (var i = 0, n = pix.length; i < n; i += 4) {
+            pix[i  ] = 255 - pix[i  ]; // red
+            pix[i+1] = 255 - pix[i+1]; // green
+            pix[i+2] = 255 - pix[i+2]; // blue
+            // i+3 is alpha (the fourth element)
+        }
 
       }
 
