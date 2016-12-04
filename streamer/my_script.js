@@ -108,16 +108,47 @@ function init(){
 
     }
 
-    canvas.onmouseup = function(e){
-        // if(inspectY != null && inspectX != null){
-        //     inspectX = null;
-        //     inspectY = null;
-        // }else{
-            inspectX = e.layerX;
-            inspectY = e.layerY;
-            pickerExit.style.display = "block";
-        // }
+    // canvas.onmouseup = function(e){
+    //     // if(inspectY != null && inspectX != null){
+    //     //     inspectX = null;
+    //     //     inspectY = null;
+    //     // }else{
+    //         inspectX = e.layerX;
+    //         inspectY = e.layerY;
+    //         pickerExit.style.display = "block";
+    //     // }
+    // }
+
+    var mouseIsDown = false;
+
+    canvas.onmousedown = function(e){
+        dragOffset.x = e.x - mainLayer.trans.x;
+        dragOffset.y = e.y - mainLayer.trans.y;
+
+        mouseIsDown = true;
     }
+    canvas.onmouseup = function(e){
+        if(mouseIsDown) mouseClick(e);
+
+        mouseIsDown = false;
+    }
+
+    canvas.onmousemove = function(e){
+        if(!mouseIsDown) return;
+
+        mainLayer.trans.x = e.x - dragOffset.x;
+        mainLayer.trans.y = e.y - dragOffset.y;
+        mouseClick(e);
+        return false;
+    }
+
+    function mouseClick(e){
+        // click action
+        inspectX = e.layerX;
+        inspectY = e.layerY;
+        pickerExit.style.display = "block";
+    }
+
     pickerExit.addEventListener('click', function(){
         inspectX = null;
         inspectY = null;
