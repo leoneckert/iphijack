@@ -93,9 +93,6 @@ function init(){
                     pix[i+1] = 0; // green
                     pix[i+2] = 0; // blue
                 }else{
-                    // pix[i  ] = (255 + pix[i  ])*0.5; // red
-                    // pix[i+1] = (255 + pix[i+1])*0.5; // green
-                    // pix[i+2] = (255 + pix[i+2])*0.5; // blue
                     pix[i+3] = 200; // alpha (the fourth element)
                 }
             }else{
@@ -108,51 +105,36 @@ function init(){
 
     }
 
-    // canvas.onmouseup = function(e){
-    //     // if(inspectY != null && inspectX != null){
-    //     //     inspectX = null;
-    //     //     inspectY = null;
-    //     // }else{
-    //         inspectX = e.layerX;
-    //         inspectY = e.layerY;
-    //         pickerExit.style.display = "block";
-    //     // }
-    // }
 
+
+    //CLICK EVENTS:
+
+    // from here: http://stackoverflow.com/a/10036499
     var mouseIsDown = false;
-
     canvas.onmousedown = function(e){
-        // dragOffset.x = e.x - mainLayer.trans.x;
-        // dragOffset.y = e.y - mainLayer.trans.y;
-
         mouseIsDown = true;
     }
     canvas.onmouseup = function(e){
         if(mouseIsDown) mouseClick(e);
-
         mouseIsDown = false;
     }
-
     canvas.onmousemove = function(e){
         if(!mouseIsDown) return;
-        // mainLayer.trans.x = e.x - dragOffset.x;
-        // mainLayer.trans.y = e.y - dragOffset.y;
         mouseClick(e);
         return false;
     }
-
     function mouseClick(e){
-        // click action
         inspectX = e.layerX;
         inspectY = e.layerY;
         pickerExit.style.display = "block";
     }
-
     pickerExit.addEventListener('click', function(){
         inspectX = null;
         inspectY = null;
         pickerExit.style.display = "none";
-    })
+    });
+
+    // RUN IT ALL:
 
     changeStream();
     console.log(image);
