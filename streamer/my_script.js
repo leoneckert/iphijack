@@ -93,6 +93,13 @@ function init(){
                 elem.innerHTML = "";
                 elem.appendChild(p);
 
+                var coordinates = inspectX + " | " + inspectY;
+                var p2 = document.createElement('p');
+                p2.innerHTML = coordinates;
+                elem.appendChild(p2);
+
+
+
             });
 
         }
