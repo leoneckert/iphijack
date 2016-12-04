@@ -94,6 +94,7 @@ function init(){
         }
         function addToLog(idx, r, g, b){
             allocateElement(idx, function(elem){
+                console.log(elem);
                 var rgb = elem.getElementById("rgb");
                 rgb.style.display = "block"
                 // console.log(elem, "got");
