@@ -71,7 +71,7 @@ function init(){
 
         function allocateElement(idx, callback){
             var name = String(idx);
-            var elem = document.getElementById('name');
+            var elem = document.getElementById(name);
             if( elem == null){
                 elem = document.createElement('div');
                 elem.id = name;
