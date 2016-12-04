@@ -50,7 +50,13 @@ function init(){
         }
         function getMarker(w,x,y){
             // square around spot:
-            var sq = [getPixelIdx(w,x-2,y), getPixelIdx(w,x-2,y-1), getPixelIdx(w,x-2,y-2)];
+            var sq
+            for(var i = -2; i <= 2; i++){
+                for(var j = -2; j <= 2; j++){
+                    sq.push( getPixelIdx(w,x+i,y+j) ); 
+                }
+            }
+            // var sq = [getPixelIdx(w,x-2,y), getPixelIdx(w,x-2,y-1), getPixelIdx(w,x-2,y-2)];
             return sq;
         }
         function isInArray(value, array) {
@@ -76,7 +82,10 @@ function init(){
                     picker.style.background = 'rgb('+pix[i]+', '+pix[i+1]+', '+pix[i+2]+')';
                     picker.style.border = '1px solid black';
                 }else if(isInArray(i, marker)){
-                    picker.style.background = 'rgb(255, 0, 0)';
+                    // picker.style.background = 'rgb(255, 0, 0)';
+                    pix[i  ] = 255; // red
+                    pix[i+1] = 0; // green
+                    pix[i+2] = 0; // blue
                 }else{
                     // pix[i  ] = (255 + pix[i  ])*0.5; // red
                     // pix[i+1] = (255 + pix[i+1])*0.5; // green
