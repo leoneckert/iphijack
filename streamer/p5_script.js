@@ -28,9 +28,9 @@ function init(){
         canvas.width = canvas.width;
         // check if we have a valid image
         if (image.width * image.height > 0) {
-          context.drawImage(image, 0, 0, streamW, streamH);
+          context.drawImage(image, streamW, 0, streamW, streamH);
         } else {
-          context.drawImage(loadingImg, 0, 0, streamW, streamH);
+          context.drawImage(loadingImg, streamW, 0, streamW, streamH);
         }
       }
 
