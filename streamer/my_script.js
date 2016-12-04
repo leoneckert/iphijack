@@ -125,6 +125,7 @@ function init(){
             }else{
                 picker.style.background = 'rgb(255, 255, 255)';
                 picker.style.border = 'none';
+                document.getElementById('data').innerHTML = "";
             }
 
         }
@@ -160,12 +161,7 @@ function init(){
         inspectX = null;
         inspectY = null;
         pickerExit.style.display = "none";
-
-        // var pixelDataDivs = document.getElementsByClassName("pixelData");
-        // console.log(pixelDataDivs);
-        // for(var i = 0; i < pixelDataDivs.length; i++){
-        //     pixelDataDivs[i].style.display = "none";
-        // }
+        document.getElementById('data').innerHTML = "";
 
     });
 
