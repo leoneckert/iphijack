@@ -40,6 +40,7 @@ function init(){
         // check if we have a valid image
         if (image.width * image.height > 0) {
           context.drawImage(image, 0, 0, streamW, streamH);
+          canvas.style.background = 'rgba(255, 255,255, 50)';
         } else {
         //   context.drawImage(loadingImg, 0, 0, streamW, streamH);
         }
