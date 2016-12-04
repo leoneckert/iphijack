@@ -22,7 +22,7 @@ function init(){
 
     function draw() {
         // // clear the canvas
-        // canvas.width = canvas.width;
+        canvas.width = canvas.width;
         //
         // // check if we have a valid image
         // if (image.width * image.height > 0) {
