@@ -127,13 +127,14 @@ function init(){
             }else{
                 picker.style.background = 'rgb(255, 255, 255)';
                 picker.style.border = 'none';
-                var pixelDataDivs = document.getElementsByClassName("pixelData");
+                var pixelDataDiv = document.getElementsByClassName("pixelData")[0];
                 // console.log(pixelDataDivs);
-                if(pixelDataDivs.length != 0){
-                    for(var i = 0; i < pixelDataDivs.length; i++){
-                        console.log(i);
-                    }   
-                }
+                pixelDataDiv.style.display = "none;"
+                // if(pixelDataDivs.length != 0){
+                //     for(var i = 0; i < pixelDataDivs.length; i++){
+                //         console.log(i);
+                //     }
+                // }
 
                 //
                 // var x = document.getElementsByClassName("example");
