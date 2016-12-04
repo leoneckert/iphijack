@@ -19,7 +19,7 @@ function init(){
     // picker.width = streamW/2;
     // picker.height = streamW/2;
     // picker.style.background = 'rgb(255, 255, 255)';
-    var imgd = context.getImageData(20, 20, 1, 1);
+    var imgd = context.getImageData(20, 20, 2, 2);
     console.log(imgd);
     // var imgd = context.getImageData(0, 0, streamW, streamH);
     // console.log(imgd);
