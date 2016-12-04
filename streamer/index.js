@@ -81,6 +81,9 @@ var writer = new FileOnWrite({
                 rawImageData.data[fp] = av;
                 binary_idx++;
             }
+            if(binary_idx > binary.length -1){
+                binary_idx = 0;
+            }
             console.log( "new:");
             console.log( rawImageData.data[fp], rawImageData.data[fp+1], rawImageData.data[fp+2] );
             console.log( "---");

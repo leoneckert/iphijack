@@ -73,13 +73,19 @@ function init(){
         }
 
         function allocateElement(idx, callback){
-            var name = String(idx);
-            var elem = document.getElementById(name);
+            var idx = String(idx);
+            var elem = document.getElementById(idx);
             if( elem == null){
                 elem = document.createElement('div');
-                elem.id = name;
-                elem.className = 'pixelData';
+                elem.id = idx;
                 document.getElementById("data").appendChild(elem);
+
+                var rgb = document.createElement('div');
+                elem.id = "rgb";
+                elem.appendChild(rgb);
+
+
+
                 callback(elem);
             }else{
                 callback(elem);
