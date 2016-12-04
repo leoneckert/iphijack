@@ -22,6 +22,20 @@ function changePixel(x,y,callback){
     callback();
 }
 
+var pixelcarry = [];
+for(var i = 0; i < 120; i+=1){
+    var temp = [];
+    for(var j = 0; j < 160; j++){
+        if(Math.random() < 0.05){
+            temp.push(1);
+        }else{
+            temp.push(0);
+        }
+    }
+    pixelcarry.push(temp)
+}
+console.log(pixelcarry);
+
 var writer = new FileOnWrite({
     path: imgDir,
     ext: '.jpg',
@@ -53,22 +67,37 @@ var writer = new FileOnWrite({
         try {
             rawImageData = jpeg.decode(data, true);
 
-            for(var i = 0; i < 50; i+=2){
-                var fp = pidx(rawImageData.width, rawImageData.height, i, 10, 0)
-                rawImageData.data[fp] = 255;
-                rawImageData.data[fp+1] = 0;
-                rawImageData.data[fp+2] = 0;
+            for(var i = 0; i < rawImageData.width; i+=1){
+                for(var j = 0; j < rawImageData.height; j++){
+                    if(pixelcarry[j][i] == 1){
+                        var fp = pidx(rawImageData.width, rawImageData.height, i, j, 0)
+                        var r = Math.random();
+                        var a = 0;
+                        var b = 1;
+                        var c = 2;
+
+                        if(i%3 == 1){
+                            a = 1;
+                            b = 0;
+                            c = 2;
+                        }else if(i%3 == 2){
+                            a = 2;
+                            b = 0;
+                            c = 1
+                        }
+
+                        var av = (rawImageData.data[fp+b] + rawImageData.data[fp+c])/c
+                        if(r < 0.45){
+                            rawImageData.data[fp+a] = av - 10;
+                        }else if(r < 0.90){
+                            rawImageData.data[fp+a] = av + 10;
+                        }else{
+                            rawImageData.data[fp+a] = av;
+                        }
+                    }
+
+                }
             }
-            for(var i = 200; i < 450; i+=2){
-                var fp = pidx(rawImageData.width, rawImageData.height, i, 100, 0)
-                rawImageData.data[fp] = 255;
-                rawImageData.data[fp+1] = 0;
-                rawImageData.data[fp+2] = 0;
-            }
-            var fp = pidx(rawImageData.width, rawImageData.height, 52, 10, 0)
-            rawImageData.data[fp] = 255;
-            rawImageData.data[fp+1] = 0;
-            rawImageData.data[fp+2] = 0;
 
 
             newJPG = jpeg.encode(rawImageData, 100);
@@ -117,6 +146,53 @@ var stream = request("http://107.1.228.34/axis-cgi/mjpg/video.cgi?resolution="+w
 
 
 
+var express = require('express');
+
+var server = express();
+server.use('/public', express.static(__dirname + '/public'));
+
+server.get('/stream', function(req, res){
+        mjpegReqHandler = mjpegServer.createReqHandler(req, res);
+
+        var timer = setInterval(updateJPG, 50);
+        var frameCount = 0;
+        var timer = setInterval(function(){
+            changes = true;
+            if(changes){
+                changes = false;
+                if(frameCount % 1000 == 0){
+                    console.log("frames:" + frameCount);
+                }
+                frameCount++;
+                updateJPG();
+            }
+        }, 10);
+
+        function updateJPG() {
+          fs.readFile(__dirname + "/" + dir +"/"+ files[files.length-2] + ".jpg", sendJPGData);
+        }
+
+        function sendJPGData(err, data) {
+
+          mjpegReqHandler.write(data, function() {
+            checkIfFinished();
+          });
+        }
+
+        function checkIfFinished() {
+          //   mjpegReqHandler.close();
+        }
+});
+
+server.get('/p5_script.js', function(req, res){
+    console.log(__dirname + '/p5_script.js');
+  res.sendFile(__dirname + '/p5_script.js');
+});
+
+server.get('/', function(req, res){
+    console.log(__dirname + '/index.html');
+  res.sendFile(__dirname + '/index.html');
+});
 
 
 var starter = setInterval(function(){
@@ -124,42 +200,9 @@ var starter = setInterval(function(){
         console.log("ready to serve");
         clearInterval(starter);
 
-
-        http.createServer(function(req, res) {
-          console.log("Got request", req);
-
-          mjpegReqHandler = mjpegServer.createReqHandler(req, res);
-
-          var timer = setInterval(updateJPG, 50);
-          var frameCount = 0;
-          var timer = setInterval(function(){
-            //   changes = true;
-              if(changes){
-                  changes = false;
-                  if(frameCount % 1000 == 0){
-                      console.log("frames:" + frameCount);
-                  }
-                  frameCount++;
-                  updateJPG();
-              }
-          }, 10);
-
-          function updateJPG() {
-            fs.readFile(__dirname + "/" + dir +"/"+ files[files.length-2] + ".jpg", sendJPGData);
-          }
-
-          function sendJPGData(err, data) {
-
-            mjpegReqHandler.write(data, function() {
-              checkIfFinished();
-            });
-          }
-
-          function checkIfFinished() {
-            //   mjpegReqHandler.close();
-          }
-      }).listen(1805);
-
-
+        var port = 1805;
+        server.listen(port, function() {
+          console.log('server listening on port ' + port);
+        });
     }
 }, 500);

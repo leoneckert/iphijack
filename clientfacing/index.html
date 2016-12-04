@@ -12,25 +12,25 @@
    */
   function init() {
 
-    function printPixel(imageData, x, y) {
-        var index = (x + y * imageData.width) * 4;
-        // imageData.data[index+0] = r;
-        // imageData.data[index+1] = g;
-        // imageData.data[index+2] = b;
-        // imageData.data[index+3] = a;
-
-        console.log(imageData.data[index+0]);
-        console.log(imageData.data[index+1]);
-        console.log(imageData.data[index+2]);
-        console.log(imageData.data[index+3]);
-    }
-
-      function startInteraction(){
-            var cnv = document.getElementById('mjpeg').getElementsByTagName('canvas')[0];
-            console.log(cnv);
-            var c = cnv.getContext("2d");
-            console.log(c.getImageData(10, 10, 1, 1).data);
-      }
+    // function printPixel(imageData, x, y) {
+    //     var index = (x + y * imageData.width) * 4;
+    //     // imageData.data[index+0] = r;
+    //     // imageData.data[index+1] = g;
+    //     // imageData.data[index+2] = b;
+    //     // imageData.data[index+3] = a;
+    //
+    //     console.log(imageData.data[index+0]);
+    //     console.log(imageData.data[index+1]);
+    //     console.log(imageData.data[index+2]);
+    //     console.log(imageData.data[index+3]);
+    // }
+    //
+    //   function startInteraction(){
+    //         var cnv = document.getElementById('mjpeg').getElementsByTagName('canvas')[0];
+    //         console.log(cnv);
+    //         var c = cnv.getContext("2d");
+    //         console.log(c.getImageData(10, 10, 1, 1).data);
+    //   }
 
 
     // Create the main viewer.
@@ -41,9 +41,9 @@
       width : 160,
       height : 120
     });
-    setTimeout(function(){
-        startInteraction();
-    }, 3000);
+    // setTimeout(function(){
+    //     startInteraction();
+    // }, 3000);
   }
 </script>
 <style>
