@@ -71,7 +71,7 @@ function init(){
 
         function addToLog(idx, r, g, b){
             var name = String(idx);
-            var elem = document.getElementByIdById('name');
+            var elem = document.getElementById('name');
             console.log(elem);
         }
 
