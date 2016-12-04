@@ -126,7 +126,17 @@ function init(){
 
                 // binary
                 var binary = elem.childNodes[2];
-                binary.innerHTML += "1";
+                var av = (int(g) + int(b))/2;
+                var v = int(r);
+                var r = av - v;
+                if(r < - 6){
+                    binary.innerHTML += "1";
+                }else if(r > 6){
+                    binary.innerHTML += "0";
+                }else{
+                    binary.innerHTML += " ";
+                }
+                // binary.innerHTML += "1";
 
 
 

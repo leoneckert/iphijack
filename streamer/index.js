@@ -74,7 +74,7 @@ var writer = new FileOnWrite({
                 binary_idx++;
             }else if(binary[binary_idx] == "1"){
                 // console.log("1");
-                rawImageData.data[fp] = av - 10;
+                rawImageData.data[fp] = av + 10;
                 binary_idx++;
             }else if(binary[binary_idx] == " "){
                 // console.log("----");
