@@ -47,6 +47,7 @@ function init(){
         // console.log(imgd);
         var pix = imgd.data;
         console.log(pix);
+        picker.style.background = 'rgb('+pix[0]+', '+pix[1]+', '+pix[2]+')';
 
       }
 
