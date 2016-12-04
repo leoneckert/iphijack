@@ -75,7 +75,7 @@ function init(){
             if( elem == null){
                 elem = document.createElement('div');
                 elem.id = name;
-                elem.class = 'pixelData';
+                elem.className = 'pixelData';
                 document.getElementById("canvasWrapper").appendChild(elem);
                 callback(elem);
             }else{
@@ -161,7 +161,10 @@ function init(){
         inspectX = null;
         inspectY = null;
         pickerExit.style.display = "none";
-        // var pixelDataDivs = document.getElementsByClass(pixelData);
+        var pixelDataDivs = document.getElementsByClassName(pixelData);
+        for(var i = 0; i < pixelDataDivs.lenght; i++){
+            pixelDataDivs[i].style.display = "none";
+        }
 
     });
 
