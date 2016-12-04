@@ -3,14 +3,15 @@ function init(){
     var image = new Image();
 
     // create the canvas to render to
-  var canvas = document.createElement('canvas');
-  canvas.width = 160;
-  canvas.height = 120;
-  canvas.style.background = 'rgb(255, 0,0)';
-  document.getElementById("canvasWrapper").appendChild(canvas);
-  var context = canvas.getContext('2d');
+    var canvas = document.createElement('canvas');
+    canvas.width = 160;
+    canvas.height = 120;
+    canvas.style.background = 'rgb(255, 0,0)';
+    document.getElementById("canvasWrapper").appendChild(canvas);
+    var context = canvas.getContext('2d');
 
-  // var drawInterval = Math.max(1 / this.refreshRate * 1000, this.interval);
+    var drawInterval = Math.max(1 / 10 * 1000, 30;
+    console.log("drawInterval", drawInterval);
 
     function changeStream(){
         var src = 'http://lke229.itp.io:1805/stream';
