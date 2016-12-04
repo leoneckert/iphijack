@@ -64,7 +64,7 @@ function init(){
     }
 
     canvas.onmouseup = function(e){
-        inspectX = e.layerX);
+        inspectX = e.layerX;
         inspectY = e.layerY;
     }
 
