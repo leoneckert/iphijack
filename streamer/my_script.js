@@ -84,6 +84,14 @@ function init(){
                 rgb.id = "rgb";
                 elem.appendChild(rgb);
 
+                var coordinates = document.createElement('div');
+                coordinates.id = "coordinates";
+                elem.appendChild(coordinates);
+
+                var binary = document.createElement('div');
+                binary.id = "binary";
+                elem.appendChild(binary);
+
 
 
                 callback(elem);
@@ -94,10 +102,11 @@ function init(){
         }
         function addToLog(idx, r, g, b){
             allocateElement(idx, function(elem){
-                console.log(elem);
+                // console.log(elem);
                 debugger
+
                 var rgb = elem.childNodes[0];
-                console.log(elem.childNodes);
+                // console.log(elem.childNodes);
                 rgb.style.display = "block"
                 // console.log(elem, "got");
                 var str = r + " | " + g + " | " + b;
