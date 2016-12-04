@@ -8,7 +8,7 @@ function init(){
   canvas.height = this.height;
   canvas.style.background = '#aaaaaa';
   document.getElementById("canvasWrapper").appendChild(canvas);
-  var context = this.canvas.getContext('2d');
+  var context = canvas.getContext('2d');
 
   // var drawInterval = Math.max(1 / this.refreshRate * 1000, this.interval);
 
