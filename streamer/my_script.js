@@ -96,13 +96,14 @@ function init(){
             allocateElement(idx, function(elem){
                 console.log(elem);
                 var rgb = elem.getElementById("rgb");
-                rgb.style.display = "block"
-                // console.log(elem, "got");
-                var str = r + " | " + g + " | " + b;
-                var p = document.createElement('p');
-                p.innerHTML = str;
-                rgb.innerHTML = "";
-                rgb.appendChild(p);
+                console.log(elem.childNodes);
+                // rgb.style.display = "block"
+                // // console.log(elem, "got");
+                // var str = r + " | " + g + " | " + b;
+                // var p = document.createElement('p');
+                // p.innerHTML = str;
+                // rgb.innerHTML = "";
+                // rgb.appendChild(p);
 
                 // var coordinates = inspectX + " | " + inspectY;
                 // var p2 = document.createElement('p');
