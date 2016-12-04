@@ -24,6 +24,13 @@ function init(){
     picker.style.height = streamW/2 + "px";
     picker.style.background = 'rgb(255, 0, 255)';
     document.getElementById("canvasWrapper").appendChild(picker);
+
+    var pickerExit = document.createElement('a');
+    pickerExit.innerHTML = "x";
+    // picker.style.width = streamW/2 + "px";
+    // picker.style.height = streamW/2 + "px";
+    // picker.style.background = 'rgb(255, 0, 255)';
+    document.getElementById("canvasWrapper").appendChild(pickerExit);
     // var imgd = context.getImageData(20, 20, 2, 2);
     // console.log(imgd);
 
