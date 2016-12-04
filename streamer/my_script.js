@@ -95,6 +95,7 @@ function init(){
         function addToLog(idx, r, g, b){
             allocateElement(idx, function(elem){
                 console.log(elem);
+                debugger
                 var rgb = elem.getElementById("rgb");
                 console.log(elem.childNodes);
                 // rgb.style.display = "block"
