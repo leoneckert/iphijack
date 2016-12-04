@@ -94,13 +94,14 @@ function init(){
         }
         function addToLog(idx, r, g, b){
             allocateElement(idx, function(elem){
-                elem.style.display = "block"
+                var rgb = elem.getElementById("rgb");
+                rgb.style.display = "block"
                 // console.log(elem, "got");
                 var str = r + " | " + g + " | " + b;
                 var p = document.createElement('p');
                 p.innerHTML = str;
-                elem.innerHTML = "";
-                elem.appendChild(p);
+                rgb.innerHTML = "";
+                rgb.appendChild(p);
 
                 // var coordinates = inspectX + " | " + inspectY;
                 // var p2 = document.createElement('p');
