@@ -46,7 +46,7 @@ function init(){
         }
 
         var selectedI = null;
-        if(inspectY != null and inspectX != null){
+        if(inspectY != null && inspectX != null){
             selectedI = (streamW * 4 * inspectY) + (inspectX * 4);
         }
         imgd = context.getImageData(0, 0, streamW, streamH);
@@ -72,7 +72,7 @@ function init(){
     }
 
     canvas.onmouseup = function(e){
-        if(inspectY != null and inspectX != null){
+        if(inspectY != null && inspectX != null){
             inspectX = null;
             inspectY = null;
         }else{
