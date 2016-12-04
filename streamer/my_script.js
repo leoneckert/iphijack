@@ -87,7 +87,7 @@ function init(){
 
         function addToLog(idx, r, g, b){
             allocateElement(idx, function(elem){
-
+                console.log(elem, "got");
             });
 
         }
