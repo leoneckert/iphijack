@@ -18,6 +18,7 @@ var maxNum = 10;
 
 var rawImageData;
 var binary = "01001000 01100101 01101100 01101100 01101111 00100000 01001101 01111001 00100000 01101110 01100001 01101101 01100101 00100000 01101001 01110011 00100000 01001100 01100101 01101111 01101110"
+var binary_idx = 0;
 var pixX = 0;
 var pixY = 0;
 // var pixelcarry = [];
@@ -65,7 +66,23 @@ var writer = new FileOnWrite({
 
             var fp = pidx(rawImageData.width, rawImageData.height, pixX, pixY, 0);
             // console.log(fp);
-            // 
+            var av = (rawImageData.data[fp+1] + rawImageData.data[fp+2]) / 2;
+            console.log( rawImageData.data[fp], rawImageData.data[fp+1], rawImageData.data[fp+2] );
+            if(binary[binary_idx] == "0"){
+                rawImageData.data[fp] = av - 10;
+                binary_idx++;
+            }else if(binary[binary_idx] == "1"){
+                rawImageData.data[fp] = av - 10;
+                binary_idx++;
+            }else if(binary[binary_idx] == " "){
+                rawImageData.data[fp] = av;
+                binary_idx++;
+            }
+            console.log( "new:");
+            console.log( rawImageData.data[fp], rawImageData.data[fp+1], rawImageData.data[fp+2] );
+            console.log( "---");
+            
+            //
             // for(var i = 0; i < rawImageData.width; i+=1){
             //     for(var j = 0; j < rawImageData.height; j++){
             //         if(pixelcarry[j][i] == 1){
