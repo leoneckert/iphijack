@@ -56,21 +56,21 @@ function init(){
                 // pix[i  ] = (255 + pix[i  ])*0.5; // red
                 // pix[i+1] = (255 + pix[i+1])*0.5; // green
                 // pix[i+2] = (255 + pix[i+2])*0.5; // blue
-                pix[i+3] = 100;
-                // i+3 is alpha (the fourth element)
+                pix[i+3] = 150; // alpha (the fourth element)
             }
         }
         context.putImageData(imgd, 0, 0);
 
-      }
+    }
+
+    canvas.onmouseup = function(e){
+        console.log(e);
+    }
 
     changeStream();
     console.log(image);
     setInterval(draw, drawInterval);
 
-
 }
-
-
 
 window.addEventListener("load", init);
