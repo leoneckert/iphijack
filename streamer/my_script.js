@@ -90,6 +90,7 @@ function init(){
                 var str = r + " | " + g + " | " + b;
                 var p = document.createElement('p');
                 p.innerHTML = str;
+                elem.innerHTML = "";
                 elem.appendChild(p);
 
             });
