@@ -4,9 +4,9 @@ function init(){
 
     // create the canvas to render to
   var canvas = document.createElement('canvas');
-  canvas.width = "160px";
-  canvas.height = "120px";
-  canvas.style.background = '#aaabaa';
+  canvas.width = 160;
+  canvas.height = 120;
+  canvas.style.background = 'rgb(255, 0,0)';
   document.getElementById("canvasWrapper").appendChild(canvas);
   var context = canvas.getContext('2d');
 
