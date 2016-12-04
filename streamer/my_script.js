@@ -75,6 +75,7 @@ function init(){
             if( elem == null){
                 elem = document.createElement('div');
                 elem.id = name;
+                elem.class = 'pixelData';
                 document.getElementById("canvasWrapper").appendChild(elem);
                 callback(elem);
             }else{
@@ -86,6 +87,7 @@ function init(){
 
         function addToLog(idx, r, g, b){
             allocateElement(idx, function(elem){
+                elem.style.display = "block"
                 // console.log(elem, "got");
                 var str = r + " | " + g + " | " + b + " | ";
                 var p = document.createElement('p');
@@ -101,10 +103,8 @@ function init(){
         var selectedI = null;
         var marker = null;
         if(inspectY != null && inspectX != null){
-            // selectedI = (streamW * 4 * inspectY) + (inspectX * 4);
             selectedI = getPixelIdx(streamW, inspectX, inspectY);
             marker = getMarker(streamW, inspectX, inspectY);
-            // console.log(marker);
         }
 
         imgd = context.getImageData(0, 0, streamW, streamH);
@@ -161,6 +161,8 @@ function init(){
         inspectX = null;
         inspectY = null;
         pickerExit.style.display = "none";
+        // var pixelDataDivs = document.getElementsByClass(pixelData);
+
     });
 
     // RUN IT ALL:
