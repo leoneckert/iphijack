@@ -154,12 +154,13 @@ function init(){
         inspectX = e.layerX;
         inspectY = e.layerY;
         pickerExit.style.display = "block";
+        document.getElementById('data').innerHTML = "";
     }
     pickerExit.addEventListener('click', function(){
         inspectX = null;
         inspectY = null;
         pickerExit.style.display = "none";
-        document.getElementById('data').innerHTML = "";
+
         // var pixelDataDivs = document.getElementsByClassName("pixelData");
         // console.log(pixelDataDivs);
         // for(var i = 0; i < pixelDataDivs.length; i++){
