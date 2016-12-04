@@ -122,8 +122,8 @@ function init(){
     var mouseIsDown = false;
 
     canvas.onmousedown = function(e){
-        dragOffset.x = e.x - mainLayer.trans.x;
-        dragOffset.y = e.y - mainLayer.trans.y;
+        // dragOffset.x = e.x - mainLayer.trans.x;
+        // dragOffset.y = e.y - mainLayer.trans.y;
 
         mouseIsDown = true;
     }
@@ -136,8 +136,8 @@ function init(){
     canvas.onmousemove = function(e){
         if(!mouseIsDown) return;
 
-        mainLayer.trans.x = e.x - dragOffset.x;
-        mainLayer.trans.y = e.y - dragOffset.y;
+        // mainLayer.trans.x = e.x - dragOffset.x;
+        // mainLayer.trans.y = e.y - dragOffset.y;
         mouseClick(e);
         return false;
     }
