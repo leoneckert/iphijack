@@ -135,7 +135,6 @@ function init(){
 
     canvas.onmousemove = function(e){
         if(!mouseIsDown) return;
-
         // mainLayer.trans.x = e.x - dragOffset.x;
         // mainLayer.trans.y = e.y - dragOffset.y;
         mouseClick(e);
