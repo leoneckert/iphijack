@@ -23,7 +23,7 @@ function init(){
     whiteoverlay.width = streamW;
     whiteoverlay.height = streamH;
     whiteoverlay.style.background = 'rgb(255,255,255)';
-    // document.getElementById("canvasWrapper").appendChild(whiteoverlay);
+    document.getElementById("canvasWrapper").appendChild(whiteoverlay);
 
     var picker = document.createElement('div');
     picker.style.width = streamW/2 + "px";
