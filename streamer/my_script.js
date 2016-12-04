@@ -129,10 +129,18 @@ function init(){
                 picker.style.border = 'none';
                 var pixelDataDivs = document.getElementsByClassName("pixelData");
                 // console.log(pixelDataDivs);
-                for(var i = 0; i < pixelDataDivs.length; i++){
-                //     pixelDataDivs[i].style.display = "none";
-                    console.log(i);
+                if(pixelDataDivs.length != 0){
+                    for(var i = 0; i < pixelDataDivs.length; i++){
+                        console.log(i);
+                    }   
                 }
+
+                //
+                // var x = document.getElementsByClassName("example");
+                // var i;
+                // for (i = 0; i < x.length; i++) {
+                //     x[i].style.backgroundColor = "red";
+                // }
 
             }
 
