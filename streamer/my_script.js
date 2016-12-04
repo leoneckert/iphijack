@@ -126,8 +126,8 @@ function init(){
 
                 // binary
                 var binary = elem.childNodes[2];
-                var av = (int(g) + int(b)) /2;
-                var v = int(r);
+                var av = (parseInt(g) + parseInt(b)) /2;
+                var v = parseInt(r);
                 var re = av - v;
                 if(re < - 6){
                     binary.innerHTML += "1";
