@@ -64,7 +64,8 @@ function init(){
     }
 
     canvas.onmouseup = function(e){
-        console.log(e);
+        inspectX = e.layerX);
+        inspectY = e.layerY;
     }
 
     changeStream();
