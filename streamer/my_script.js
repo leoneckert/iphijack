@@ -61,7 +61,7 @@ function init(){
                     // pix[i  ] = (255 + pix[i  ])*0.5; // red
                     // pix[i+1] = (255 + pix[i+1])*0.5; // green
                     // pix[i+2] = (255 + pix[i+2])*0.5; // blue
-                    pix[i+3] = 150; // alpha (the fourth element)
+                    pix[i+3] = 200; // alpha (the fourth element)
                 }
             }else{
                 picker.style.background = 'rgb(255, 255, 255)';
