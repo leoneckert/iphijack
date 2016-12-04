@@ -2,6 +2,9 @@
 var streamW = 160;
 var streamH = 120;
 
+var inspextX = 40;
+var inspectY = 20;
+
 function init(){
     var image = new Image();
     var loadingImg = new Image();
@@ -15,10 +18,11 @@ function init(){
     document.getElementById("canvasWrapper").appendChild(canvas);
     var context = canvas.getContext('2d');
 
-    // var picker = document.createElement('div');
-    // picker.width = streamW/2;
-    // picker.height = streamW/2;
-    // picker.style.background = 'rgb(255, 255, 255)';
+    var picker = document.createElement('div');
+    picker.width = streamW/2;
+    picker.height = streamW/2;
+    picker.style.background = 'rgb(255, 0, 255)';
+    document.getElementById("canvasWrapper").appendChild(picker);
     // var imgd = context.getImageData(20, 20, 2, 2);
     // console.log(imgd);
 
@@ -39,7 +43,7 @@ function init(){
         } else {
         //   context.drawImage(loadingImg, 0, 0, streamW, streamH);
         }
-        var imgd = context.getImageData(0, 0, 1, 1);
+        var imgd = context.getImageData(inspextX, inspextY, 1, 1);
         // console.log(imgd);
         var pix = imgd.data;
         console.log(pix);
