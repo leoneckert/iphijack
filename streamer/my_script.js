@@ -103,22 +103,26 @@ function init(){
         function addToLog(idx, r, g, b){
             allocateElement(idx, function(elem){
                 // console.log(elem);
+                elem.style.display = "block"
                 debugger
 
+                // rgb
                 var rgb = elem.childNodes[0];
-                // console.log(elem.childNodes);
-                rgb.style.display = "block"
-                // console.log(elem, "got");
+
                 var str = r + " | " + g + " | " + b;
                 var p = document.createElement('p');
                 p.innerHTML = str;
                 rgb.innerHTML = "";
                 rgb.appendChild(p);
 
-                // var coordinates = inspectX + " | " + inspectY;
-                // var p2 = document.createElement('p');
-                // p2.innerHTML = coordinates;
-                // elem.appendChild(p2);
+                // coordinates
+                var coordinates = elem.childNodes[1];
+
+                str = inspectX + " | " + inspectY;
+                var p2 = document.createElement('p');
+                p2.innerHTML = "";
+                p2.innerHTML = str;
+                coordinates.appendChild(p2);
 
 
 
