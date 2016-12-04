@@ -50,7 +50,7 @@ function init(){
         }
         function getMarker(w,x,y){
             // square around spot:
-            var sq = [getPixelIdx(w,x-2,y)];
+            var sq = [getPixelIdx(w,x-2,y), getPixelIdx(w,x-2,y-1), getPixelIdx(w,x-2,y-2)];
             return sq;
         }
         function isInArray(value, array) {
@@ -59,12 +59,14 @@ function init(){
 
 
         var selectedI = null;
+        var marker = null;
         if(inspectY != null && inspectX != null){
             // selectedI = (streamW * 4 * inspectY) + (inspectX * 4);
             selectedI = getPixelIdx(streamW, inspectX, inspectY);
             marker = getMarker(streamW, inspectX, inspectY);
-            console.log(marker);
+            // console.log(marker);
         }
+
         imgd = context.getImageData(0, 0, streamW, streamH);
         pix = imgd.data;
         // Loop over each pixel and invert the color.
@@ -73,6 +75,8 @@ function init(){
                 if(i == selectedI){
                     picker.style.background = 'rgb('+pix[i]+', '+pix[i+1]+', '+pix[i+2]+')';
                     picker.style.border = '1px solid black';
+                }else if(isInArray(i, marker)){
+                    picker.style.background = 'rgb(255, 0, 0)';
                 }else{
                     // pix[i  ] = (255 + pix[i  ])*0.5; // red
                     // pix[i+1] = (255 + pix[i+1])*0.5; // green
