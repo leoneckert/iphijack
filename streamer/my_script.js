@@ -127,6 +127,11 @@ function init(){
             }else{
                 picker.style.background = 'rgb(255, 255, 255)';
                 picker.style.border = 'none';
+                pickerExit.style.display = "none";
+                var pixelDataDivs = document.getElementsByClassName("pixelData");
+                for(var i = 0; i < pixelDataDivs.lenght; i++){
+                    pixelDataDivs[i].style.display = "none";
+                }
             }
 
         }
@@ -160,12 +165,6 @@ function init(){
     pickerExit.addEventListener('click', function(){
         inspectX = null;
         inspectY = null;
-        pickerExit.style.display = "none";
-        var pixelDataDivs = document.getElementsByClassName("pixelData");
-        for(var i = 0; i < pixelDataDivs.lenght; i++){
-            pixelDataDivs[i].style.display = "none";
-        }
-
     });
 
     // RUN IT ALL:
