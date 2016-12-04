@@ -51,7 +51,7 @@ function init(){
         function getMarker(w,x,y){
             // square around spot:
             var sq = [];
-            for(var i = -2; i <= 2; i++){
+            for(var i = -2; i <= 2; i+=2){
                 for(var j = -2; j <= 2; j++){
                     sq.push( getPixelIdx(w,x+i,y+j) );
                 }
