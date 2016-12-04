@@ -162,9 +162,10 @@ function init(){
         inspectY = null;
         pickerExit.style.display = "none";
         var pixelDataDivs = document.getElementsByClassName("pixelData");
-        for(var i = 0; i < pixelDataDivs.length; i++){
-            pixelDataDivs[i].style.display = "none";
-        }
+        console.log(pixelDataDivs);
+        // for(var i = 0; i < pixelDataDivs.length; i++){
+        //     pixelDataDivs[i].style.display = "none";
+        // }
 
     });
 
