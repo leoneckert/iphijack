@@ -67,26 +67,26 @@ var writer = new FileOnWrite({
             var fp = pidx(rawImageData.width, rawImageData.height, pixX, pixY, 0);
             // console.log(fp);
             var av = (rawImageData.data[fp+1] + rawImageData.data[fp+2]) / 2;
-            // console.log( rawImageData.data[fp], rawImageData.data[fp+1], rawImageData.data[fp+2] );
+            console.log( rawImageData.data[fp], rawImageData.data[fp+1], rawImageData.data[fp+2] );
             if(binary[binary_idx] == "0"){
-                // console.log("0");
+                console.log("0");
                 rawImageData.data[fp] = av - 10;
                 binary_idx++;
             }else if(binary[binary_idx] == "1"){
-                // console.log("1");
+                console.log("1");
                 rawImageData.data[fp] = av + 10;
                 binary_idx++;
             }else if(binary[binary_idx] == " "){
-                // console.log("----");
+                console.log("----");
                 rawImageData.data[fp] = av;
                 binary_idx++;
             }
             if(binary_idx > binary.length -1){
                 binary_idx = 0;
             }
-            // console.log( "new:");
-            // console.log( rawImageData.data[fp], rawImageData.data[fp+1], rawImageData.data[fp+2] );
-            // console.log( "---");
+            console.log( "new:");
+            console.log( rawImageData.data[fp], rawImageData.data[fp+1], rawImageData.data[fp+2] );
+            console.log( "---");
 
             //
             // for(var i = 0; i < rawImageData.width; i+=1){
