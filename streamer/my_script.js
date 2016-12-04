@@ -50,10 +50,10 @@ function init(){
         }
         function getMarker(w,x,y){
             // square around spot:
-            var sq
+            var sq = [];
             for(var i = -2; i <= 2; i++){
                 for(var j = -2; j <= 2; j++){
-                    sq.push( getPixelIdx(w,x+i,y+j) ); 
+                    sq.push( getPixelIdx(w,x+i,y+j) );
                 }
             }
             // var sq = [getPixelIdx(w,x-2,y), getPixelIdx(w,x-2,y-1), getPixelIdx(w,x-2,y-2)];
