@@ -2,8 +2,8 @@
 var streamW = 160;
 var streamH = 120;
 
-var inspectX = 20;
-var inspectY = 40;
+var inspectX = null;
+var inspectY = null;
 
 function init(){
     var image = new Image();
@@ -45,27 +45,41 @@ function init(){
         //   context.drawImage(loadingImg, 0, 0, streamW, streamH);
         }
 
-        var selectedI = (streamW * 4 * inspectY) + (inspectX * 4);
+        var selectedI = null;
+        if(inspectY != null and inspectX != null){
+            selectedI = (streamW * 4 * inspectY) + (inspectX * 4);
+        }
         imgd = context.getImageData(0, 0, streamW, streamH);
         pix = imgd.data;
         // Loop over each pixel and invert the color.
         for (var i = 0, n = pix.length; i < n; i += 4) {
-            if(i == selectedI){
-                picker.style.background = 'rgb('+pix[i]+', '+pix[i+1]+', '+pix[i+2]+')';
+            if(selectedI != null){
+                if(i == selectedI){
+                    picker.style.background = 'rgb('+pix[i]+', '+pix[i+1]+', '+pix[i+2]+')';
+                }else{
+                    // pix[i  ] = (255 + pix[i  ])*0.5; // red
+                    // pix[i+1] = (255 + pix[i+1])*0.5; // green
+                    // pix[i+2] = (255 + pix[i+2])*0.5; // blue
+                    pix[i+3] = 150; // alpha (the fourth element)
+                }
             }else{
-                // pix[i  ] = (255 + pix[i  ])*0.5; // red
-                // pix[i+1] = (255 + pix[i+1])*0.5; // green
-                // pix[i+2] = (255 + pix[i+2])*0.5; // blue
-                pix[i+3] = 150; // alpha (the fourth element)
+                picker.style.background = 'rgb(255, 255, 255)';
             }
+
         }
         context.putImageData(imgd, 0, 0);
 
     }
 
     canvas.onmouseup = function(e){
-        inspectX = e.layerX;
-        inspectY = e.layerY;
+        if(inspectY != null and inspectX != null){
+            inspectX = null;
+            inspectY = null;
+        }else{
+            inspectX = e.layerX;
+            inspectY = e.layerY;
+        }
+
     }
 
     changeStream();
