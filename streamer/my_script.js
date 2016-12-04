@@ -124,6 +124,11 @@ function init(){
                 coordinates.innerHTML = str;
                 coordinates.appendChild(p2);
 
+                // binary
+                var binary = elem.childNodes[2];
+                binary.innerHTML += "1";
+
+
 
 
             });
