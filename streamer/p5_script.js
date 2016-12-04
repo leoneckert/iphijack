@@ -14,7 +14,7 @@ function init(){
     var canvas = document.createElement('canvas');
     canvas.width = streamW;
     canvas.height = streamH;
-    canvas.style.background = 'rgb(255, 0,0)';
+    canvas.style.background = 'rgb(255, 255,255)';
     document.getElementById("canvasWrapper").appendChild(canvas);
     var context = canvas.getContext('2d');
 
@@ -48,6 +48,7 @@ function init(){
         var imgd = context.getImageData(inspectX, inspectY, 1, 1);
         var pix = imgd.data;
         picker.style.background = 'rgb('+pix[0]+', '+pix[1]+', '+pix[2]+')';
+
         var selectedI = (streamW * 4 * inspectY) + (inspectX * 4);
 
         imgd = context.getImageData(0, 0, streamW, streamH);
