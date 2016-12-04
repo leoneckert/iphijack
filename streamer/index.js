@@ -182,9 +182,9 @@ server.get('/stream', function(req, res){
         }
 });
 
-server.get('/p5_script.js', function(req, res){
-    console.log(__dirname + '/p5_script.js');
-  res.sendFile(__dirname + '/p5_script.js');
+server.get('/my_script.js', function(req, res){
+    console.log(__dirname + '/my_script.js');
+  res.sendFile(__dirname + '/my_script.js');
 });
 
 server.get('/', function(req, res){
