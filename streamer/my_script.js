@@ -127,6 +127,10 @@ function init(){
             }else{
                 picker.style.background = 'rgb(255, 255, 255)';
                 picker.style.border = 'none';
+                var pixelDataDivs = document.getElementsByClassName("pixelData");
+                for(var i = 0; i < pixelDataDivs.length; i++){
+                    pixelDataDivs[i].style.display = "none";
+                }
             }
 
         }
@@ -161,10 +165,7 @@ function init(){
         inspectX = null;
         inspectY = null;
         pickerExit.style.display = "none";
-        var pixelDataDivs = document.getElementsByClassName("pixelData");
-        for(var i = 0; i < pixelDataDivs.length; i++){
-            pixelDataDivs[i].style.display = "none";
-        }
+
 
     });
 
