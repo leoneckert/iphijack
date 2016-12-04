@@ -1,4 +1,7 @@
 // inspo from here: https://github.com/rctoris/mjpegcanvasjs/blob/develop/src/visualization/Viewer.js
+var streamW = 160;
+var streamH = 120;
+
 function init(){
     var image = new Image();
     var loadingImg = new Image();
@@ -6,8 +9,8 @@ function init(){
 
     // create the canvas to render to
     var canvas = document.createElement('canvas');
-    canvas.width = 160;
-    canvas.height = 120;
+    canvas.width = streamW * 3;
+    canvas.height = streamH * 3;
     canvas.style.background = 'rgb(255, 0,0)';
     document.getElementById("canvasWrapper").appendChild(canvas);
     var context = canvas.getContext('2d');
@@ -23,22 +26,12 @@ function init(){
     function draw() {
         // clear the canvas
         canvas.width = canvas.width;
-
         // check if we have a valid image
         if (image.width * image.height > 0) {
-          context.drawImage(image, 0, 0, 160, 120);
+          context.drawImage(image, 0, 0, streamW, streamH);
         } else {
-          // center the error icon
-          context.drawImage(loadingImg, 0, 0, 160, 120);
-        //   that.emit('warning', 'Invalid stream.');
+          context.drawImage(loadingImg, 0, 0, streamW, streamH);
         }
-
-
-        // // silly firefox...
-        // if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
-        //   var aux = that.image.src.split('?killcache=');
-        //   that.image.src = aux[0] + '?killcache=' + Math.random(42);
-        // }
       }
 
     changeStream();
