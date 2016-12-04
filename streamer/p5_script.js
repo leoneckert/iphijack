@@ -21,19 +21,18 @@ function init(){
     }
 
     function draw() {
-        // // clear the canvas
+        // clear the canvas
         canvas.width = canvas.width;
-        //
-        // // check if we have a valid image
-        // if (image.width * image.height > 0) {
-        //   context.drawImage(image, 0, 0, 160, 120);
-        // } else {
-        //   // center the error icon
-        //   context.drawImage(loadingImg, 0, 0, 160, 120);
-        // //   that.emit('warning', 'Invalid stream.');
-        // }
 
-        context.drawImage(loadingImg, 0, 0, 160, 120);
+        // check if we have a valid image
+        if (image.width * image.height > 0) {
+          context.drawImage(image, 0, 0, 160, 120);
+        } else {
+          // center the error icon
+          context.drawImage(loadingImg, 0, 0, 160, 120);
+        //   that.emit('warning', 'Invalid stream.');
+        }
+
 
         // // silly firefox...
         // if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
@@ -44,7 +43,7 @@ function init(){
 
     changeStream();
     console.log(image);
-    draw();
+    setInterval(draw, drawInterval);
 
 
 }
