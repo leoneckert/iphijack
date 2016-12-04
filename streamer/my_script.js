@@ -50,16 +50,19 @@ function init(){
         }
         function getMarker(w,x,y){
             // square around spot:
-            var sq = {
-                getPixelIdx(w,x-2,y): 1
-            }
+            var sq = [getPixelIdx(w,x-2,y)];
             return sq;
         }
+        function isInArray(value, array) {
+          return array.indexOf(value) > -1;
+        }
+
+
         var selectedI = null;
         if(inspectY != null && inspectX != null){
             // selectedI = (streamW * 4 * inspectY) + (inspectX * 4);
-            selectedI = getPixelIdx(streamW, inspectY, inspectX);
-            marker = getMarker(streamW, inspectY, inspectX);
+            selectedI = getPixelIdx(streamW, inspectX, inspectY);
+            marker = getMarker(streamW, inspectX, inspectY);
             console.log(marker);
         }
         imgd = context.getImageData(0, 0, streamW, streamH);
