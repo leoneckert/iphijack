@@ -51,7 +51,7 @@ function init(){
         // Loop over each pixel and invert the color.
         for (var i = 0, n = pix.length; i < n; i += 4) {
             if(i == selectedI){
-                picker.style.background = 'rgb('+pix[0]+', '+pix[1]+', '+pix[2]+')';
+                picker.style.background = 'rgb('+pix[i]+', '+pix[i+1]+', '+pix[i+2]+')';
             }else{
                 // pix[i  ] = (255 + pix[i  ])*0.5; // red
                 // pix[i+1] = (255 + pix[i+1])*0.5; // green
