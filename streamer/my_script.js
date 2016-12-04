@@ -135,7 +135,7 @@ function init(){
                 }else{
                     binary.innerHTML += " ";
                 }
-                debugger
+                // debugger
                 // binary.innerHTML += "1";
 
 
