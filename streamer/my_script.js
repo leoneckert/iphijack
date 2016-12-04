@@ -87,7 +87,7 @@ function init(){
             allocateElement(idx, function(elem){
                 elem.style.display = "block"
                 // console.log(elem, "got");
-                var str = r + " | " + g + " | " + b + " | ";
+                var str = r + " | " + g + " | " + b;
                 var p = document.createElement('p');
                 p.innerHTML = str;
                 elem.appendChild(p);
