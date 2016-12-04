@@ -27,6 +27,8 @@ function init(){
 
     var pickerExit = document.createElement('a');
     pickerExit.innerHTML = "x";
+    pickerExit.href = "#";
+
     // picker.style.width = streamW/2 + "px";
     // picker.style.height = streamW/2 + "px";
     // picker.style.background = 'rgb(255, 0, 255)';
