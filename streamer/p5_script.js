@@ -3,7 +3,7 @@ var streamW = 160;
 var streamH = 120;
 
 var inspectX = 0;
-var inspectY = 0;
+var inspectY = 1;
 
 function init(){
     var image = new Image();
