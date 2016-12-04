@@ -18,6 +18,13 @@ function init(){
     document.getElementById("canvasWrapper").appendChild(canvas);
     var context = canvas.getContext('2d');
 
+
+    var whiteoverlay = document.createElement('canvas');
+    whiteoverlay.width = streamW;
+    whiteoverlay.height = streamH;
+    whiteoverlay.style.background = 'rgb(255,255,255)';
+    // document.getElementById("canvasWrapper").appendChild(whiteoverlay);
+
     var picker = document.createElement('div');
     picker.style.width = streamW/2 + "px";
     picker.style.height = streamW/2 + "px";
@@ -40,7 +47,8 @@ function init(){
         // check if we have a valid image
         if (image.width * image.height > 0) {
           context.drawImage(image, 0, 0, streamW, streamH);
-          canvas.style.background = 'rgba(255, 255,255, 255)';
+          context.drawImage(whiteoverlay, 0, 0,  streamW, streamH);
+
         } else {
         //   context.drawImage(loadingImg, 0, 0, streamW, streamH);
         }
