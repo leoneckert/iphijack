@@ -9,11 +9,17 @@ function init(){
 
     // create the canvas to render to
     var canvas = document.createElement('canvas');
-    canvas.width = streamW * 3;
-    canvas.height = streamH * 3;
+    canvas.width = streamW;
+    canvas.height = streamH;
     canvas.style.background = 'rgb(255, 0,0)';
     document.getElementById("canvasWrapper").appendChild(canvas);
     var context = canvas.getContext('2d');
+
+    // var picker = document.createElement('div');
+    // picker.width = streamW/2;
+    // picker.height = streamW/2;
+    // picker.style.background = 'rgb(255, 255, 255)';
+
 
     var drawInterval = Math.max(1 / 10 * 1000, 30);
     console.log("drawInterval", drawInterval);
@@ -28,9 +34,9 @@ function init(){
         canvas.width = canvas.width;
         // check if we have a valid image
         if (image.width * image.height > 0) {
-          context.drawImage(image, streamW, 0, streamW, streamH);
+          context.drawImage(image, 0, 0, streamW, streamH);
         } else {
-          context.drawImage(loadingImg, streamW, 0, streamW, streamH);
+          context.drawImage(loadingImg, 0, 0, streamW, streamH);
         }
       }
 
