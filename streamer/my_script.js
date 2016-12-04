@@ -128,7 +128,11 @@ function init(){
                 picker.style.background = 'rgb(255, 255, 255)';
                 picker.style.border = 'none';
                 var pixelDataDivs = document.getElementsByClassName("pixelData");
-                console.log(pixelDataDivs);
+                // console.log(pixelDataDivs);
+                for(var i = 0; i < pixelDataDivs.length; i++){
+                //     pixelDataDivs[i].style.display = "none";
+                    console.log(i);
+                }
 
             }
 
