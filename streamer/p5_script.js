@@ -2,8 +2,8 @@
 var streamW = 160;
 var streamH = 120;
 
-var inspectX = 40;
-var inspectY = 20;
+var inspectX = 0;
+var inspectY = 0;
 
 function init(){
     var image = new Image();
@@ -48,13 +48,14 @@ function init(){
         var imgd = context.getImageData(inspectX, inspectY, 1, 1);
         var pix = imgd.data;
         picker.style.background = 'rgb('+pix[0]+', '+pix[1]+', '+pix[2]+')';
+        var selectedI = (streamW * inspectY) + inspectX;
 
         imgd = context.getImageData(0, 0, streamW, streamH);
         pix = imgd.data;
 
         // Loop over each pixel and invert the color.
         for (var i = 0, n = pix.length; i < n; i += 4) {
-            if(i != 3000){
+            if(i != selectedI){
                 pix[i  ] = (255 + pix[i  ])*0.5; // red
                 pix[i+1] = (255 + pix[i+1])*0.5; // green
                 pix[i+2] = (255 + pix[i+2])*0.5; // blue
