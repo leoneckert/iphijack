@@ -121,7 +121,7 @@ function init(){
                 str = inspectX + " | " + inspectY;
                 var p2 = document.createElement('p');
                 p2.innerHTML = "";
-                p2.innerHTML = str;
+                coordinates.innerHTML = str;
                 coordinates.appendChild(p2);
 
 
