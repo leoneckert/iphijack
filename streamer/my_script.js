@@ -28,10 +28,7 @@ function init(){
     var pickerExit = document.createElement('a');
     pickerExit.innerHTML = "x";
     pickerExit.href = "#";
-
-    // picker.style.width = streamW/2 + "px";
-    // picker.style.height = streamW/2 + "px";
-    // picker.style.background = 'rgb(255, 0, 255)';
+    pickerExit.style.display = "none";
     document.getElementById("canvasWrapper").appendChild(pickerExit);
     // var imgd = context.getImageData(20, 20, 2, 2);
     // console.log(imgd);
@@ -112,15 +109,20 @@ function init(){
     }
 
     canvas.onmouseup = function(e){
-        if(inspectY != null && inspectX != null){
-            inspectX = null;
-            inspectY = null;
-        }else{
+        // if(inspectY != null && inspectX != null){
+        //     inspectX = null;
+        //     inspectY = null;
+        // }else{
             inspectX = e.layerX;
             inspectY = e.layerY;
-        }
-
+            pickerExit.style.display = "block";
+        // }
     }
+    pickerExit.addEventListener('click', function(){
+        inspectX = null;
+        inspectY = null;
+        pickerExit.style.display = "none";
+    })
 
     changeStream();
     console.log(image);
