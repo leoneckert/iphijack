@@ -45,18 +45,18 @@ function init(){
         //   context.drawImage(loadingImg, 0, 0, streamW, streamH);
         }
 
-        var imgd = context.getImageData(inspectX, inspectY, 1, 1);
-        var pix = imgd.data;
-        picker.style.background = 'rgb('+pix[0]+', '+pix[1]+', '+pix[2]+')';
+        // var imgd = context.getImageData(inspectX, inspectY, 1, 1);
+        // var pix = imgd.data;
+        // picker.style.background = 'rgb('+pix[0]+', '+pix[1]+', '+pix[2]+')';
 
         var selectedI = (streamW * 4 * inspectY) + (inspectX * 4);
-
         imgd = context.getImageData(0, 0, streamW, streamH);
         pix = imgd.data;
-
         // Loop over each pixel and invert the color.
         for (var i = 0, n = pix.length; i < n; i += 4) {
-            if(i != selectedI){
+            if(i == selectedI){
+                picker.style.background = 'rgb('+pix[0]+', '+pix[1]+', '+pix[2]+')';
+            }else{
                 // pix[i  ] = (255 + pix[i  ])*0.5; // red
                 // pix[i+1] = (255 + pix[i+1])*0.5; // green
                 // pix[i+2] = (255 + pix[i+2])*0.5; // blue
