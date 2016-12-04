@@ -18,7 +18,6 @@ var maxNum = 10;
 
 var rawImageData;
 function changePixel(x,y,callback){
-    console.log("bla");
     callback();
 }
 
@@ -34,7 +33,6 @@ for(var i = 0; i < 120; i+=1){
     }
     pixelcarry.push(temp)
 }
-console.log(pixelcarry);
 
 var writer = new FileOnWrite({
     path: imgDir,
