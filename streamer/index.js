@@ -69,19 +69,22 @@ var writer = new FileOnWrite({
             var av = (rawImageData.data[fp+1] + rawImageData.data[fp+2]) / 2;
             console.log( rawImageData.data[fp], rawImageData.data[fp+1], rawImageData.data[fp+2] );
             if(binary[binary_idx] == "0"){
+                console.log("0");
                 rawImageData.data[fp] = av - 10;
                 binary_idx++;
             }else if(binary[binary_idx] == "1"){
+                console.log("1");
                 rawImageData.data[fp] = av - 10;
                 binary_idx++;
             }else if(binary[binary_idx] == " "){
+                console.log("----");
                 rawImageData.data[fp] = av;
                 binary_idx++;
             }
             console.log( "new:");
             console.log( rawImageData.data[fp], rawImageData.data[fp+1], rawImageData.data[fp+2] );
             console.log( "---");
-            
+
             //
             // for(var i = 0; i < rawImageData.width; i+=1){
             //     for(var j = 0; j < rawImageData.height; j++){
