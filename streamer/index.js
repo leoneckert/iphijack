@@ -17,22 +17,21 @@ var changes = false;
 var maxNum = 10;
 
 var rawImageData;
-function changePixel(x,y,callback){
-    callback();
-}
-
-var pixelcarry = [];
-for(var i = 0; i < 120; i+=1){
-    var temp = [];
-    for(var j = 0; j < 160; j++){
-        if(Math.random() < 0.05){
-            temp.push(1);
-        }else{
-            temp.push(0);
-        }
-    }
-    pixelcarry.push(temp)
-}
+var binary = "01001000 01100101 01101100 01101100 01101111 00100000 01001101 01111001 00100000 01101110 01100001 01101101 01100101 00100000 01101001 01110011 00100000 01001100 01100101 01101111 01101110"
+var pixX = 0;
+var pixY = 0;
+// var pixelcarry = [];
+// for(var i = 0; i < 120; i+=1){
+//     var temp = [];
+//     for(var j = 0; j < 160; j++){
+//         if(Math.random() < 0.05){
+//             temp.push(1);
+//         }else{
+//             temp.push(0);
+//         }
+//     }
+//     pixelcarry.push(temp)
+// }
 
 var writer = new FileOnWrite({
     path: imgDir,
@@ -60,42 +59,44 @@ var writer = new FileOnWrite({
             var sameLinePixels = w * 4;
             return fullLines + sameLinePixels + c
         }
-
         // console.log(data);
         try {
             rawImageData = jpeg.decode(data, true);
 
-            for(var i = 0; i < rawImageData.width; i+=1){
-                for(var j = 0; j < rawImageData.height; j++){
-                    if(pixelcarry[j][i] == 1){
-                        var fp = pidx(rawImageData.width, rawImageData.height, i, j, 0)
-                        var r = Math.random();
-                        var a = 0;
-                        var b = 1;
-                        var c = 2;
+            var fp = pidx(rawImageData.width, rawImageData.height, pixX, pixY, 0);
+            console.log(fp);
 
-                        if(i%3 == 1){
-                            a = 1;
-                            b = 0;
-                            c = 2;
-                        }else if(i%3 == 2){
-                            a = 2;
-                            b = 0;
-                            c = 1
-                        }
-
-                        var av = (rawImageData.data[fp+b] + rawImageData.data[fp+c])/c
-                        if(r < 0.45){
-                            rawImageData.data[fp+a] = av - 10;
-                        }else if(r < 0.90){
-                            rawImageData.data[fp+a] = av + 10;
-                        }else{
-                            rawImageData.data[fp+a] = av;
-                        }
-                    }
-
-                }
-            }
+            // for(var i = 0; i < rawImageData.width; i+=1){
+            //     for(var j = 0; j < rawImageData.height; j++){
+            //         if(pixelcarry[j][i] == 1){
+            //             var fp = pidx(rawImageData.width, rawImageData.height, i, j, 0)
+            //             var r = Math.random();
+            //             var a = 0;
+            //             var b = 1;
+            //             var c = 2;
+            //
+            //             if(i%3 == 1){
+            //                 a = 1;
+            //                 b = 0;
+            //                 c = 2;
+            //             }else if(i%3 == 2){
+            //                 a = 2;
+            //                 b = 0;
+            //                 c = 1
+            //             }
+            //
+            //             var av = (rawImageData.data[fp+b] + rawImageData.data[fp+c])/c
+            //             if(r < 0.45){
+            //                 rawImageData.data[fp+a] = av - 10;
+            //             }else if(r < 0.90){
+            //                 rawImageData.data[fp+a] = av + 10;
+            //             }else{
+            //                 rawImageData.data[fp+a] = av;
+            //             }
+            //         }
+            //
+            //     }
+            // }
 
 
             newJPG = jpeg.encode(rawImageData, 100);
