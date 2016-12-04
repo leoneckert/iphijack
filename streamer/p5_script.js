@@ -38,12 +38,20 @@ function init(){
     function draw() {
         // clear the canvas
         canvas.width = canvas.width;
+        // check if we have a valid image
+        if (image.width * image.height > 0) {
+          context.drawImage(image, 0, 0, streamW, streamH);
+        } else {
+        //   context.drawImage(loadingImg, 0, 0, streamW, streamH);
+        }
 
         var imgd = context.getImageData(inspectX, inspectY, 1, 1);
-        // console.log(imgd);
         var pix = imgd.data;
-        console.log(pix);
         picker.style.background = 'rgb('+pix[0]+', '+pix[1]+', '+pix[2]+')';
+
+        imgd = context.getImageData(inspectX, inspectY, streamW, streamH);
+        pix = imgd.data;
+
         // Loop over each pixel and invert the color.
         for (var i = 0, n = pix.length; i < n; i += 4) {
             pix[i  ] = 255 - pix[i  ]; // red
@@ -51,13 +59,7 @@ function init(){
             pix[i+2] = 255 - pix[i+2]; // blue
             // i+3 is alpha (the fourth element)
         }
-
-        // check if we have a valid image
-        if (image.width * image.height > 0) {
-          context.drawImage(image, 0, 0, streamW, streamH);
-        } else {
-        //   context.drawImage(loadingImg, 0, 0, streamW, streamH);
-        }
+        context.putImageData(imgd, 0, 0);
 
       }
 
