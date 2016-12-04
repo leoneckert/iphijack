@@ -76,15 +76,13 @@ function init(){
                 elem = document.createElement('div');
                 elem.id = name;
                 elem.className = 'pixelData';
-                document.getElementById("canvasWrapper").appendChild(elem);
+                document.getElementById("data").appendChild(elem);
                 callback(elem);
             }else{
                 callback(elem);
             }
 
         }
-
-
         function addToLog(idx, r, g, b){
             allocateElement(idx, function(elem){
                 elem.style.display = "block"
@@ -127,22 +125,6 @@ function init(){
             }else{
                 picker.style.background = 'rgb(255, 255, 255)';
                 picker.style.border = 'none';
-                var pixelDataDiv = document.getElementsByClassName("pixelData")[0];
-                // console.log(pixelDataDivs);
-                pixelDataDiv.style.display = "none;"
-                // if(pixelDataDivs.length != 0){
-                //     for(var i = 0; i < pixelDataDivs.length; i++){
-                //         console.log(i);
-                //     }
-                // }
-
-                //
-                // var x = document.getElementsByClassName("example");
-                // var i;
-                // for (i = 0; i < x.length; i++) {
-                //     x[i].style.backgroundColor = "red";
-                // }
-
             }
 
         }
@@ -177,6 +159,7 @@ function init(){
         inspectX = null;
         inspectY = null;
         pickerExit.style.display = "none";
+        document.getElementById('data').innerHTML = "";
         // var pixelDataDivs = document.getElementsByClassName("pixelData");
         // console.log(pixelDataDivs);
         // for(var i = 0; i < pixelDataDivs.length; i++){
