@@ -162,7 +162,7 @@ function init(){
         inspectY = null;
         pickerExit.style.display = "none";
         var pixelDataDivs = document.getElementsByClassName("pixelData");
-        for(var i = 0; i < pixelDataDivs.lenght; i++){
+        for(var i = 0; i < pixelDataDivs.length; i++){
             pixelDataDivs[i].style.display = "none";
         }
 
