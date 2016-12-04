@@ -69,10 +69,27 @@ function init(){
           return array.indexOf(value) > -1;
         }
 
-        function addToLog(idx, r, g, b){
+        function allocateElement(idx, callback){
             var name = String(idx);
             var elem = document.getElementById('name');
+            if( elem == null){
+                elem = document.createElement('div');
+                elem.id = name;
+                document.getElementById("canvasWrapper").appendChild(elem);
+                callback(elem);
+            }else{
+                callback(elem);
+            }
             console.log(elem);
+
+        }
+
+
+        function addToLog(idx, r, g, b){
+            allocateElement(idx, function(elem){
+
+            });
+
         }
 
 
