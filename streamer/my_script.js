@@ -70,7 +70,7 @@ function init(){
         }
 
         function addToLog(idx, r, g, b){
-            var name = str(idx);
+            var name = String(idx);
             var elem = document.getElementByIdById('name');
             console.log(elem);
         }
