@@ -39,7 +39,7 @@ function init(){
         } else {
         //   context.drawImage(loadingImg, 0, 0, streamW, streamH);
         }
-        var imgd = context.getImageData(0, 0, streamW, streamH);
+        var imgd = context.getImageData(0, 0, 1, 1);
         // console.log(imgd);
         var pix = imgd.data;
         console.log(pix);
