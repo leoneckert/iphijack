@@ -126,12 +126,12 @@ function init(){
 
                 // binary
                 var binary = elem.childNodes[2];
-                var av = (int(g) + int(b))/2;
+                var av = (int(g) + int(b)) /2;
                 var v = int(r);
-                var r = av - v;
-                if(r < - 6){
+                var re = av - v;
+                if(re < - 6){
                     binary.innerHTML += "1";
-                }else if(r > 6){
+                }else if(re > 6){
                     binary.innerHTML += "0";
                 }else{
                     binary.innerHTML += " ";
