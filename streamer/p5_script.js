@@ -4,7 +4,7 @@ function init(){
 
     function changeStream(){
         // create the image to hold the stream
-        var src = 'http://localhost:1805/stream';
+        var src = 'http://lke229.itp.io:1805/stream';
         // // add various options
         // src += '&width=' + this.width;
         // src += '&height=' + this.height;
