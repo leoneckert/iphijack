@@ -10,7 +10,7 @@ function init(){
     document.getElementById("canvasWrapper").appendChild(canvas);
     var context = canvas.getContext('2d');
 
-    var drawInterval = Math.max(1 / 10 * 1000, 30;
+    var drawInterval = Math.max(1 / 10 * 1000, 30);
     console.log("drawInterval", drawInterval);
 
     function changeStream(){
