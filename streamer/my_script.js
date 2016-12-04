@@ -69,6 +69,13 @@ function init(){
           return array.indexOf(value) > -1;
         }
 
+        function addToLog(idx, r, g, b){
+            var name = str(idx);
+            var elem = document.getElementByIdById('name');
+            console.log(elem);
+        }
+
+
 
         var selectedI = null;
         var marker = null;
@@ -87,6 +94,7 @@ function init(){
                 if(i == selectedI){
                     picker.style.background = 'rgb('+pix[i]+', '+pix[i+1]+', '+pix[i+2]+')';
                     picker.style.border = '1px solid black';
+                    addToLog(selectedI, pix[i], pix[i+1], pix[i+2]);
                 }else if(isInArray(i, marker)){
                     // picker.style.background = 'rgb(255, 0, 0)';
                     pix[i  ] = 255; // red
