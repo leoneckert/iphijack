@@ -56,6 +56,7 @@ function init(){
             if(selectedI != null){
                 if(i == selectedI){
                     picker.style.background = 'rgb('+pix[i]+', '+pix[i+1]+', '+pix[i+2]+')';
+                    picker.style.border = '1em solid black';
                 }else{
                     // pix[i  ] = (255 + pix[i  ])*0.5; // red
                     // pix[i+1] = (255 + pix[i+1])*0.5; // green
@@ -64,6 +65,7 @@ function init(){
                 }
             }else{
                 picker.style.background = 'rgb(255, 255, 255)';
+                picker.style.border = 'none';
             }
 
         }
