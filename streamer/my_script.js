@@ -104,7 +104,6 @@ function init(){
             allocateElement(idx, function(elem){
                 // console.log(elem);
                 elem.style.display = "block"
-                debugger
 
                 // rgb
                 var rgb = elem.childNodes[0];
@@ -136,6 +135,7 @@ function init(){
                 }else{
                     binary.innerHTML += " ";
                 }
+                debugger
                 // binary.innerHTML += "1";
 
 
