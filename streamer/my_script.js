@@ -80,14 +80,18 @@ function init(){
             }else{
                 callback(elem);
             }
-            console.log(elem);
 
         }
 
 
         function addToLog(idx, r, g, b){
             allocateElement(idx, function(elem){
-                console.log(elem, "got");
+                // console.log(elem, "got");
+                var str = r + " | " + g + " | " + b + " | ";
+                var p = document.createElement('p');
+                p.innerHTML = str;
+                elem.appendChild(p);
+
             });
 
         }
