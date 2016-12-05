@@ -83,7 +83,7 @@ function addToLog(idx, r, g, b){
         // var re = av - v;
         if(v < 127){
             binary.innerHTML += "1";
-        }else if(re > 127){
+        }else if(v > 127){
             binary.innerHTML += "0";
         }
         // debugger
