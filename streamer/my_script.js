@@ -158,7 +158,7 @@ function init(){
         clock = pix[0];
         // console.log(clock);
         if(Math.abs(clock-preClock) > 100){
-            console.log("drawing" + clock-preClock);
+            console.log("drawing" + String(clock-preClock));
             // draw();
             preClock = clock;
         }
