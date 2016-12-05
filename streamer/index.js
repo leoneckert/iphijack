@@ -21,8 +21,8 @@ var rawImageData;
 var binary = " 01001000 01100101 01101100 01101100 01101111 00100000 01101101 01111001 00100000 01101110 01100001 01101101 01100101 00100000 01101001 01110011 00100000 01001100 01100101 01101111 01101110"
 // var binary = "101010101010101010101"
 var binary_idx = 0;
-var pixX = 10;
-var pixY = 10;
+var pixX = 30;
+var pixY = 30;
 
 
 var clock_binary ="101010101010101010101";
@@ -76,7 +76,7 @@ var writer = new FileOnWrite({
 
             // --------------------------------------------
             // ---------- manipulate pixel here:
-            
+
             // var fp = pidx(rawImageData.width, rawImageData.height, pixX, pixY, 0);
             // // console.log(fp);
             // // var av = (rawImageData.data[fp+1] + rawImageData.data[fp+2]) / 2;
