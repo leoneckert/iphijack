@@ -128,6 +128,7 @@ function init(){
 
     var clock = 0;
     var preClock = 255;
+    var currentbinary = [];
 
     function changeStream(){
         var src = 'http://lke229.itp.io:1805/stream';
@@ -155,36 +156,44 @@ function init(){
 
 
         pix = imgd.data;
+
+        // Loop over each pixel and invert the color.
+        for (var i = 0, n = pix.length; i < n; i += 4) {
+            if(selectedI != null){
+                if(i == selectedI){
+                    picker.style.background = 'rgb('+pix[i]+', '+pix[i+1]+', '+pix[i+2]+')';
+                    picker.style.border = '1px solid black';
+                    // addToLog(selectedI, pix[i], pix[i+1], pix[i+2]);
+                    currentbinary.push(pix[i]);
+                }else if(isInArray(i, marker)){
+                    // picker.style.background = 'rgb(255, 0, 0)';
+                    pix[i  ] = 255; // red
+                    pix[i+1] = 0; // green
+                    pix[i+2] = 0; // blue
+                }else{
+                    pix[i+3] = 200; // alpha (the fourth element)
+                }
+            }else{
+                picker.style.background = 'rgb(255, 255, 255)';
+                picker.style.border = 'none';
+                document.getElementById('data').innerHTML = "";
+            }
+        }
+
+
+
+
         clock = pix[0];
         // console.log(clock);
         if(Math.abs(clock-preClock) > 100){
             console.log("drawing" + String(clock-preClock));
             // draw();
+            console.log(currentbinary);
+            currentbinary = [];
             preClock = clock;
         }
 
-        // // Loop over each pixel and invert the color.
-        // for (var i = 0, n = pix.length; i < n; i += 4) {
-        //     if(selectedI != null){
-        //         if(i == selectedI){
-        //             picker.style.background = 'rgb('+pix[i]+', '+pix[i+1]+', '+pix[i+2]+')';
-        //             picker.style.border = '1px solid black';
-        //             addToLog(selectedI, pix[i], pix[i+1], pix[i+2]);
-        //         }else if(isInArray(i, marker)){
-        //             // picker.style.background = 'rgb(255, 0, 0)';
-        //             pix[i  ] = 255; // red
-        //             pix[i+1] = 0; // green
-        //             pix[i+2] = 0; // blue
-        //         }else{
-        //             pix[i+3] = 200; // alpha (the fourth element)
-        //         }
-        //     }else{
-        //         picker.style.background = 'rgb(255, 255, 255)';
-        //         picker.style.border = 'none';
-        //         document.getElementById('data').innerHTML = "";
-        //     }
-        //
-        // }
+
 
         context.putImageData(imgd, 0, 0);
 
