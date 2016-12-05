@@ -157,7 +157,7 @@ function init(){
         pix = imgd.data;
         clock = pix[0];
         if(Math.abs(clock-preClock) > 100){
-            console.log("drawing");
+            console.log("drawing" + clock-preClock);
             // draw();
         }
 
