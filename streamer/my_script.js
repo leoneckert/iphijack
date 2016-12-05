@@ -227,10 +227,11 @@ function init(){
     changeTestCanvas.width = streamW;
     changeTestCanvas.height = streamH;
     changeTestCanvas.style.background = 'rgb(255, 255,255)';
-    document.getElementById("canvasWrapper").appendChild(changeTestCanvas);
+    // document.getElementById("canvasWrapper").appendChild(changeTestCanvas);
     var changeTestCanvasContext = changeTestCanvas.getContext('2d');
 
     setInterval(function(){
+        console.log("drawing");
         changeTestCanvasContext.drawImage(image, 0, 0, streamW, streamH);
     }, 1000);
 
