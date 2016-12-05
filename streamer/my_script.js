@@ -46,8 +46,6 @@ function allocateElement(idx, callback){
         binary.id = "binary";
         elem.appendChild(binary);
 
-
-
         callback(elem);
     }else{
         callback(elem);
@@ -161,6 +159,7 @@ function init(){
         for (var i = 0, n = pix.length; i < n; i += 4) {
             if(selectedI != null){
                 if(i == selectedI){
+                    console.log(pix[i]);
                     picker.style.background = 'rgb('+pix[i]+', '+pix[i+1]+', '+pix[i+2]+')';
                     picker.style.border = '1px solid black';
                     // addToLog(selectedI, pix[i], pix[i+1], pix[i+2]);
