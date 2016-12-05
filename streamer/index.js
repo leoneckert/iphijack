@@ -25,11 +25,9 @@ var binary_idx = 0;
 var pixX = 30;
 var pixY = 30;
 var name = String(pixX)+"-"+String(pixY);
-var stored = {
-    name: {
-        "text": "Leon ",
-        "binary": "01001100 01100101 01101111 01101110 00100000 "
-    }
+var stored[name] = {
+    "text": "Leon ",
+    "binary": "01001100 01100101 01101111 01101110 00100000 "
 }
 console.dir(stored);
 
