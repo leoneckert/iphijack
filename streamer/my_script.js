@@ -8,92 +8,92 @@ var inspectX = 0;
 var inspectY = 0;
 
 
-        function getPixelIdx(w,x,y){
-            return (w * 4 * y) + (x * 4);
+function getPixelIdx(w,x,y){
+    return (w * 4 * y) + (x * 4);
+}
+function getMarker(w,x,y){
+    // square around spot:
+    var sq = [];
+    for(var i = -2; i <= 2; i+=2){
+        for(var j = -2; j <= 2; j+=2){
+            sq.push( getPixelIdx(w,x+i,y+j) );
         }
-        function getMarker(w,x,y){
-            // square around spot:
-            var sq = [];
-            for(var i = -2; i <= 2; i+=2){
-                for(var j = -2; j <= 2; j+=2){
-                    sq.push( getPixelIdx(w,x+i,y+j) );
-                }
-            }
-            // var sq = [getPixelIdx(w,x-2,y), getPixelIdx(w,x-2,y-1), getPixelIdx(w,x-2,y-2)];
-            return sq;
+    }
+    // var sq = [getPixelIdx(w,x-2,y), getPixelIdx(w,x-2,y-1), getPixelIdx(w,x-2,y-2)];
+    return sq;
+}
+function isInArray(value, array) {
+  return array.indexOf(value) > -1;
+}
+
+function allocateElement(idx, callback){
+    var idx_id = String(idx);
+    var elem = document.getElementById(idx_id);
+    if( elem == null){
+        elem = document.createElement('div');
+        elem.id = idx_id;
+        document.getElementById("data").appendChild(elem);
+
+        var rgb = document.createElement('div');
+        rgb.id = "rgb";
+        elem.appendChild(rgb);
+
+        var coordinates = document.createElement('div');
+        coordinates.id = "coordinates";
+        elem.appendChild(coordinates);
+
+        var binary = document.createElement('div');
+        binary.id = "binary";
+        elem.appendChild(binary);
+
+
+
+        callback(elem);
+    }else{
+        callback(elem);
+    }
+}
+function addToLog(idx, r, g, b){
+    allocateElement(idx, function(elem){
+        // console.log(elem);
+        elem.style.display = "block"
+
+        // rgb
+        var rgb = elem.childNodes[0];
+
+        var str = r + " | " + g + " | " + b;
+        var p = document.createElement('p');
+        p.innerHTML = str;
+        rgb.innerHTML = "";
+        rgb.appendChild(p);
+
+        // coordinates
+        var coordinates = elem.childNodes[1];
+
+        str = inspectX + " | " + inspectY;
+        var p2 = document.createElement('p');
+        p2.innerHTML = "";
+        coordinates.innerHTML = str;
+        coordinates.appendChild(p2);
+
+        // binary
+        var binary = elem.childNodes[2];
+        var av = (parseInt(g) + parseInt(b)) /2;
+        var v = parseInt(r);
+        var re = av - v;
+        if(re < -10){
+            binary.innerHTML += "1";
+        }else if(re > 10){
+            binary.innerHTML += "0";
+        }else{
+            binary.innerHTML += " ";
         }
-        function isInArray(value, array) {
-          return array.indexOf(value) > -1;
-        }
+        // debugger
+        // binary.innerHTML += "1";
 
-        function allocateElement(idx, callback){
-            var idx_id = String(idx);
-            var elem = document.getElementById(idx_id);
-            if( elem == null){
-                elem = document.createElement('div');
-                elem.id = idx_id;
-                document.getElementById("data").appendChild(elem);
+    });
 
-                var rgb = document.createElement('div');
-                rgb.id = "rgb";
-                elem.appendChild(rgb);
-
-                var coordinates = document.createElement('div');
-                coordinates.id = "coordinates";
-                elem.appendChild(coordinates);
-
-                var binary = document.createElement('div');
-                binary.id = "binary";
-                elem.appendChild(binary);
-
-
-
-                callback(elem);
-            }else{
-                callback(elem);
-            }
-        }
-        function addToLog(idx, r, g, b){
-            allocateElement(idx, function(elem){
-                // console.log(elem);
-                elem.style.display = "block"
-
-                // rgb
-                var rgb = elem.childNodes[0];
-
-                var str = r + " | " + g + " | " + b;
-                var p = document.createElement('p');
-                p.innerHTML = str;
-                rgb.innerHTML = "";
-                rgb.appendChild(p);
-
-                // coordinates
-                var coordinates = elem.childNodes[1];
-
-                str = inspectX + " | " + inspectY;
-                var p2 = document.createElement('p');
-                p2.innerHTML = "";
-                coordinates.innerHTML = str;
-                coordinates.appendChild(p2);
-
-                // binary
-                var binary = elem.childNodes[2];
-                var av = (parseInt(g) + parseInt(b)) /2;
-                var v = parseInt(r);
-                var re = av - v;
-                if(re < -10){
-                    binary.innerHTML += "1";
-                }else if(re > 10){
-                    binary.innerHTML += "0";
-                }else{
-                    binary.innerHTML += " ";
-                }
-                // debugger
-                // binary.innerHTML += "1";
-
-            });
-
-        }
+}
 
 
 function init(){
@@ -131,6 +131,7 @@ function init(){
         image.src = src;
     }
 
+    var prev_imgd = null;
     function draw() {
         // clear the canvas
         canvas.width = canvas.width;
@@ -141,8 +142,6 @@ function init(){
         //   context.drawImage(loadingImg, 0, 0, streamW, streamH);
         }
 
-
-
         var selectedI = null;
         var marker = null;
         if(inspectY != null && inspectX != null){
@@ -151,6 +150,11 @@ function init(){
         }
 
         imgd = context.getImageData(0, 0, streamW, streamH);
+        if(imgd === prev_imgd){
+            console.log("same as before");
+        }
+        prev_imgd = imgd
+        
         pix = imgd.data;
         // Loop over each pixel and invert the color.
         for (var i = 0, n = pix.length; i < n; i += 4) {
