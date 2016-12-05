@@ -237,11 +237,12 @@ function init(){
         var du = changeTestCanvas.toDataURL();
         if(du != prevDU){
             console.log("new frame");
+            draw();
         }else{
             console.log("old frame");
         }
         prevDU = du
-    }, 2);
+    }, 10);
 
     // while(true){
     //
