@@ -75,23 +75,21 @@ var writer = new FileOnWrite({
             // --------------------------------------------
             // ---------- manipulate pixel here:
 
-            // var fp = pidx(rawImageData.width, rawImageData.height, pixX, pixY, 0);
+            var fp = pidx(rawImageData.width, rawImageData.height, pixX, pixY, 0);
             // console.log(fp);
             // var av = (rawImageData.data[fp+1] + rawImageData.data[fp+2]) / 2;
             // console.log( rawImageData.data[fp], rawImageData.data[fp+1], rawImageData.data[fp+2] );
 
-            // if(binary[binary_idx] == "0"){
-            //     console.log("0");
-            //     rawImageData.data[fp] = 255;
-            //     binary_idx++;
-            // }else if(binary[binary_idx] == "1"){
-            //     console.log("1");
-            //     rawImageData.data[fp] = 0;
-            //     binary_idx++;
-            // }
-            // if(binary_idx > binary.length -1){
-            //     binary_idx = 0;
-            // }
+            if(binary[binary_idx] == "0"){
+                console.log("0");
+                rawImageData.data[fp] = 255;
+                // binary_idx++;
+            }else if(binary[binary_idx] == "1"){
+                console.log("1");
+                rawImageData.data[fp] = 0;
+                // binary_idx++;
+            }
+
 
             // if(clock_binary[clock_index] == "0"){
             //     rawImageData.data[0] = 255;
@@ -103,16 +101,24 @@ var writer = new FileOnWrite({
             // if(clock_index > clock_binary.length -1){
             //     clock_index = 0;
             // }
+
+
             if(clock_index%100 === 0){
                 console.log("sending info --");
                 clock = 255;
+                binary_idx++;
             }else if(clock_index%50 === 0){
                 console.log("sending info");
                 clock = 0;
+                binary_idx++;
             }
             clock_index++;
             rawImageData.data[0] = clock;
 
+
+            if(binary_idx > binary.length -1){
+                binary_idx = 0;
+            }
 
 
 
