@@ -124,9 +124,8 @@ var writer = new FileOnWrite({
                 clock_index = 0
                 clock = Math.abs(clock - 255);
                 // binary_idx++;
-                var pixelsToChange = Object.keys(stored);
                 for(var i = 0; i < pixelsToChange.length; i++){
-                    var this_pixel = stored[pixelsToChange[i]]
+                    var this_pixel = stored[pixelsToChange[i]];
                     this_pixel.idx++;
                 }
             }
