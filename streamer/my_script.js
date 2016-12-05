@@ -226,7 +226,6 @@ function init(){
         console.log(clock);
         if(Math.abs(clock-preClock) > 100){
             console.log("drawing");
-            // draw();
         }
         preClock = clock;
     }, 2);
