@@ -216,13 +216,6 @@ function init(){
                     }else if(Math.abs(pix[i] - av) < ch*2 + ch/2 ){
                         currentbinary.push(1);
                     }
-                    // if(pix[i] < 85){
-                    //     currentbinary.push(1);
-                    // }else if(pix[i] > 170){
-                    //     currentbinary.push(0);
-                    // }else{
-                    //     currentbinary.push(2);
-                    // }
 
                 }else if(isInArray(i, marker)){
                     // picker.style.background = 'rgb(255, 0, 0)';
