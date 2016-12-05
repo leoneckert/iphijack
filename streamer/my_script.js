@@ -207,12 +207,6 @@ function init(){
 
                 addToBinary(selectedI, avg);
 
-                if(avg === 2){
-                    binary_str += " ";
-                }else{
-                    binary_str += String(avg);
-                }
-                console.log(binary_str);
                 currentbinary = [];
             }
 
