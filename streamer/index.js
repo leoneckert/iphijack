@@ -92,8 +92,9 @@ var writer = new FileOnWrite({
                 }
                 if(binary_idx > binary.length -1){
                     binary_idx = 0;
-                    signalPause = true
+
                 }
+                signalPause = true;
             }
 
 
