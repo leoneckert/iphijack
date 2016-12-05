@@ -159,11 +159,10 @@ function init(){
         for (var i = 0, n = pix.length; i < n; i += 4) {
             if(selectedI != null){
                 if(i == selectedI){
-                    console.log(pix[i]);
+                    // console.log(pix[i]);
                     picker.style.background = 'rgb('+pix[i]+', '+pix[i+1]+', '+pix[i+2]+')';
                     picker.style.border = '1px solid black';
                     // addToLog(selectedI, pix[i], pix[i+1], pix[i+2]);
-
 
                     if(pix[i] < 127){
                         currentbinary.push(1);
@@ -195,7 +194,17 @@ function init(){
         if(Math.abs(clock-preClock) > 100){
             console.log("drawing" + String(clock-preClock));
             // draw();
-            console.log(currentbinary);
+            // console.log(currentbinary);
+
+
+            var sum = 0;
+            for( var i = 0; i < currentbinary.length; i++ ){
+                sum += parseInt( currentbinary[i], 10 ); //don't forget to add the base
+            }
+
+            var avg = currentbinary/currentbinary.length;
+            console.log(avg);
+
             currentbinary = [];
             preClock = clock;
         }
