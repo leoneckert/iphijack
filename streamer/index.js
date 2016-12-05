@@ -33,6 +33,16 @@ stored[String(pixX)+"-"+String(pixY)] = {
     binary: "01001100 01100101 01101111 01101110 00100000 ",
     idx: 0
 }
+stored[String(111)+"-"+String(76)] = {
+    x: 111,
+    y: 76,
+    text: "ITP ",
+    binary: "01001001 01010100 01010000 00100000 ",
+    idx: 0
+}
+
+
+
 console.dir(stored);
 
 // clock:
