@@ -53,12 +53,10 @@ function allocateElement(idx, callback){
 }
 function addToLog(idx, r, g, b){
     allocateElement(idx, function(elem){
-        // console.log(elem);
         elem.style.display = "block"
 
         // rgb
         var rgb = elem.childNodes[0];
-
         var str = r + " | " + g + " | " + b;
         var p = document.createElement('p');
         p.innerHTML = str;
@@ -67,25 +65,11 @@ function addToLog(idx, r, g, b){
 
         // coordinates
         var coordinates = elem.childNodes[1];
-
         str = inspectX + " | " + inspectY;
         var p2 = document.createElement('p');
         p2.innerHTML = "";
         coordinates.innerHTML = str;
         coordinates.appendChild(p2);
-
-        // binary
-        var binary = elem.childNodes[2];
-        // var av = (parseInt(g) + parseInt(b)) /2;
-        var v = parseInt(r);
-        // var re = av - v;
-        if(v < 127){
-            binary.innerHTML += "1";
-        }else if(v > 127){
-            binary.innerHTML += "0";
-        }
-        // debugger
-        // binary.innerHTML += "1";
 
     });
 
@@ -153,7 +137,6 @@ function init(){
 
         imgd = context.getImageData(0, 0, streamW, streamH);
 
-
         pix = imgd.data;
 
         // Loop over each pixel and invert the color.
@@ -163,7 +146,7 @@ function init(){
                     // console.log(pix[i]);
                     picker.style.background = 'rgb('+pix[i]+', '+pix[i+1]+', '+pix[i+2]+')';
                     picker.style.border = '1px solid black';
-                    // addToLog(selectedI, pix[i], pix[i+1], pix[i+2]);
+                    addToLog(selectedI, pix[i], pix[i+1], pix[i+2]);
 
                     if(pix[i] < 85){
                         currentbinary.push(1);
@@ -172,7 +155,6 @@ function init(){
                     }else{
                         currentbinary.push(2);
                     }
-
 
                 }else if(isInArray(i, marker)){
                     // picker.style.background = 'rgb(255, 0, 0)';
@@ -193,11 +175,9 @@ function init(){
 
 
         clock = pix[0];
-        // console.log(clock);
         if(Math.abs(clock-preClock) > 100){
-            console.log("drawing" + String(clock-preClock));
-            // draw();
-            // console.log(currentbinary);
+            console.log("clock strikes");
+            preClock = clock;
 
             var sum = 0;
             for( var i = 0; i < currentbinary.length; i++ ){
@@ -211,10 +191,9 @@ function init(){
                 binary_str += String(avg);
             }
             console.log(binary_str);
-            // console.log(sum);
 
             currentbinary = [];
-            preClock = clock;
+
         }
 
 

@@ -26,7 +26,7 @@ var pixY = 10;
 
 
 var clock_binary ="101010101010101010101";
-var clockInterval = 100;
+var clockInterval = 50;
 var clock_index = 0;
 var clock = 0;
 // var pixelcarry = [];
@@ -76,37 +76,33 @@ var writer = new FileOnWrite({
 
             // --------------------------------------------
             // ---------- manipulate pixel here:
+            
+            // var fp = pidx(rawImageData.width, rawImageData.height, pixX, pixY, 0);
+            // // console.log(fp);
+            // // var av = (rawImageData.data[fp+1] + rawImageData.data[fp+2]) / 2;
+            // // console.log( rawImageData.data[fp], rawImageData.data[fp+1], rawImageData.data[fp+2] );
+            // if(binary[binary_idx] == "0"){
+            //     console.log("0");
+            //     rawImageData.data[fp] = 255;
+            //     // binary_idx++;
+            // }else if(binary[binary_idx] == "1"){
+            //     console.log("1");
+            //     rawImageData.data[fp] = 0;
+            //     // binary_idx++;
+            // }else if(binary[binary_idx] == " "){
+            //     console.log("1");
+            //     rawImageData.data[fp] = 127;
+            //     // binary_idx++;
+            // }
 
-            var fp = pidx(rawImageData.width, rawImageData.height, pixX, pixY, 0);
-            // console.log(fp);
-            // var av = (rawImageData.data[fp+1] + rawImageData.data[fp+2]) / 2;
-            // console.log( rawImageData.data[fp], rawImageData.data[fp+1], rawImageData.data[fp+2] );
 
-            if(binary[binary_idx] == "0"){
-                console.log("0");
-                rawImageData.data[fp] = 255;
-                // binary_idx++;
-            }else if(binary[binary_idx] == "1"){
-                console.log("1");
-                rawImageData.data[fp] = 0;
-                // binary_idx++;
-            }else if(binary[binary_idx] == " "){
-                console.log("1");
-                rawImageData.data[fp] = 127;
-                // binary_idx++;
-            }
 
             if(clock_index%clockInterval === 0){
-                console.log("sending info --");
+                console.log("clock strikes again --");
                 clock_index = 0
                 clock = Math.abs(clock - 255);
                 binary_idx++;
             }
-            // else if(clock_index%50 === 0){
-            //     console.log("sending info");
-            //     clock = 0;
-            //     binary_idx++;
-            // }
             clock_index++;
             rawImageData.data[0] = clock;
 
