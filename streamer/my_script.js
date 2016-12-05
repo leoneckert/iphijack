@@ -203,13 +203,26 @@ function init(){
                     picker.style.border = '1px solid black';
                     addToLog(selectedI, pix[i], pix[i+1], pix[i+2]);
 
-                    if(pix[i] < 85){
-                        currentbinary.push(1);
-                    }else if(pix[i] > 170){
-                        currentbinary.push(0);
-                    }else{
-                        currentbinary.push(2);
+                    var av = (pix[i+1] + pix[i+2])/2;
+                    var ch = 20; //changevalue
+                    var f = 1; //direction of adjustment
+                    if(av > 127 ){
+                        f = -1;
                     }
+                    if(  Math.abs(pix[i] - av) < ch/2 ){
+                        currentbinary.push(2);
+                    }else if(Math.abs(pix[i] - av) < ch + ch/2 ){
+                        currentbinary.push(0);
+                    }else if(Math.abs(pix[i] - av) < ch*2 + ch/2 ){
+                        currentbinary.push(1);
+                    }
+                    // if(pix[i] < 85){
+                    //     currentbinary.push(1);
+                    // }else if(pix[i] > 170){
+                    //     currentbinary.push(0);
+                    // }else{
+                    //     currentbinary.push(2);
+                    // }
 
                 }else if(isInArray(i, marker)){
                     // picker.style.background = 'rgb(255, 0, 0)';

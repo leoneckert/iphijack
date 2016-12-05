@@ -121,11 +121,6 @@ var writer = new FileOnWrite({
                 var fp = pidx(rawImageData.width, rawImageData.height, this_pixel.x, this_pixel.y, 0);
                 var binary = this_pixel.binary;
                 var idx = this_pixel.idx;
-
-                rawImageData.data[fp] = 210;
-                rawImageData.data[fp+1] = 210;
-                rawImageData.data[fp+2] = 210;
-
                 var av = (rawImageData.data[fp + 1] + rawImageData.data[fp + 2]) / 2;
 
                 var ch = 20; //changevalue
