@@ -86,10 +86,22 @@ function addToBinary(idx, newValue){
         var old_str = binary.innerHTML;
         var new_str = old_str += str;
 
-        console.log(new_str.split(" "));
+        var parts = new_str.split(" ");
+
+        for(var i = 0; i < parts.length-1; i++){
+            if(!parts[i]startsWith("<")){
+
+                if(parts[i].length != 8){
+                    parts[i] = "<strike>"+parts[i]+"</strike>";
+                }
+            }
+        }
+
+        var processedstring = parts.join(" ");
+        binary.innerHTML = processedstring;
 
 
-        binary.innerHTML = new_str;
+
         // var str = binary.childNodes[0].innerHTML;
         // var p = document.createElement('p');
         // p.innerHTML = str()
