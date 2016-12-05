@@ -219,13 +219,17 @@ function init(){
     // document.getElementById("canvasWrapper").appendChild(changeTestCanvas);
     var changeTestCanvasContext = changeTestCanvas.getContext('2d');
 
-    var prevDU = null;
+    var preClock = 0;
     setInterval(function(){
         // console.log("drawing");
         changeTestCanvasContext.drawImage(image, 0, 0, streamW, streamH);
         // var du = changeTestCanvas.toDataURL();
         var clock = changeTestCanvasContext.getImageData(0, 0, 1, 1);
         console.log(clock.data[0]);
+        if(Math.abs(clock-255) > 100){
+            console.log("drawing");
+            draw();
+        }
         // console.log(du);
         // if(du != prevDU){
         //     console.log("new frame");
@@ -233,7 +237,7 @@ function init(){
         // }else{
         //     console.log("old frame");
         // }
-        // prevDU = du;
+        preClock = clock;
     }, 2);
 
     // while(true){
