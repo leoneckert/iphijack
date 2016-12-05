@@ -11,8 +11,8 @@ var streamH = 120;
 
 // var inspectX = null;
 // var inspectY = null;
-var inspectX = 72;
-var inspectY = 99;
+var inspectX = 42;
+var inspectY = 35;
 
 
 function getPixelIdx(w,x,y){
@@ -205,7 +205,7 @@ function init(){
 
                     var av = (pix[i+1] + pix[i+2])/2;
                     var ch = 20; //changevalue
-                    var f = 1; //direction of adjustment
+                    var f = 1; //direction of adjustment, think i dont need on this side because using Math.abs
                     if(av > 127 ){
                         f = -1;
                     }

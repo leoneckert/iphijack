@@ -33,22 +33,30 @@ stored[String(pixX)+"-"+String(pixY)] = {
     binary: "01001100 01100101 01101111 01101110 00100000 ",
     idx: 0
 }
-// stored[String(111)+"-"+String(76)] = {
-//     x: 111,
-//     y: 76,
-//     text: "ITP ",
-//     binary: "01001001 01010100 01010000 00100000 ",
-//     idx: 0
-// }
-// stored[String(72)+"-"+String(99)] = {
-//     x: 72,
-//     y: 99,
-//     text: "Hello Chino ",
-//     binary: "01001000 01100101 01101100 01101100 01101111 00100000 01000011 01101000 01101001 01101110 01101111 00100000 ",
-//     idx: 0
-// }
-//
-//
+stored[String(111)+"-"+String(76)] = {
+    x: 111,
+    y: 76,
+    text: "ITP ",
+    binary: "01001001 01010100 01010000 00100000 ",
+    idx: 0
+}
+stored[String(72)+"-"+String(99)] = {
+    x: 72,
+    y: 99,
+    text: "Hello Chino ",
+    binary: "01001000 01100101 01101100 01101100 01101111 00100000 01000011 01101000 01101001 01101110 01101111 00100000 ",
+    idx: 0
+}
+stored[String(42)+"-"+String(35)] = {
+    x: 42,
+    y: 35,
+    text: "This text is decoded from the pixel values ",
+    binary: "01010100 01101000 01101001 01110011 00100000 01110100 01100101 01111000 01110100 00100000 01101001 01110011 00100000 01100100 01100101 01100011 01101111 01100100 01100101 01100100 00100000 01100110 01110010 01101111 01101101 00100000 01110100 01101000 01100101 00100000 01110000 01101001 01111000 01100101 01101100 00100000 01110110 01100001 01101100 01110101 01100101 01110011 00100000 ",
+    idx: 0
+}
+
+
+
 
 
 
@@ -129,26 +137,25 @@ var writer = new FileOnWrite({
                     f = -1;
                 }
 
-
-                console.log(rawImageData.data[fp], " ", rawImageData.data[fp+1], " ", rawImageData.data[fp+2]);
+                // console.log(rawImageData.data[fp], " ", rawImageData.data[fp+1], " ", rawImageData.data[fp+2]);
 
                 if(binary[idx] == " "){
-                    console.log("1");
+                    // console.log("1");
                     // rawImageData.data[fp] = 127;
                     rawImageData.data[fp] = av;
                     // binary_idx++;
                 }else if(binary[idx] == "0"){
-                    console.log("0");
+                    // console.log("0");
                     // rawImageData.data[fp] = 255;
                     rawImageData.data[fp] = av + (ch*f);
                     // binary_idx++;
                 }else if(binary[idx] == "1"){
-                    console.log("1");
+                    // console.log("1");
                     rawImageData.data[fp] = av + (ch*f) + (ch*f);
                     // binary_idx++;
                 }
-                console.log(rawImageData.data[fp], " ", rawImageData.data[fp+1], " ", rawImageData.data[fp+2]);
-                console.log("-");
+                // console.log(rawImageData.data[fp], " ", rawImageData.data[fp+1], " ", rawImageData.data[fp+2]);
+                // console.log("-");
 
             }
 
