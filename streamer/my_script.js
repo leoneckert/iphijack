@@ -8,52 +8,6 @@ var inspectX = 0;
 var inspectY = 0;
 
 
-function init(){
-    var image = new Image();
-    var loadingImg = new Image();
-    loadingImg.src = "http://files.leoneckert.com/ididntknow.gif"
-
-    // create the canvas to render to
-    var canvas = document.createElement('canvas');
-    canvas.width = streamW;
-    canvas.height = streamH;
-    canvas.style.background = 'rgb(255, 255,255)';
-    document.getElementById("canvasWrapper").appendChild(canvas);
-    var context = canvas.getContext('2d');
-
-
-    var picker = document.createElement('div');
-    picker.style.width = streamW/2 + "px";
-    picker.style.height = streamW/2 + "px";
-    picker.style.background = 'rgb(255, 0, 255)';
-    document.getElementById("canvasWrapper").appendChild(picker);
-
-    var pickerExit = document.createElement('a');
-    pickerExit.innerHTML = "x";
-    pickerExit.href = "#";
-    pickerExit.style.display = "none";
-    document.getElementById("canvasWrapper").appendChild(pickerExit);
-    // var imgd = context.getImageData(20, 20, 2, 2);
-    // console.log(imgd);
-
-    var drawInterval = Math.max(1 / 10 * 1000, 30);
-    console.log("drawInterval", drawInterval);
-
-    function changeStream(){
-        var src = 'http://lke229.itp.io:1805/stream';
-        image.src = src;
-    }
-
-    function draw() {
-        // clear the canvas
-        canvas.width = canvas.width;
-        // check if we have a valid image
-        if (image.width * image.height > 0) {
-          context.drawImage(image, 0, 0, streamW, streamH);
-        } else {
-        //   context.drawImage(loadingImg, 0, 0, streamW, streamH);
-        }
-
         function getPixelIdx(w,x,y){
             return (w * 4 * y) + (x * 4);
         }
@@ -98,7 +52,6 @@ function init(){
             }else{
                 callback(elem);
             }
-
         }
         function addToLog(idx, r, g, b){
             allocateElement(idx, function(elem){
@@ -138,11 +91,54 @@ function init(){
                 // debugger
                 // binary.innerHTML += "1";
 
-
-
-
             });
 
+        }
+
+
+function init(){
+    var image = new Image();
+    var loadingImg = new Image();
+    loadingImg.src = "http://files.leoneckert.com/ididntknow.gif"
+
+    // create the canvas to render to
+    var canvas = document.createElement('canvas');
+    canvas.width = streamW;
+    canvas.height = streamH;
+    canvas.style.background = 'rgb(255, 255,255)';
+    document.getElementById("canvasWrapper").appendChild(canvas);
+    var context = canvas.getContext('2d');
+
+    var picker = document.createElement('div');
+    picker.style.width = streamW/2 + "px";
+    picker.style.height = streamW/2 + "px";
+    picker.style.background = 'rgb(255, 0, 255)';
+    document.getElementById("canvasWrapper").appendChild(picker);
+
+    var pickerExit = document.createElement('a');
+    pickerExit.innerHTML = "x";
+    pickerExit.href = "#";
+    pickerExit.style.display = "none";
+    document.getElementById("canvasWrapper").appendChild(pickerExit);
+    // var imgd = context.getImageData(20, 20, 2, 2);
+    // console.log(imgd);
+
+    var drawInterval = Math.max(1 / 10 * 1000, 30);
+    console.log("drawInterval", drawInterval);
+
+    function changeStream(){
+        var src = 'http://lke229.itp.io:1805/stream';
+        image.src = src;
+    }
+
+    function draw() {
+        // clear the canvas
+        canvas.width = canvas.width;
+        // check if we have a valid image
+        if (image.width * image.height > 0) {
+          context.drawImage(image, 0, 0, streamW, streamH);
+        } else {
+        //   context.drawImage(loadingImg, 0, 0, streamW, streamH);
         }
 
 
@@ -217,14 +213,14 @@ function init(){
     // RUN IT ALL:
 
     changeStream();
-    console.log(image);
-    var changeChecker = context.getImageData(0, 0, streamW, streamH);
-    console.log(changeChecker);
+    // console.log(image);
+    // var changeChecker = context.getImageData(0, 0, streamW, streamH);
+    // console.log(changeChecker);
     // changeChecker.addEventListener("change", function(){
     //     console.log("change");
     // });
 
-    // setInterval(draw, drawInterval);
+    setInterval(draw, drawInterval);
 
 }
 
