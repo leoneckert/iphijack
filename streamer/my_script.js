@@ -199,9 +199,8 @@ function init(){
 
             var sum = 0;
             for( var i = 0; i < currentbinary.length; i++ ){
-                sum += parseInt( currentbinary[i], 10 ); //don't forget to add the base
+                sum += parseInt(currentbinary[i]); //don't forget to add the base
             }
-
             var avg = currentbinary/currentbinary.length;
             console.log(avg);
 
