@@ -219,9 +219,10 @@ function init(){
     changeStream();
     console.log(image);
     var changeChecker = context.getImageData(0, 0, streamW, streamH);
-    changeChecker.addEventListener("change", function(){
-        console.log("change");
-    });
+    console.log(changeChecker);
+    // changeChecker.addEventListener("change", function(){
+    //     console.log("change");
+    // });
 
     // setInterval(draw, drawInterval);
 
