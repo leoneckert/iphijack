@@ -218,7 +218,11 @@ function init(){
 
     changeStream();
     console.log(image);
-    setInterval(draw, drawInterval);
+    image.addEventListener("change", function(){
+        console.log("change");
+    });
+
+    // setInterval(draw, drawInterval);
 
 }
 
