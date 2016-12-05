@@ -230,11 +230,17 @@ function init(){
     // document.getElementById("canvasWrapper").appendChild(changeTestCanvas);
     var changeTestCanvasContext = changeTestCanvas.getContext('2d');
 
-
+    var prevDU = null;
     setInterval(function(){
-        console.log("drawing");
+        // console.log("drawing");
         changeTestCanvasContext.drawImage(image, 0, 0, streamW, streamH);
-        console.log(changeTestCanvas.toDataURL());
+        // var du = console.log(changeTestCanvas.toDataURL());
+        if(du != prevDU){
+            console.log("new frame");
+        }else{
+            console.log("old frame");
+        }
+        prevDU = du
     }, 1000);
 
     // while(true){
