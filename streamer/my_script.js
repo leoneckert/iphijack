@@ -131,7 +131,6 @@ function init(){
         image.src = src;
     }
 
-    var prev_imgd = null;
     function draw() {
         // clear the canvas
         canvas.width = canvas.width;
@@ -149,11 +148,8 @@ function init(){
             marker = getMarker(streamW, inspectX, inspectY);
         }
 
-        // imgd = context.getImageData(0, 0, streamW, streamH);
-        // if(imgd === prev_imgd){
-        //     console.log("same as before");
-        // }
-        // prev_imgd = imgd
+        imgd = context.getImageData(0, 0, streamW, streamH);
+
 
         pix = imgd.data;
         // Loop over each pixel and invert the color.
@@ -242,7 +238,7 @@ function init(){
             console.log("old frame");
         }
         prevDU = du
-    }, 10);
+    }, 2);
 
     // while(true){
     //
