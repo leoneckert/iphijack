@@ -81,12 +81,17 @@ function addToBinary(idx, newValue){
         str = String(avg);
     }
     allocateElement(idx, function(elem){
-        // binary
         var binary = elem.childNodes[2];
-        var p2 = document.createElement('p');
-        p2.innerHTML = "";
-        coordinates.innerHTML = str;
-        coordinates.appendChild(p2);
+        var old_str = binary.innerHTML;
+        var new_str = old_str += str;
+        binary.innerHTML = new_str;
+        // var str = binary.childNodes[0].innerHTML;
+        // var p = document.createElement('p');
+        // p.innerHTML = str()
+        //
+        // // p.innerHTML = "";
+        // // coordinates.innerHTML = str;
+        // coordinates.appendChild(p);
 
     });
 }
@@ -200,7 +205,7 @@ function init(){
                 }
                 var avg = Math.round(sum/currentbinary.length);
 
-                // addToBinary(selectedI, avg);
+                addToBinary(selectedI, avg);
 
                 if(avg === 2){
                     binary_str += " ";
