@@ -224,7 +224,7 @@ function init(){
         // console.log("drawing");
         changeTestCanvasContext.drawImage(image, 0, 0, streamW/4, streamH/4);
         // var du = changeTestCanvas.toDataURL();
-        var clock = changeTestCanvasContext.getImageData(0, 0, 0, 0);
+        var clock = changeTestCanvasContext.getImageData(0, 0, 1, 1);
         console.log(clock);
         // console.log(du);
         // if(du != prevDU){
