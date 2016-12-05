@@ -127,6 +127,7 @@ function init(){
     var clock = 0;
     var preClock = 255;
     var currentbinary = [];
+    var binary_str = ""
 
     function changeStream(){
         var src = 'http://lke229.itp.io:1805/stream';
@@ -204,6 +205,12 @@ function init(){
             }
             var avg = Math.round(sum/currentbinary.length);
             console.log(avg);
+            if(avg === 2){
+                binary_str += " ";
+            }else{
+                binary_str += String(avg);
+            }
+            console.log(binary_str);
             // console.log(sum);
 
             currentbinary = [];
