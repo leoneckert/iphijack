@@ -25,7 +25,7 @@ var binary_idx = 0;
 var pixX = 30;
 var pixY = 30;
 
-
+// working demo version
 var clock_binary ="101010101010101010101";
 var clockInterval = 15;
 var clock_index = 0;
