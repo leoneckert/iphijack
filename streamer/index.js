@@ -22,8 +22,8 @@ var rawImageData;
 // var binary = "01001100 01100101 01101111 01101110 00100000 "
 // var binary = "101010101010101010101"
 // var binary_idx = 0;
-// var pixX = 30;
-// var pixY = 30;
+var pixX = 30;
+var pixY = 30;
 
 var stored = {};
 stored[String(pixX)+"-"+String(pixY)] = {
