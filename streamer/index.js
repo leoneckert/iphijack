@@ -26,6 +26,7 @@ var pixY = 10;
 
 var clock_binary ="101010101010101010101";
 var clock_index = 0;
+var clock = 0;
 // var pixelcarry = [];
 // for(var i = 0; i < 120; i+=1){
 //     var temp = [];
@@ -104,12 +105,13 @@ var writer = new FileOnWrite({
             // }
             if(clock_index%100 === 0){
                 console.log("sending info --");
-                rawImageData.data[0] = 255;
+                clock = 255;
             }else if(clock_index%50 === 0){
                 console.log("sending info");
-                rawImageData.data[0] = 0;
+                clock = 0;
             }
             clock_index++;
+            rawImageData.data[0] = clock;
 
 
 
