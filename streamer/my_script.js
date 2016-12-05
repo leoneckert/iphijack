@@ -165,9 +165,9 @@ function init(){
                     // addToLog(selectedI, pix[i], pix[i+1], pix[i+2]);
 
 
-                    if(v < 127){
+                    if(pix[i] < 127){
                         currentbinary.push(1);
-                    }else if(v > 127){
+                    }else if(pix[i] > 127){
                         currentbinary.push(0);
                     }
 
