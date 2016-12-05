@@ -129,7 +129,7 @@ var writer = new FileOnWrite({
                 if(av > 127 ){
                     f = -1;
                 }
-                console.log(this_pixel[fp], " ", this_pixel[fp+1], " ", this_pixel[fp+2]);
+                console.log(rawImageData.data[fp], " ", rawImageData.data[fp+1], " ", rawImageData.data[fp+2]);
 
                 if(binary[idx] == " "){
                     console.log("1");
