@@ -26,6 +26,7 @@ var pixY = 10;
 
 
 var clock_binary ="101010101010101010101";
+var clockInterval = 100;
 var clock_index = 0;
 var clock = 0;
 // var pixelcarry = [];
@@ -95,28 +96,17 @@ var writer = new FileOnWrite({
                 // binary_idx++;
             }
 
-
-            // if(clock_binary[clock_index] == "0"){
-            //     rawImageData.data[0] = 255;
-            //     clock_index++;
-            // }else if(clock_binary[clock_index] == "1"){
-            //     rawImageData.data[0] = 0;
-            //     clock_index++;
-            // }
-            // if(clock_index > clock_binary.length -1){
-            //     clock_index = 0;
-            // }
-
-
-            if(clock_index%100 === 0){
+            if(clock_index%clockInterval === 0){
                 console.log("sending info --");
-                clock = 255;
-                binary_idx++;
-            }else if(clock_index%50 === 0){
-                console.log("sending info");
-                clock = 0;
+                clock_index = 0
+                clock = Math.abs(clock - 255);
                 binary_idx++;
             }
+            // else if(clock_index%50 === 0){
+            //     console.log("sending info");
+            //     clock = 0;
+            //     binary_idx++;
+            // }
             clock_index++;
             rawImageData.data[0] = clock;
 
