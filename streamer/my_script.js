@@ -4,8 +4,8 @@ var streamH = 120;
 
 // var inspectX = null;
 // var inspectY = null;
-var inspectX = 0;
-var inspectY = 0;
+var inspectX = 10;
+var inspectY = 10;
 
 
 function getPixelIdx(w,x,y){
@@ -221,22 +221,13 @@ function init(){
 
     var preClock = 0;
     setInterval(function(){
-        // console.log("drawing");
         changeTestCanvasContext.drawImage(image, 0, 0, streamW, streamH);
-        // var du = changeTestCanvas.toDataURL();
         var clock = changeTestCanvasContext.getImageData(0, 0, 1, 1).data[0];
         console.log(clock);
         if(Math.abs(clock-preClock) > 100){
             console.log("drawing");
             draw();
         }
-        // console.log(du);
-        // if(du != prevDU){
-        //     console.log("new frame");
-        //     draw();
-        // }else{
-        //     console.log("old frame");
-        // }
         preClock = clock;
     }, 2);
 
