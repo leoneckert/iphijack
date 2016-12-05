@@ -218,7 +218,7 @@ function init(){
 
     changeStream();
     console.log(image);
-    image.addEventListener("change", function(){
+    context.addEventListener("change", function(){
         console.log("change");
     });
 
