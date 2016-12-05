@@ -47,6 +47,10 @@ function allocateElement(idx, callback){
         binary.id = "binary";
         elem.appendChild(binary);
 
+        var ascii = document.createElement('div');
+        ascii.id = "ascii";
+        elem.appendChild(ascii);
+
         callback(elem);
     }else{
         callback(elem);
@@ -88,17 +92,24 @@ function addToBinary(idx, newValue){
 
         var parts = new_str.split(" ");
 
+        var ascii_str = "";
         for(var i = 0; i < parts.length-1; i++){
             if(!parts[i].startsWith("<")){
 
                 if(parts[i].length != 8){
                     parts[i] = "<strike>"+parts[i]+"</strike>";
+                }else{
+                    ascii_str += "A";
                 }
+
             }
         }
-
         var processedstring = parts.join(" ");
         binary.innerHTML = processedstring;
+
+        var ascii = elem.childNodes[3];
+        ascii.innerHTML = ascii_str;
+
 
 
 
