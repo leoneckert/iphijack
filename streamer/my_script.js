@@ -213,8 +213,8 @@ function init(){
     changeStream();
 
     var changeTestCanvas = document.createElement('canvas');
-    changeTestCanvas.width = streamW/2;
-    changeTestCanvas.height = streamH/2;
+    changeTestCanvas.width = streamW/4;
+    changeTestCanvas.height = streamH/4;
     changeTestCanvas.style.background = 'rgb(255, 255,255)';
     // document.getElementById("canvasWrapper").appendChild(changeTestCanvas);
     var changeTestCanvasContext = changeTestCanvas.getContext('2d');
@@ -222,7 +222,7 @@ function init(){
     var prevDU = null;
     setInterval(function(){
         // console.log("drawing");
-        changeTestCanvasContext.drawImage(image, 0, 0, streamW/2, streamH/2);
+        changeTestCanvasContext.drawImage(image, 0, 0, streamW/4, streamH/4);
         var du = changeTestCanvas.toDataURL();
         console.log(du);
         if(du != prevDU){
