@@ -208,8 +208,8 @@ var consumer = new MjpegConsumer();
 ////STREAM////
 //////////////
 
-var w = 160; // 320 or 160 etc.
-var h = 120; // 240 or 120 etc.
+var w = 352; // 320 or 160 etc.   352
+var h = 240; // 240 or 120 etc.   240
 // taiwan port
 // var stream = request("http://117.56.116.103/mjpg/video.mjpg").pipe(consumer).pipe(writer);
 // taiwan entrance
@@ -223,13 +223,16 @@ var h = 120; // 240 or 120 etc.
 // http://187.8.158.90/mjpg/video.mjpg?COUNTER
 
 // light tower
-var stream = request("http://75.134.86.115/mjpg/video.mjpg?resolution="+w+"x"+h+"&camera=1").pipe(consumer).pipe(writer);
+// var stream = request("http://75.134.86.115/mjpg/video.mjpg?resolution="+w+"x"+h+"&camera=1").pipe(consumer).pipe(writer);
 // motorway
 // var stream = request("http://166.154.145.84/mjpg/video.mjpg?resolution="+w+"x"+h+"&camera=1").pipe(consumer).pipe(writer);
 // windmill
 // var stream = request("http://107.1.228.34/axis-cgi/mjpg/video.cgi?resolution="+w+"x"+h+"&camera=1").pipe(consumer).pipe(writer);
 
+//new york
+var stream = request("http://23.246.89.122:81/mjpg/video.mjpg?resolution="+w+"x"+h+"&camera=1").pipe(consumer).pipe(writer);
 
+http://23.246.89.122:81/mjpg/video.mjpg?camera=1&resolution=352x240
 
 // ----------------------------------------------------------------------------------------------------------------
 // ----------------------------------------------------------------------------------------------------------------
