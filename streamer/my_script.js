@@ -194,15 +194,15 @@ function init(){
         if(Math.abs(clock-preClock) > 100){
             console.log("drawing" + String(clock-preClock));
             // draw();
-            console.log(currentbinary);
+            // console.log(currentbinary);
 
             var sum = 0;
             for( var i = 0; i < currentbinary.length; i++ ){
                 sum += parseInt(currentbinary[i]); //don't forget to add the base
             }
-            var avg = sum/currentbinary.length;
+            var avg = Math.round(sum/currentbinary.length);
             console.log(avg);
-            console.log(sum);
+            // console.log(sum);
 
             currentbinary = [];
             preClock = clock;
