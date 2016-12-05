@@ -78,7 +78,7 @@ function addToBinary(idx, newValue){
     if(newValue === 2){
         str = " ";
     }else{
-        str = String(avg);
+        str = String(newValue);
     }
     allocateElement(idx, function(elem){
         var binary = elem.childNodes[2];
