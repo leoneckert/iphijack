@@ -85,6 +85,10 @@ function addToBinary(idx, newValue){
         var binary = elem.childNodes[2];
         var old_str = binary.innerHTML;
         var new_str = old_str += str;
+
+        console.log(new_str.split(" "));
+
+
         binary.innerHTML = new_str;
         // var str = binary.childNodes[0].innerHTML;
         // var p = document.createElement('p');
