@@ -24,35 +24,23 @@ var binary = "01001100 01100101 01101111 01101110 00100000 "
 var binary_idx = 0;
 var pixX = 30;
 var pixY = 30;
-// var name = String(pixX)+"-"+String(pixY);
-var stored = {};
 
+var stored = {};
 stored[String(pixX)+"-"+String(pixY)] = {
-    "text": "Leon ",
-    "binary": "01001100 01100101 01101111 01101110 00100000 ",
-    "idx": 0
+    x: 30,
+    y: 30,
+    text: "Leon ",
+    binary: "01001100 01100101 01101111 01101110 00100000 ",
+    idx: 0
 }
 console.dir(stored);
 
-
-// working demo version
+// clock:
 var clock_binary ="101010101010101010101";
 var clockInterval = 15;
 var clock_index = 0;
 var clock = 0;
-// var pixelcarry = [];
-// for(var i = 0; i < 120; i+=1){
-//     var temp = [];
-//     for(var j = 0; j < 160; j++){
-//         if(Math.random() < 0.05){
-//             temp.push(1);
-//         }else{
-//             temp.push(0);
-//         }
-//     }
-//     pixelcarry.push(temp)
-// }
-var signalPause = false;
+
 
 var writer = new FileOnWrite({
     path: imgDir,
@@ -87,6 +75,7 @@ var writer = new FileOnWrite({
 
             // --------------------------------------------
             // ---------- manipulate pixel here:
+
 
             var fp = pidx(rawImageData.width, rawImageData.height, pixX, pixY, 0);
             // console.log(fp);
