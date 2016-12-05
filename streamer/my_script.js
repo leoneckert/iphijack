@@ -89,7 +89,7 @@ function addToBinary(idx, newValue){
         var parts = new_str.split(" ");
 
         for(var i = 0; i < parts.length-1; i++){
-            if(!parts[i]startsWith("<")){
+            if(!parts[i].startsWith("<")){
 
                 if(parts[i].length != 8){
                     parts[i] = "<strike>"+parts[i]+"</strike>";
