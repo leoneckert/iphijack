@@ -107,6 +107,7 @@ function addToBinary(idx, newValue){
                     parts[i] = "<strike>"+parts[i]+"</strike>";
                 }else{
                     ascii_str += ABC.toAscii(parts[i]);
+                    console.log(ABC.toAscii("01001100 01100101 01101111 01101110 00100000 "));
 
                 }
 
