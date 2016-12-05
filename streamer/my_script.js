@@ -67,12 +67,28 @@ function addToLog(idx, r, g, b){
         var coordinates = elem.childNodes[1];
         str = inspectX + " | " + inspectY;
         var p2 = document.createElement('p');
+        p2.innerHTML = str;
+        coordinates.innerHTML = "";
+        coordinates.appendChild(p2);
+    });
+}
+
+function addToBinary(idx, newValue){
+    var str = "";
+    if(newValue === 2){
+        str = " ";
+    }else{
+        str = String(avg);
+    }
+    allocateElement(idx, function(elem){
+        // binary
+        var binary = elem.childNodes[2];
+        var p2 = document.createElement('p');
         p2.innerHTML = "";
         coordinates.innerHTML = str;
         coordinates.appendChild(p2);
 
     });
-
 }
 
 
@@ -80,8 +96,6 @@ function init(){
     var image = new Image();
     // var loadingImg = new Image();
     // loadingImg.src = "http://files.leoneckert.com/ididntknow.gif"
-
-
 
     // create the canvas to render to
     var canvas = document.createElement('canvas');
@@ -179,20 +193,23 @@ function init(){
             console.log("clock strikes");
             preClock = clock;
 
-            var sum = 0;
-            for( var i = 0; i < currentbinary.length; i++ ){
-                sum += parseInt(currentbinary[i]); //don't forget to add the base
-            }
-            var avg = Math.round(sum/currentbinary.length);
-            console.log(avg);
-            if(avg === 2){
-                binary_str += " ";
-            }else{
-                binary_str += String(avg);
-            }
-            console.log(binary_str);
+            if(selectedI != null){
+                var sum = 0;
+                for( var i = 0; i < currentbinary.length; i++ ){
+                    sum += parseInt(currentbinary[i]); //don't forget to add the base
+                }
+                var avg = Math.round(sum/currentbinary.length);
 
-            currentbinary = [];
+                // addToBinary(selectedI, avg);
+
+                if(avg === 2){
+                    binary_str += " ";
+                }else{
+                    binary_str += String(avg);
+                }
+                console.log(binary_str);
+                currentbinary = [];
+            }
 
         }
 

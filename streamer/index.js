@@ -77,23 +77,23 @@ var writer = new FileOnWrite({
             // --------------------------------------------
             // ---------- manipulate pixel here:
 
-            // var fp = pidx(rawImageData.width, rawImageData.height, pixX, pixY, 0);
-            // // console.log(fp);
-            // // var av = (rawImageData.data[fp+1] + rawImageData.data[fp+2]) / 2;
-            // // console.log( rawImageData.data[fp], rawImageData.data[fp+1], rawImageData.data[fp+2] );
-            // if(binary[binary_idx] == "0"){
-            //     console.log("0");
-            //     rawImageData.data[fp] = 255;
-            //     // binary_idx++;
-            // }else if(binary[binary_idx] == "1"){
-            //     console.log("1");
-            //     rawImageData.data[fp] = 0;
-            //     // binary_idx++;
-            // }else if(binary[binary_idx] == " "){
-            //     console.log("1");
-            //     rawImageData.data[fp] = 127;
-            //     // binary_idx++;
-            // }
+            var fp = pidx(rawImageData.width, rawImageData.height, pixX, pixY, 0);
+            // console.log(fp);
+            // var av = (rawImageData.data[fp+1] + rawImageData.data[fp+2]) / 2;
+            // console.log( rawImageData.data[fp], rawImageData.data[fp+1], rawImageData.data[fp+2] );
+            if(binary[binary_idx] == "0"){
+                console.log("0");
+                rawImageData.data[fp] = 255;
+                // binary_idx++;
+            }else if(binary[binary_idx] == "1"){
+                console.log("1");
+                rawImageData.data[fp] = 0;
+                // binary_idx++;
+            }else if(binary[binary_idx] == " "){
+                console.log("1");
+                rawImageData.data[fp] = 127;
+                // binary_idx++;
+            }
 
 
 
