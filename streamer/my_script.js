@@ -234,7 +234,7 @@ function init(){
     setInterval(function(){
         // console.log("drawing");
         changeTestCanvasContext.drawImage(image, 0, 0, streamW, streamH);
-        var du = hangeTestCanvas.toDataURL();
+        var du = changeTestCanvas.toDataURL();
         if(du != prevDU){
             console.log("new frame");
         }else{
