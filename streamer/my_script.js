@@ -218,7 +218,8 @@ function init(){
 
     changeStream();
     console.log(image);
-    context.addEventListener("change", function(){
+    var changeChecker = context.getImageData(0, 0, streamW, streamH);
+    changeChecker.addEventListener("change", function(){
         console.log("change");
     });
 
