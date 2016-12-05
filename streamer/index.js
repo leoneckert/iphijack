@@ -122,6 +122,10 @@ var writer = new FileOnWrite({
                 var binary = this_pixel.binary;
                 var idx = this_pixel.idx;
 
+                rawImageData.data[fp] = 210;
+                rawImageData.data[fp+1] = 210;
+                rawImageData.data[fp+2] = 210;
+
                 var av = (rawImageData.data[fp + 1] + rawImageData.data[fp + 2]) / 2;
 
                 var ch = 20; //changevalue
@@ -129,9 +133,7 @@ var writer = new FileOnWrite({
                 if(av > 127 ){
                     f = -1;
                 }
-                rawImageData.data[fp] = 210;
-                rawImageData.data[fp+1] = 210;
-                rawImageData.data[fp+2] = 210;
+
 
                 console.log(rawImageData.data[fp], " ", rawImageData.data[fp+1], " ", rawImageData.data[fp+2]);
 
