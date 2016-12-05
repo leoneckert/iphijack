@@ -72,6 +72,7 @@ var writer = new FileOnWrite({
             if(signalPause){
                 signalPause = false;
                 rawImageData.data[fp] = 127;
+                console.log("BREAKKKKK");
             }else{
                 if(binary[binary_idx] == "0"){
                     console.log("0");
