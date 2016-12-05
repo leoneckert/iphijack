@@ -146,7 +146,7 @@ var writer = new FileOnWrite({
                     rawImageData.data[fp] = av + (ch*f) + (ch*f);
                     // binary_idx++;
                 }
-                console.log(this_pixel[fp], " ", this_pixel[fp+1], " ", this_pixel[fp+2]);
+                console.log(rawImageData.data[fp], " ", rawImageData.data[fp+1], " ", rawImageData.data[fp+2]);
                 console.log("-");
 
             }
