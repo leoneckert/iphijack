@@ -163,7 +163,15 @@ function init(){
                     picker.style.background = 'rgb('+pix[i]+', '+pix[i+1]+', '+pix[i+2]+')';
                     picker.style.border = '1px solid black';
                     // addToLog(selectedI, pix[i], pix[i+1], pix[i+2]);
-                    currentbinary.push(pix[i]);
+
+
+                    if(v < 127){
+                        currentbinary.push(1);
+                    }else if(v > 127){
+                        currentbinary.push(0);
+                    }
+
+
                 }else if(isInArray(i, marker)){
                     // picker.style.background = 'rgb(255, 0, 0)';
                     pix[i  ] = 255; // red
