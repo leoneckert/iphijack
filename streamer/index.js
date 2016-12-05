@@ -33,7 +33,7 @@ var pixY = 0;
 //     }
 //     pixelcarry.push(temp)
 // }
-
+var signalPause = false;
 var writer = new FileOnWrite({
     path: imgDir,
     ext: '.jpg',
@@ -68,25 +68,35 @@ var writer = new FileOnWrite({
             // console.log(fp);
             var av = (rawImageData.data[fp+1] + rawImageData.data[fp+2]) / 2;
             console.log( rawImageData.data[fp], rawImageData.data[fp+1], rawImageData.data[fp+2] );
-            if(binary[binary_idx] == "0"){
-                console.log("0");
-                rawImageData.data[fp] = 255;
-                // rawImageData.data[fp] = av - 20;
-                binary_idx++;
-            }else if(binary[binary_idx] == "1"){
-                console.log("1");
-                rawImageData.data[fp] = 0;
-                // rawImageData.data[fp] = av + 20;
-                binary_idx++;
-            }else if(binary[binary_idx] == " "){
-                console.log("----");
+
+            if(signalPause){
+                signalPause = false;
                 rawImageData.data[fp] = 127;
-                // rawImageData.data[fp] = av;
-                binary_idx++;
+            }else{
+                if(binary[binary_idx] == "0"){
+                    console.log("0");
+                    rawImageData.data[fp] = 255;
+                    // rawImageData.data[fp] = av - 20;
+                    binary_idx++;
+                }else if(binary[binary_idx] == "1"){
+                    console.log("1");
+                    rawImageData.data[fp] = 0;
+                    // rawImageData.data[fp] = av + 20;
+                    binary_idx++;
+                }else if(binary[binary_idx] == " "){
+                    console.log("----");
+                    rawImageData.data[fp] = 127;
+                    // rawImageData.data[fp] = av;
+                    binary_idx++;
+                }
+                if(binary_idx > binary.length -1){
+                    binary_idx = 0;
+                    signalPause = true
+                }
             }
-            if(binary_idx > binary.length -1){
-                binary_idx = 0;
-            }
+
+
+
             console.log( "new:");
             console.log( rawImageData.data[fp], rawImageData.data[fp+1], rawImageData.data[fp+2] );
             console.log( "---");
