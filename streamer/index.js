@@ -208,8 +208,8 @@ var consumer = new MjpegConsumer();
 ////STREAM////
 //////////////
 
-var w = 352; // 320 or 160 etc.   352
-var h = 240; // 240 or 120 etc.   240
+var w = 176; // 320 or 160 etc.   352, 176
+var h = 120; // 240 or 120 etc.   240, 120
 // taiwan port
 // var stream = request("http://117.56.116.103/mjpg/video.mjpg").pipe(consumer).pipe(writer);
 // taiwan entrance
@@ -230,7 +230,7 @@ var h = 240; // 240 or 120 etc.   240
 // var stream = request("http://107.1.228.34/axis-cgi/mjpg/video.cgi?resolution="+w+"x"+h+"&camera=1").pipe(consumer).pipe(writer);
 
 //new york
-var stream = request("http://23.246.89.122:81/mjpg/video.mjpg?resolution="+w+"x"+h+"&camera=1").pipe(consumer).pipe(writer);
+var stream = request("http://23.246.89.122:81/mjpg/video.mjpg?resolution="+w+"x"+h).pipe(consumer).pipe(writer);
 
 http://23.246.89.122:81/mjpg/video.mjpg?camera=1&resolution=352x240
 
