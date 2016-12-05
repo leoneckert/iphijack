@@ -83,9 +83,9 @@ function addToLog(idx, r, g, b){
         var re = v;
         // var re = av - v;
         if(re < 80){
-            binary.innerHTML += "0";
-        }else if(re > 200){
             binary.innerHTML += "1";
+        }else if(re > 200){
+            binary.innerHTML += "0";
         }else{
             binary.innerHTML += " ";
         }
