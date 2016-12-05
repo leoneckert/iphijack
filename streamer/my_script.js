@@ -127,7 +127,7 @@ function init(){
     console.log("drawInterval", drawInterval);
 
     var clock = 0;
-    var preClock = 1;
+    var preClock = 255;
 
     function changeStream(){
         var src = 'http://lke229.itp.io:1805/stream';
@@ -159,6 +159,7 @@ function init(){
         if(Math.abs(clock-preClock) > 100){
             console.log("drawing" + clock-preClock);
             // draw();
+            preClock = clock;
         }
 
         // // Loop over each pixel and invert the color.
@@ -183,7 +184,7 @@ function init(){
         //     }
         //
         // }
-        preClock = clock;
+
         context.putImageData(imgd, 0, 0);
 
     }
