@@ -229,7 +229,7 @@ function init(){
             draw();
         }
         preClock = clock;
-    }, 50);
+    }, 80);
 
     // while(true){
     //
