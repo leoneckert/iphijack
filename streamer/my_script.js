@@ -230,9 +230,11 @@ function init(){
     // document.getElementById("canvasWrapper").appendChild(changeTestCanvas);
     var changeTestCanvasContext = changeTestCanvas.getContext('2d');
 
+
     setInterval(function(){
         console.log("drawing");
         changeTestCanvasContext.drawImage(image, 0, 0, streamW, streamH);
+        console.log(changeTestCanvas.toDataURL());
     }, 1000);
 
     // while(true){
