@@ -154,7 +154,7 @@ function init(){
             console.log("same as before");
         }
         prev_imgd = imgd
-        
+
         pix = imgd.data;
         // Loop over each pixel and invert the color.
         for (var i = 0, n = pix.length; i < n; i += 4) {
@@ -224,7 +224,8 @@ function init(){
     //     console.log("change");
     // });
 
-    setInterval(draw, drawInterval);
+    // setInterval(draw, drawInterval);
+    setInterval(draw, 2);
 
 }
 
