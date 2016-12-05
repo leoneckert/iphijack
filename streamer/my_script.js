@@ -232,7 +232,7 @@ function init(){
 
     setInterval(function(){
         changeTestCanvasContext.drawImage(image, 0, 0, streamW, streamH);
-    }, 10);
+    }, 1000);
 
     // while(true){
     //
