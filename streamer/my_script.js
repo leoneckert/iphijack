@@ -32,7 +32,7 @@ function allocateElement(idx, callback){
     if( elem == null){
         elem = document.createElement('div');
         elem.id = idx_id;
-        elem.className = "dataBox"
+        elem.className = "dataBox";
         document.getElementById("data").appendChild(elem);
 
         var rgb = document.createElement('div');
