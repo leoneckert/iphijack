@@ -27,7 +27,7 @@ var pixY = 30;
 
 
 var clock_binary ="101010101010101010101";
-var clockInterval = 10;
+var clockInterval = 15;
 var clock_index = 0;
 var clock = 0;
 // var pixelcarry = [];
