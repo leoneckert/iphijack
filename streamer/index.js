@@ -127,15 +127,18 @@ var writer = new FileOnWrite({
                 for(var i = 0; i < pixelsToChange.length; i++){
                     var this_pixel = stored[pixelsToChange[i]];
                     this_pixel.idx++;
+                    if(this_pixel.idx > this_pixel.binary.length-1){
+                        this_pixel.idx = 0;
+                    }
                 }
             }
             clock_index++;
             rawImageData.data[0] = clock;
 
 
-            if(binary_idx > binary.length -1){
-                binary_idx = 0;
-            }
+            // if(binary_idx > binary.length -1){
+            //     binary_idx = 0;
+            // }
 
 
 
