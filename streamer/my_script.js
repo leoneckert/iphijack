@@ -227,11 +227,12 @@ function init(){
     changeTestCanvas.width = streamW;
     changeTestCanvas.height = streamH;
     changeTestCanvas.style.background = 'rgb(255, 255,255)';
+    document.getElementById("canvasWrapper").appendChild(changeTestCanvas);
     var changeTestCanvasContext = changeTestCanvas.getContext('2d');
 
     setInterval(function(){
         changeTestCanvasContext.drawImage(image, 0, 0, streamW, streamH);
-    }, 2);
+    }, 10);
 
     // while(true){
     //
