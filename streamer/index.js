@@ -70,11 +70,11 @@ var writer = new FileOnWrite({
             console.log( rawImageData.data[fp], rawImageData.data[fp+1], rawImageData.data[fp+2] );
             if(binary[binary_idx] == "0"){
                 console.log("0");
-                rawImageData.data[fp] = av - 10;
+                rawImageData.data[fp] = av - 20;
                 binary_idx++;
             }else if(binary[binary_idx] == "1"){
                 console.log("1");
-                rawImageData.data[fp] = av + 10;
+                rawImageData.data[fp] = av + 20;
                 binary_idx++;
             }else if(binary[binary_idx] == " "){
                 console.log("----");

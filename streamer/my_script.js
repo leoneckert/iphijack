@@ -128,9 +128,9 @@ function init(){
                 var av = (parseInt(g) + parseInt(b)) /2;
                 var v = parseInt(r);
                 var re = av - v;
-                if(re < - 6){
+                if(re < -10){
                     binary.innerHTML += "1";
-                }else if(re > 6){
+                }else if(re > 10){
                     binary.innerHTML += "0";
                 }else{
                     binary.innerHTML += " ";
