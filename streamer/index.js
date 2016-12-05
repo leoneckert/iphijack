@@ -131,7 +131,7 @@ var writer = new FileOnWrite({
                 var idx = this_pixel.idx;
                 var av = (rawImageData.data[fp + 1] + rawImageData.data[fp + 2]) / 2;
 
-                var ch = 20; //changevalue
+                var ch = 40; //changevalue
                 var f = 1; //direction of adjustment
                 if(av > 127 ){
                     f = -1;

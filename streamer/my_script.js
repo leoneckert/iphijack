@@ -204,7 +204,7 @@ function init(){
                     addToLog(selectedI, pix[i], pix[i+1], pix[i+2]);
 
                     var av = (pix[i+1] + pix[i+2])/2;
-                    var ch = 20; //changevalue
+                    var ch = 40; //changevalue
                     var f = 1; //direction of adjustment, think i dont need on this side because using Math.abs
                     if(av > 127 ){
                         f = -1;
