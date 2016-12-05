@@ -80,6 +80,7 @@ function addToLog(idx, r, g, b){
         var binary = elem.childNodes[2];
         // var av = (parseInt(g) + parseInt(b)) /2;
         var v = parseInt(r);
+        var re = v;
         // var re = av - v;
         if(re < 80){
             binary.innerHTML += "1";
