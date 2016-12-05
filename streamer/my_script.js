@@ -226,7 +226,7 @@ function init(){
         // var du = changeTestCanvas.toDataURL();
         var clock = changeTestCanvasContext.getImageData(0, 0, 1, 1);
         console.log(clock.data[0]);
-        if(Math.abs(clock-255) > 100){
+        if(Math.abs(clock-preClock) > 100){
             console.log("drawing");
             draw();
         }
