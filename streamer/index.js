@@ -79,31 +79,39 @@ var writer = new FileOnWrite({
             // var av = (rawImageData.data[fp+1] + rawImageData.data[fp+2]) / 2;
             // console.log( rawImageData.data[fp], rawImageData.data[fp+1], rawImageData.data[fp+2] );
 
-            if(binary[binary_idx] == "0"){
-                console.log("0");
-                rawImageData.data[fp] = 255;
-                binary_idx++;
-            }else if(binary[binary_idx] == "1"){
-                console.log("1");
-                rawImageData.data[fp] = 0;
-                binary_idx++;
-            }
-            if(binary_idx > binary.length -1){
-                binary_idx = 0;
-            }
+            // if(binary[binary_idx] == "0"){
+            //     console.log("0");
+            //     rawImageData.data[fp] = 255;
+            //     binary_idx++;
+            // }else if(binary[binary_idx] == "1"){
+            //     console.log("1");
+            //     rawImageData.data[fp] = 0;
+            //     binary_idx++;
+            // }
+            // if(binary_idx > binary.length -1){
+            //     binary_idx = 0;
+            // }
 
-            if(clock_binary[clock_index] == "0"){
-                // console.log("0");
+            // if(clock_binary[clock_index] == "0"){
+            //     rawImageData.data[0] = 255;
+            //     clock_index++;
+            // }else if(clock_binary[clock_index] == "1"){
+            //     rawImageData.data[0] = 0;
+            //     clock_index++;
+            // }
+            // if(clock_index > clock_binary.length -1){
+            //     clock_index = 0;
+            // }
+            if(clock_index%100 == 0){
                 rawImageData.data[0] = 255;
                 clock_index++;
-            }else if(clock_binary[clock_index] == "1"){
-                // console.log("1");
+            }else if(clock_index%50 == 0){
+                console.log("sending info");
                 rawImageData.data[0] = 0;
                 clock_index++;
             }
-            if(clock_index > clock_binary.length -1){
-                clock_index = 0;
-            }
+
+
 
             //
             // console.log( "new:");
