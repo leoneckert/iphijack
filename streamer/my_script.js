@@ -149,11 +149,11 @@ function init(){
             marker = getMarker(streamW, inspectX, inspectY);
         }
 
-        imgd = context.getImageData(0, 0, streamW, streamH);
-        if(imgd === prev_imgd){
-            console.log("same as before");
-        }
-        prev_imgd = imgd
+        // imgd = context.getImageData(0, 0, streamW, streamH);
+        // if(imgd === prev_imgd){
+        //     console.log("same as before");
+        // }
+        // prev_imgd = imgd
 
         pix = imgd.data;
         // Loop over each pixel and invert the color.
@@ -223,9 +223,22 @@ function init(){
     // changeChecker.addEventListener("change", function(){
     //     console.log("change");
     // });
+    var changeTestCanvas = document.createElement('canvas');
+    changeTestCanvas.width = streamW;
+    changeTestCanvas.height = streamH;
+    changeTestCanvas.style.background = 'rgb(255, 255,255)';
+    var changeTestCanvasContext = canvas.getContext('2d');
+
+    setInterval(function(){
+        changeTestCanvasContext.drawImage(image, 0, 0, streamW, streamH);
+    }, 2);
+
+    // while(true){
+    //
+    // }
 
     // setInterval(draw, drawInterval);
-    setInterval(draw, 2);
+    // setInterval(draw, 2);
 
 }
 
