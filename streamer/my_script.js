@@ -241,7 +241,7 @@ function init(){
             console.log("old frame");
         }
         prevDU = du
-    }, 1000);
+    }, 2);
 
     // while(true){
     //
