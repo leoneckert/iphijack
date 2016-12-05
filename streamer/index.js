@@ -33,23 +33,22 @@ stored[String(pixX)+"-"+String(pixY)] = {
     binary: "01001100 01100101 01101111 01101110 00100000 ",
     idx: 0
 }
-stored[String(111)+"-"+String(76)] = {
-    x: 111,
-    y: 76,
-    text: "ITP ",
-    binary: "01001001 01010100 01010000 00100000 ",
-    idx: 0
-}
-
-stored[String(72)+"-"+String(99)] = {
-    x: 72,
-    y: 99,
-    text: "Hello Chino ",
-    binary: "01001000 01100101 01101100 01101100 01101111 00100000 01000011 01101000 01101001 01101110 01101111 00100000 ",
-    idx: 0
-}
-
-
+// stored[String(111)+"-"+String(76)] = {
+//     x: 111,
+//     y: 76,
+//     text: "ITP ",
+//     binary: "01001001 01010100 01010000 00100000 ",
+//     idx: 0
+// }
+// stored[String(72)+"-"+String(99)] = {
+//     x: 72,
+//     y: 99,
+//     text: "Hello Chino ",
+//     binary: "01001000 01100101 01101100 01101100 01101111 00100000 01000011 01101000 01101001 01101110 01101111 00100000 ",
+//     idx: 0
+// }
+//
+//
 
 
 
@@ -122,19 +121,33 @@ var writer = new FileOnWrite({
                 var fp = pidx(rawImageData.width, rawImageData.height, this_pixel.x, this_pixel.y, 0);
                 var binary = this_pixel.binary;
                 var idx = this_pixel.idx;
-                if(binary[idx] == "0"){
+
+                var av = (rawImageData.data[fp + 1] + rawImageData.data[fp + 2]) / 2;
+
+                var ch = 20; //changevalue
+                var f = 1; //direction of adjustment
+                if(av > 127 ){
+                    f = -1;
+                }
+                console.log(this_pixel[fp], " ", this_pixel[fp+1], " ", this_pixel[fp+2]);
+
+                if(binary[idx] == " "){
+                    console.log("1");
+                    // rawImageData.data[fp] = 127;
+                    rawImageData.data[fp] = av;
+                    // binary_idx++;
+                }else if(binary[idx] == "0"){
                     console.log("0");
-                    rawImageData.data[fp] = 255;
+                    // rawImageData.data[fp] = 255;
+                    rawImageData.data[fp] = av + (ch*f);
                     // binary_idx++;
                 }else if(binary[idx] == "1"){
                     console.log("1");
-                    rawImageData.data[fp] = 0;
-                    // binary_idx++;
-                }else if(binary[idx] == " "){
-                    console.log("1");
-                    rawImageData.data[fp] = 127;
+                    rawImageData.data[fp] = av + (ch*f) + (ch*f);
                     // binary_idx++;
                 }
+                console.log(this_pixel[fp], " ", this_pixel[fp+1], " ", this_pixel[fp+2]);
+                console.log("-");
 
             }
 
