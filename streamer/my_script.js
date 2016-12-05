@@ -11,8 +11,8 @@ var streamH = 120;
 
 // var inspectX = null;
 // var inspectY = null;
-var inspectX = 30;
-var inspectY = 30;
+var inspectX = 72;
+var inspectY = 99;
 
 
 function getPixelIdx(w,x,y){

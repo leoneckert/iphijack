@@ -41,6 +41,16 @@ stored[String(111)+"-"+String(76)] = {
     idx: 0
 }
 
+stored[String(72)+"-"+String(99)] = {
+    x: 72,
+    y: 99,
+    text: "Hello Chino ",
+    binary: "01001000 01100101 01101100 01101100 01101111 00100000 01000011 01101000 01101001 01101110 01101111 00100000 ",
+    idx: 0
+}
+
+
+
 
 
 console.dir(stored);
