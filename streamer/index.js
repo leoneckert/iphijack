@@ -103,7 +103,7 @@ var writer = new FileOnWrite({
                 rawImageData.data[0] = 0;
                 clock_index++;
             }
-            if(clock_index > binary.length -1){
+            if(clock_index > clock_binary.length -1){
                 clock_index = 0;
             }
 
