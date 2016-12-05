@@ -18,13 +18,14 @@ var maxNum = 10;
 
 var rawImageData;
 // var binary = "010010000110010101101100011011000110111100100000010011010111100100100000011011100110000101101101011001010010000001101001011100110010000001001100011001010110111101101110"
-// var binary = "101010101010101010101"
-// var binary_idx = 0;
+var binary = "101010101010101010101"
+var binary_idx = 0;
+var pixX = 10;
+var pixY = 10;
+
 
 var clock_binary ="101010101010101010101";
 var clock_index = 0;
-var pixX = 10;
-var pixY = 10;
 // var pixelcarry = [];
 // for(var i = 0; i < 120; i+=1){
 //     var temp = [];
@@ -73,33 +74,30 @@ var writer = new FileOnWrite({
             // --------------------------------------------
             // ---------- manipulate pixel here:
 
-            // var fp = pidx(rawImageData.width, rawImageData.height, pixX, pixY, 0);
+            var fp = pidx(rawImageData.width, rawImageData.height, pixX, pixY, 0);
             // console.log(fp);
             // var av = (rawImageData.data[fp+1] + rawImageData.data[fp+2]) / 2;
             // console.log( rawImageData.data[fp], rawImageData.data[fp+1], rawImageData.data[fp+2] );
-            //
-            //
-            // if(binary[binary_idx] == "0"){
-            //     console.log("0");
-            //     rawImageData.data[fp] = 255;
-            //     // rawImageData.data[fp] = av - 20;
-            //     binary_idx++;
-            // }else if(binary[binary_idx] == "1"){
-            //     console.log("1");
-            //     rawImageData.data[fp] = 0;
-            //     // rawImageData.data[fp] = av + 20;
-            //     binary_idx++;
-            // }
-            // if(binary_idx > binary.length -1){
-            //     binary_idx = 0;
-            // }
+
+            if(binary[binary_idx] == "0"){
+                console.log("0");
+                rawImageData.data[fp] = 255;
+                binary_idx++;
+            }else if(binary[binary_idx] == "1"){
+                console.log("1");
+                rawImageData.data[fp] = 0;
+                binary_idx++;
+            }
+            if(binary_idx > binary.length -1){
+                binary_idx = 0;
+            }
 
             if(clock_binary[clock_index] == "0"){
-                console.log("0");
+                // console.log("0");
                 rawImageData.data[0] = 255;
                 clock_index++;
             }else if(clock_binary[clock_index] == "1"){
-                console.log("1");
+                // console.log("1");
                 rawImageData.data[0] = 0;
                 clock_index++;
             }
