@@ -224,8 +224,8 @@ function init(){
         // console.log("drawing");
         changeTestCanvasContext.drawImage(image, 0, 0, streamW, streamH);
         // var du = changeTestCanvas.toDataURL();
-        var clock = changeTestCanvasContext.getImageData(0, 0, 1, 1);
-        console.log(clock.data[0]);
+        var clock = changeTestCanvasContext.getImageData(0, 0, 1, 1).data[0];
+        console.log(clock);
         if(Math.abs(clock-preClock) > 100){
             console.log("drawing");
             draw();
