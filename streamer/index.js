@@ -74,7 +74,7 @@ var writer = new FileOnWrite({
             // --------------------------------------------
             // ---------- manipulate pixel here:
 
-            var fp = pidx(rawImageData.width, rawImageData.height, pixX, pixY, 0);
+            // var fp = pidx(rawImageData.width, rawImageData.height, pixX, pixY, 0);
             // console.log(fp);
             // var av = (rawImageData.data[fp+1] + rawImageData.data[fp+2]) / 2;
             // console.log( rawImageData.data[fp], rawImageData.data[fp+1], rawImageData.data[fp+2] );
@@ -104,12 +104,13 @@ var writer = new FileOnWrite({
             // }
             if(clock_index%10 === 0){
                 rawImageData.data[0] = 255;
-                clock_index++;
+                // clock_index++;
             }else if(clock_index%5 === 0){
                 console.log("sending info");
                 rawImageData.data[0] = 0;
-                clock_index++;
             }
+            clock_index++;
+
 
 
 
