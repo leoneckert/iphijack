@@ -17,7 +17,7 @@ var changes = false;
 var maxNum = 10;
 
 var rawImageData;
-var binary = "01001000 01100101 01101100 01101100 01101111 00100000 01001101 01111001 00100000 01101110 01100001 01101101 01100101 00100000 01101001 01110011 00100000 01001100 01100101 01101111 01101110"
+var binary = "010010000110010101101100011011000110111100100000010011010111100100100000011011100110000101101101011001010010000001101001011100110010000001001100011001010110111101101110"
 var binary_idx = 0;
 var pixX = 0;
 var pixY = 0;
@@ -34,6 +34,7 @@ var pixY = 0;
 //     pixelcarry.push(temp)
 // }
 var signalPause = false;
+
 var writer = new FileOnWrite({
     path: imgDir,
     ext: '.jpg',
@@ -64,81 +65,39 @@ var writer = new FileOnWrite({
         try {
             rawImageData = jpeg.decode(data, true);
 
+
+            // --------------------------------------------
+            // ---------- manipulate pixel here:
+
             var fp = pidx(rawImageData.width, rawImageData.height, pixX, pixY, 0);
             // console.log(fp);
             var av = (rawImageData.data[fp+1] + rawImageData.data[fp+2]) / 2;
             console.log( rawImageData.data[fp], rawImageData.data[fp+1], rawImageData.data[fp+2] );
 
-            if(signalPause){
-                signalPause = false;
-                rawImageData.data[fp] = 127;
-                console.log("BREAKKKKK");
-            }else{
-                if(binary[binary_idx] == "0"){
-                    console.log("0");
-                    rawImageData.data[fp] = 255;
-                    // rawImageData.data[fp] = av - 20;
-                    binary_idx++;
-                }else if(binary[binary_idx] == "1"){
-                    console.log("1");
-                    rawImageData.data[fp] = 0;
-                    // rawImageData.data[fp] = av + 20;
-                    binary_idx++;
-                }else if(binary[binary_idx] == " "){
-                    console.log("----");
-                    rawImageData.data[fp] = 127;
-                    // rawImageData.data[fp] = av;
-                    binary_idx++;
-                }
-                if(binary_idx > binary.length -1){
-                    binary_idx = 0;
 
-                }
-                signalPause = true;
+            if(binary[binary_idx] == "0"){
+                console.log("0");
+                rawImageData.data[fp] = 255;
+                // rawImageData.data[fp] = av - 20;
+                binary_idx++;
+            }else if(binary[binary_idx] == "1"){
+                console.log("1");
+                rawImageData.data[fp] = 0;
+                // rawImageData.data[fp] = av + 20;
+                binary_idx++;
             }
-
-
+            if(binary_idx > binary.length -1){
+                binary_idx = 0;
+            }
 
             console.log( "new:");
             console.log( rawImageData.data[fp], rawImageData.data[fp+1], rawImageData.data[fp+2] );
             console.log( "---");
 
-            //
-            // for(var i = 0; i < rawImageData.width; i+=1){
-            //     for(var j = 0; j < rawImageData.height; j++){
-            //         if(pixelcarry[j][i] == 1){
-            //             var fp = pidx(rawImageData.width, rawImageData.height, i, j, 0)
-            //             var r = Math.random();
-            //             var a = 0;
-            //             var b = 1;
-            //             var c = 2;
-            //
-            //             if(i%3 == 1){
-            //                 a = 1;
-            //                 b = 0;
-            //                 c = 2;
-            //             }else if(i%3 == 2){
-            //                 a = 2;
-            //                 b = 0;
-            //                 c = 1
-            //             }
-            //
-            //             var av = (rawImageData.data[fp+b] + rawImageData.data[fp+c])/c
-            //             if(r < 0.45){
-            //                 rawImageData.data[fp+a] = av - 10;
-            //             }else if(r < 0.90){
-            //                 rawImageData.data[fp+a] = av + 10;
-            //             }else{
-            //                 rawImageData.data[fp+a] = av;
-            //             }
-            //         }
-            //
-            //     }
-            // }
-
+            // ----------------------------------------------------------------------------------------
+            // ----------------------------------------------------------------------------------------
 
             newJPG = jpeg.encode(rawImageData, 100);
-
             // return newJPG.data;
             callback(newJPG.data);
         }

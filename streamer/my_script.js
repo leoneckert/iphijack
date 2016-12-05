@@ -80,14 +80,11 @@ function addToLog(idx, r, g, b){
         var binary = elem.childNodes[2];
         // var av = (parseInt(g) + parseInt(b)) /2;
         var v = parseInt(r);
-        var re = v;
         // var re = av - v;
-        if(re < 80){
+        if(v < 127){
             binary.innerHTML += "1";
-        }else if(re > 200){
+        }else if(re > 127){
             binary.innerHTML += "0";
-        }else{
-            binary.innerHTML += " ";
         }
         // debugger
         // binary.innerHTML += "1";
@@ -238,7 +235,7 @@ function init(){
         }else{
             console.log("old frame");
         }
-        prevDU = du
+        prevDU = du;
     }, 2);
 
     // while(true){
