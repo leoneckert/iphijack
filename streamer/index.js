@@ -25,6 +25,15 @@ var binary_idx = 0;
 var pixX = 30;
 var pixY = 30;
 
+var stored = {
+    String(pixX)+"-"+String(pixY): {
+        "text": "Leon ",
+        "binary": "01001100 01100101 01101111 01101110 00100000 "
+    }
+}
+console.dir(stored);
+
+
 // working demo version
 var clock_binary ="101010101010101010101";
 var clockInterval = 15;
