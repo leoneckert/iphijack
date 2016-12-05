@@ -223,15 +223,17 @@ function init(){
     setInterval(function(){
         // console.log("drawing");
         changeTestCanvasContext.drawImage(image, 0, 0, streamW/4, streamH/4);
-        var du = changeTestCanvas.toDataURL();
-        console.log(du);
-        if(du != prevDU){
-            console.log("new frame");
-            draw();
-        }else{
-            console.log("old frame");
-        }
-        prevDU = du;
+        // var du = changeTestCanvas.toDataURL();
+        var clock = changeTestCanvasContext.getImageData(0, 0, 0, 0);
+        console.log(clock);
+        // console.log(du);
+        // if(du != prevDU){
+        //     console.log("new frame");
+        //     draw();
+        // }else{
+        //     console.log("old frame");
+        // }
+        // prevDU = du;
     }, 2);
 
     // while(true){
