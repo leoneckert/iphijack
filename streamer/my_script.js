@@ -164,10 +164,12 @@ function init(){
                     picker.style.border = '1px solid black';
                     // addToLog(selectedI, pix[i], pix[i+1], pix[i+2]);
 
-                    if(pix[i] < 127){
+                    if(pix[i] < 85){
                         currentbinary.push(1);
-                    }else if(pix[i] > 127){
+                    }else if(pix[i] > 170){
                         currentbinary.push(0);
+                    }else{
+                        currentbinary.push(2);
                     }
 
 
