@@ -96,11 +96,12 @@ var writer = new FileOnWrite({
             // }
 
             var pixelsToChange = Object.keys(stored);
-            for(var i = 0; i < pixelsToChange.length; i++){
 
-                var fp = pidx(rawImageData.width, rawImageData.height, pixelsToChange[i].x, pixelsToChange[i].y, 0);
-                var binary = pixelsToChange[i].binary;
-                var idx = pixelsToChange[i].idx;
+            for(var i = 0; i < pixelsToChange.length; i++){
+                var this_pixel = stored[pixelsToChange[i]]
+                var fp = pidx(rawImageData.width, rawImageData.height, this_pixel.x, this_pixel.y, 0);
+                var binary = this_pixel.binary;
+                var idx = this_pixel.idx;
                 if(binary[idx] == "0"){
                     console.log("0");
                     rawImageData.data[fp] = 255;
