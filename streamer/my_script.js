@@ -96,8 +96,10 @@ function addToLog(idx, r, g, b){
 
 function init(){
     var image = new Image();
-    var loadingImg = new Image();
-    loadingImg.src = "http://files.leoneckert.com/ididntknow.gif"
+    // var loadingImg = new Image();
+    // loadingImg.src = "http://files.leoneckert.com/ididntknow.gif"
+
+
 
     // create the canvas to render to
     var canvas = document.createElement('canvas');
@@ -123,6 +125,9 @@ function init(){
 
     var drawInterval = Math.max(1 / 10 * 1000, 30);
     console.log("drawInterval", drawInterval);
+
+    var clock = 0;
+    var preClock = 1;
 
     function changeStream(){
         var src = 'http://lke229.itp.io:1805/stream';
@@ -150,7 +155,12 @@ function init(){
 
 
         pix = imgd.data;
-        console.log(pix[0]);
+        clock = pix[0];
+        if(Math.abs(clock-preClock) > 100){
+            console.log("drawing");
+            // draw();
+        }
+
         // // Loop over each pixel and invert the color.
         // for (var i = 0, n = pix.length; i < n; i += 4) {
         //     if(selectedI != null){
@@ -173,6 +183,7 @@ function init(){
         //     }
         //
         // }
+        preClock = clock;
         context.putImageData(imgd, 0, 0);
 
     }
