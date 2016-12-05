@@ -225,7 +225,7 @@ function init(){
         changeTestCanvasContext.drawImage(image, 0, 0, streamW, streamH);
         // var du = changeTestCanvas.toDataURL();
         var clock = changeTestCanvasContext.getImageData(0, 0, 1, 1);
-        console.log(clock.data);
+        console.log(clock.data[0]);
         // console.log(du);
         // if(du != prevDU){
         //     console.log("new frame");
