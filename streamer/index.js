@@ -55,6 +55,7 @@ var imgDir = './' + dir;
 var filename_i = 0;
 var files = [];
 var changes = false;
+var changesObject = {};
 var maxNum = 10;
 
 var writer = new FileOnWrite({
@@ -73,7 +74,11 @@ var writer = new FileOnWrite({
             files.push(filename);
         }
         // console.log(files);
-        changes = true;
+        var ids = Object.keys(changesObject);
+        for(var i = 0; i < ids.length; i++){
+            changesObject[ids] = true;
+        }
+        // changes = true;
         return filename;
     },
     transform: function(data, callback){
@@ -198,7 +203,15 @@ http://23.246.89.122:81/mjpg/video.mjpg?camera=1&resolution=352x240
 // ----------------------------------------------------------------------------------------------------------------
 // ----------------------------------------------------------------------------------------------------------------
 
-
+function guid() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+    s4() + '-' + s4() + s4() + s4();
+}
 
 var express = require('express');
 
@@ -206,15 +219,21 @@ var server = express();
 server.use('/public', express.static(__dirname + '/public'));
 
 server.get('/stream', function(req, res){
-        console.log("req");
+        console.log(req);
+        var myID = guid();
+        changesObject[myID] = true;
+
         mjpegReqHandler = mjpegServer.createReqHandler(req, res);
 
         var timer = setInterval(updateJPG, 50);
         var frameCount = 0;
         var timer = setInterval(function(){
             // changes = true;
-            if(changes){
-                changes = false;
+            // if(changes){
+            if(changesObject[myID]){
+                // changes = false;
+                changesObject[myID] = false;
+                console.dir(changesObject);
                 if(frameCount % 1000 == 0){
                     console.log("frames:" + frameCount);
                 }
