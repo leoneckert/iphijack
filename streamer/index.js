@@ -76,7 +76,7 @@ var writer = new FileOnWrite({
         // console.log(files);
         var ids = Object.keys(changesObject);
         for(var i = 0; i < ids.length; i++){
-            changesObject[ids] = true;
+            changesObject[ids[i]] = true;
         }
         // changes = true;
         return filename;
