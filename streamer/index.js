@@ -226,7 +226,7 @@ server.get('/stream', function(req, res){
 
         mjpegReqHandler = mjpegServer.createReqHandler(req, res);
 
-        var timer = setInterval(updateJPG, 50);
+        // var timer = setInterval(updateJPG, 50);
         var frameCount = 0;
         var timer = setInterval(function(){
             // changes = true;
