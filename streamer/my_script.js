@@ -69,15 +69,30 @@ function allocateElement(idx, callback){
         button.addEventListener ("click", function() {
 
             alert(document.getElementById("text_"+idx_id).value);
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                   // Typical action to be performed when the document is ready:
-                   alert(xmlhttp.responseText);
-                }
-            };
-            xhttp.open("GET", "encodeReq?"+idx_id, true);
-            xhttp.send();
+
+            // var xhttp = new XMLHttpRequest();
+            // xhttp.onreadystatechange = function() {
+            //     if (this.readyState == 4 && this.status == 200) {
+            //        // Typical action to be performed when the document is ready:
+            //        alert(xmlhttp.responseText);
+            //     }
+            // };
+            // xhttp.open("GET", "encodeReq?pid="+idx_id = "&text", true);
+            // xhttp.send();
+
+            http.open("POST", "/encodeReq", true);
+
+            //Send the proper header information along with the request
+            http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            http.setRequestHeader("Content-length", params.length);
+            http.setRequestHeader("Connection", "close");
+
+            http.onreadystatechange = function() {//Call a function when the state changes.
+            	if(http.readyState == 4 && http.status == 200) {
+            		alert(http.responseText);
+            	}
+            }
+            http.send({heloo: "bla"});
 
 
         });

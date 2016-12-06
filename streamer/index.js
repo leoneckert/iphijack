@@ -266,29 +266,30 @@ server.get('/loadingImg', function(req, res){
   res.sendFile(__dirname + '/loading_img.png');
 });
 
-server.get('/encodeReq', function(req, res){
+server.post('/encodeReq', function(req, res){
     console.log("req");
-    var name = Object.keys(req.query)[0];
-    console.log(name);
-    var x = getPixelXY(176, parseInt(name)).x;
-    var y = getPixelXY(176, parseInt(name)).y
-    // console.log( getPixelXY(176, parseInt(name)).x );
-    // console.log( getPixelXY(176, parseInt(name)).y );
-    var text = "renata was here" + " ";
-    // console.log("|here is data" + " |");
-    var binary = " " + ABC.toBinary("renata was here" + " ");
-    // console.log("|"+ABC.toBinary("here is data" + " ") + "|");
-    // console.log("idx=0");
-    stored[name] = {
-        x: x,
-        y: y,
-        text: text,
-        binary: binary,
-        idx: 0
-    }
-
-    console.log("stored changed");
-    console.log(stored);
+    console.log(req);
+    // var name = Object.keys(req.query)[0];
+    // console.log(name);
+    // var x = getPixelXY(176, parseInt(name)).x;
+    // var y = getPixelXY(176, parseInt(name)).y
+    // // console.log( getPixelXY(176, parseInt(name)).x );
+    // // console.log( getPixelXY(176, parseInt(name)).y );
+    // var text = "renata was here" + " ";
+    // // console.log("|here is data" + " |");
+    // var binary = " " + ABC.toBinary("renata was here" + " ");
+    // // console.log("|"+ABC.toBinary("here is data" + " ") + "|");
+    // // console.log("idx=0");
+    // stored[name] = {
+    //     x: x,
+    //     y: y,
+    //     text: text,
+    //     binary: binary,
+    //     idx: 0
+    // }
+    //
+    // console.log("stored changed");
+    // console.log(stored);
 
 
   // res.sendFile(__dirname + '/loading_img.png');
