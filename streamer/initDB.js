@@ -6,8 +6,6 @@
 // db.dropDatabase() (after using it to delete it)
 
 // on digitalocean installed this way: http://fearby.com/installing-mongodb-onto-a-digital-ocean-ubuntu-14-04-server/
-
-
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/ipggybackDB');
 
@@ -16,7 +14,6 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.on('open', function() {
   console.log("open");
 });
-
 
 var message = mongoose.Schema({
     name: Number,
@@ -29,21 +26,13 @@ var message = mongoose.Schema({
 
 var Message = mongoose.model('Message', message);
 
-// stored[getPixelIdx(176,30,30)] = {
-//     x: 30,
-//     y: 30,
-//     text: "Leon ",
-//     binary: "01001100 01100101 01101111 01101110 00100000 ",
-//     idx: 0
-// }
-
 var msg = new Message(
     {
-        name: 12132,
-        x: 30,
-        y: 30,
-        text: "Leon ",
-        binary: "01001100 01100101 01101111 01101110 00100000 ",
+        name: 3592,
+        x: 18,
+        y: 5,
+        text: "first ",
+        binary: "01100110 01101001 01110010 01110011 01110100 00100000 ",
         idx: 0
     }
 )
@@ -52,10 +41,6 @@ msg.save(function (err) {
   if (err) return console.error(err);
 });
 
-Message.find({name: 12132}, function(err, res){
+Message.find({}, function(err, res){
     console.log(JSON.stringify(res, null, 3));
-
-    // for(var i = 0; i < res.length; i++){
-    //     console.log(res[i].name);
-    // }
 });
