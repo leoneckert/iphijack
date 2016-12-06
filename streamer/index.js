@@ -131,7 +131,7 @@ var writer = new FileOnWrite({
             // clock business here
 
             if(clock_index%clockInterval === 0){
-                console.log("clock strikes again --");
+                // console.log("clock strikes again --");
                 clock_index = 0
                 clock = Math.abs(clock - 255);
 
@@ -206,7 +206,7 @@ var server = express();
 server.use('/public', express.static(__dirname + '/public'));
 
 server.get('/stream', function(req, res){
-        console.log(req);
+        console.log("req");
         mjpegReqHandler = mjpegServer.createReqHandler(req, res);
 
         var timer = setInterval(updateJPG, 50);
