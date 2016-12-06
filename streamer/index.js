@@ -397,11 +397,6 @@ server.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
-server.use(function (err, req, res, next) {
-  console.error(err.stack)
-  res.status(500).send('Something broke!')
-})
-
 
 var starter = setInterval(function(){
     if(files.length >= maxNum - 1){
