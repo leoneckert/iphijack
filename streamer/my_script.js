@@ -176,63 +176,130 @@ function init(){
     function draw() {
         // clear the canvas
         canvas.width = canvas.width;
+
+
+
+
+
+
+
         // check if we have a valid image
         if (image.width * image.height > 0) {
             context.drawImage(image, 0, 0, streamW, streamH);
+
+
+            var selectedI = null;
+            var marker = null;
+            if(inspectY != null && inspectX != null){
+                selectedI = getPixelIdx(streamW, inspectX, inspectY);
+                marker = getMarker(streamW, inspectX, inspectY);
+            }
+
+            imgd = context.getImageData(0, 0, streamW, streamH);
+
+            pix = imgd.data;
+
+            // Loop over each pixel and invert the color.
+            for (var i = 0, n = pix.length; i < n; i += 4) {
+                if(selectedI != null){
+                    if(i == selectedI){
+                        // console.log(pix[i]);
+                        picker.style.background = 'rgb('+pix[i]+', '+pix[i+1]+', '+pix[i+2]+')';
+                        picker.style.border = '1px solid black';
+                        pickerExit.style.display = "block";
+                        addToLog(selectedI, pix[i], pix[i+1], pix[i+2]);
+
+                        var av = (pix[i+1] + pix[i+2])/2;
+                        var ch = 40; //changevalue
+                        var f = 1; //direction of adjustment, think i dont need on this side because using Math.abs
+                        if(av > 127 ){
+                            f = -1;
+                        }
+                        if(  Math.abs(pix[i] - av) < ch/2 ){
+                            currentbinary.push(2);
+                        }else if(Math.abs(pix[i] - av) < ch + ch/2 ){
+                            currentbinary.push(0);
+                        }else if(Math.abs(pix[i] - av) < ch*2 + ch/2 ){
+                            currentbinary.push(1);
+                        }
+
+                    }else if(isInArray(i, marker)){
+                        // picker.style.background = 'rgb(255, 0, 0)';
+                        pix[i  ] = 255; // red
+                        pix[i+1] = 0; // green
+                        pix[i+2] = 0; // blue
+                    }else{
+                        pix[i+3] = 200; // alpha (the fourth element)
+                    }
+                }else{
+                    picker.style.background = 'rgb(255, 255, 255)';
+                    picker.style.border = 'none';
+                    document.getElementById('data').innerHTML = "";
+                }
+            }
+
+
+
+
+
+
+
+
+
         } else {
           context.drawImage(loadingImg, 0, 0, streamW, streamH);
 
         }
 
-        var selectedI = null;
-        var marker = null;
-        if(inspectY != null && inspectX != null){
-            selectedI = getPixelIdx(streamW, inspectX, inspectY);
-            marker = getMarker(streamW, inspectX, inspectY);
-        }
-
-        imgd = context.getImageData(0, 0, streamW, streamH);
-
-        pix = imgd.data;
-
-        // Loop over each pixel and invert the color.
-        for (var i = 0, n = pix.length; i < n; i += 4) {
-            if(selectedI != null){
-                if(i == selectedI){
-                    // console.log(pix[i]);
-                    picker.style.background = 'rgb('+pix[i]+', '+pix[i+1]+', '+pix[i+2]+')';
-                    picker.style.border = '1px solid black';
-                    pickerExit.style.display = "block";
-                    addToLog(selectedI, pix[i], pix[i+1], pix[i+2]);
-
-                    var av = (pix[i+1] + pix[i+2])/2;
-                    var ch = 40; //changevalue
-                    var f = 1; //direction of adjustment, think i dont need on this side because using Math.abs
-                    if(av > 127 ){
-                        f = -1;
-                    }
-                    if(  Math.abs(pix[i] - av) < ch/2 ){
-                        currentbinary.push(2);
-                    }else if(Math.abs(pix[i] - av) < ch + ch/2 ){
-                        currentbinary.push(0);
-                    }else if(Math.abs(pix[i] - av) < ch*2 + ch/2 ){
-                        currentbinary.push(1);
-                    }
-
-                }else if(isInArray(i, marker)){
-                    // picker.style.background = 'rgb(255, 0, 0)';
-                    pix[i  ] = 255; // red
-                    pix[i+1] = 0; // green
-                    pix[i+2] = 0; // blue
-                }else{
-                    pix[i+3] = 200; // alpha (the fourth element)
-                }
-            }else{
-                picker.style.background = 'rgb(255, 255, 255)';
-                picker.style.border = 'none';
-                document.getElementById('data').innerHTML = "";
-            }
-        }
+        // var selectedI = null;
+        // var marker = null;
+        // if(inspectY != null && inspectX != null){
+        //     selectedI = getPixelIdx(streamW, inspectX, inspectY);
+        //     marker = getMarker(streamW, inspectX, inspectY);
+        // }
+        //
+        // imgd = context.getImageData(0, 0, streamW, streamH);
+        //
+        // pix = imgd.data;
+        //
+        // // Loop over each pixel and invert the color.
+        // for (var i = 0, n = pix.length; i < n; i += 4) {
+        //     if(selectedI != null){
+        //         if(i == selectedI){
+        //             // console.log(pix[i]);
+        //             picker.style.background = 'rgb('+pix[i]+', '+pix[i+1]+', '+pix[i+2]+')';
+        //             picker.style.border = '1px solid black';
+        //             pickerExit.style.display = "block";
+        //             addToLog(selectedI, pix[i], pix[i+1], pix[i+2]);
+        //
+        //             var av = (pix[i+1] + pix[i+2])/2;
+        //             var ch = 40; //changevalue
+        //             var f = 1; //direction of adjustment, think i dont need on this side because using Math.abs
+        //             if(av > 127 ){
+        //                 f = -1;
+        //             }
+        //             if(  Math.abs(pix[i] - av) < ch/2 ){
+        //                 currentbinary.push(2);
+        //             }else if(Math.abs(pix[i] - av) < ch + ch/2 ){
+        //                 currentbinary.push(0);
+        //             }else if(Math.abs(pix[i] - av) < ch*2 + ch/2 ){
+        //                 currentbinary.push(1);
+        //             }
+        //
+        //         }else if(isInArray(i, marker)){
+        //             // picker.style.background = 'rgb(255, 0, 0)';
+        //             pix[i  ] = 255; // red
+        //             pix[i+1] = 0; // green
+        //             pix[i+2] = 0; // blue
+        //         }else{
+        //             pix[i+3] = 200; // alpha (the fourth element)
+        //         }
+        //     }else{
+        //         picker.style.background = 'rgb(255, 255, 255)';
+        //         picker.style.border = 'none';
+        //         document.getElementById('data').innerHTML = "";
+        //     }
+        // }
 
 
 
