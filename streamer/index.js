@@ -218,7 +218,7 @@ var express = require('express');
 var server = express();
 server.use('/public', express.static(__dirname + '/public'));
 
-server.get('/stream1', function(req, res){
+server.get('/stream', function(req, res){
 
         var myID = guid();
         console.log("req " + myID);
@@ -226,20 +226,20 @@ server.get('/stream1', function(req, res){
 
         mjpegReqHandler = mjpegServer.createReqHandler(req, res);
 
-        var timer = setInterval(updateJPG, 50);
-        // var frameCount = 0;
-        // var timer = setInterval(function(){
-        //     // changes = true;
-        //     if(changes){
-        //         changes = false;
-        //         // console.dir(changesObject);
-        //         if(frameCount % 1000 == 0){
-        //             console.log("frames:" + frameCount);
-        //         }
-        //         frameCount++;
-        //         updateJPG();
-        //     }
-        // }, 10);
+        // var timer = setInterval(updateJPG, 50);
+        var frameCount = 0;
+        var timer = setInterval(function(){
+            // changes = true;
+            if(changes){
+                changes = false;
+                // console.dir(changesObject);
+                if(frameCount % 1000 == 0){
+                    console.log("frames:" + frameCount);
+                }
+                frameCount++;
+                updateJPG();
+            }
+        }, 10);
 
         function updateJPG() {
           fs.readFile(__dirname + "/" + dir +"/"+ files[files.length-2] + ".jpg", sendJPGData);
@@ -256,10 +256,10 @@ server.get('/stream1', function(req, res){
           //   mjpegReqHandler.close();
         }
 });
-
-var MjpegProxy = require('mjpeg-proxy').MjpegProxy;
-server.get('/stream', new MjpegProxy('http://localhost:1805/stream1').proxyRequest);
-
+//
+// var MjpegProxy = require('mjpeg-proxy').MjpegProxy;
+// server.get('/stream', new MjpegProxy('http://localhost:1805/stream1').proxyRequest);
+//
 
 server.get('/my_script.js', function(req, res){
     console.log(__dirname + '/my_script.js');
