@@ -24,9 +24,9 @@ var message = mongoose.Schema({
     idx: Number
 });
 
-var Message = mongoose.model('Message', message);
+var TheDB = mongoose.model('TheDB', message);
 
-var msg = new Message(
+var msg = new TheDB(
     {
         name: 3592,
         x: 18,
@@ -41,6 +41,6 @@ msg.save(function (err) {
   if (err) return console.error(err);
 });
 
-Message.find({}, function(err, res){
-    console.log(JSON.stringify(res, null, 3));
+TheDB.find({}, function(err, db){
+    console.log(JSON.stringify(db, null, 3));
 });
