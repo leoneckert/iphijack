@@ -258,7 +258,7 @@ server.get('/stream1', function(req, res){
 });
 
 var MjpegProxy = require('mjpeg-proxy').MjpegProxy;
-app.get('/stream', new MjpegProxy('http://localhost:1805/stream1').proxyRequest);
+server.get('/stream', new MjpegProxy('http://localhost:1805/stream1').proxyRequest);
 
 
 server.get('/my_script.js', function(req, res){
