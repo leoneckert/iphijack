@@ -133,14 +133,12 @@ var writer = new FileOnWrite({
                 // console.log(JSON.stringify(db, null, 3));
                 for(var i = 0; i < db.length; i++){
                     var msgObject = db[i];
-                    var name = msgObject.name;
+                    var fp = msgObject.name;
                     // var x = msgObject.x;
                     // var y = msgObject.y;
                     // var text = msgObject.text;
                     var binary = msgObject.binary;
                     var idx = msgObject.idx;
-
-                    var fp = parseInt(name);
                     // console.log(name);
                     // console.log(x);
                     // console.log(y);
