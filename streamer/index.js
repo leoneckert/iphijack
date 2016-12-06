@@ -6,31 +6,27 @@ var fs = require('fs');
 var mjpegServer = require('node-mjpeg-server');
 var jpeg = require('jpeg-js');
 
-// database stuff:
-// var mongoose = require('mongoose');
-// mongoose.connect('mongodb://localhost/ipggybackDB');
-//
-// var db = mongoose.connection;
-// db.on('error', console.error.bind(console, 'connection error:'));
-// db.on('open', function() {
-//   console.log("open");
-// });
-//
-// var message = mongoose.Schema({
-//     name: Number,
-//     x: Number,
-//     y: Number,
-//     text: String,
-//     binary: String,
-//     idx: Number
-// });
-//
-// var TheDB = mongoose.model('TheDB', message);
 
-// var db;
-// TheDB.find({}, function(err, res){
-//     db = res;
-// });
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/ipggybackDB');
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.on('open', function() {
+  console.log("open");
+});
+
+var message = mongoose.Schema({
+    name: Number,
+    x: Number,
+    y: Number,
+    text: String,
+    binary: String,
+    idx: Number
+});
+
+var TheDB = mongoose.model('TheDB', message);
+
 
 
 
@@ -52,6 +48,13 @@ function getPixelXY(w,idx){
 }
 
 var stored = {};
+TheDB.find({}, function(err, res){
+    console.log(JSON.stringify(res, null, 3));
+    for(var i = 0; i < db.length; i++){
+        console.log(res[i]);
+    }
+});
+
 stored[getPixelIdx(176,30,30)] = {
     x: 30,
     y: 30,
