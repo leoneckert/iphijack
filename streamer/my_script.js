@@ -58,6 +58,10 @@ function allocateElement(idx, callback){
         ascii.id = "ascii";
         elem.appendChild(ascii);
 
+        var input = document.createElement("input");
+        input.type = "text";
+        elem.appendChild(input);
+
         var button = document.createElement("button");
         button.innerHTML = "encode a message";
         elem.appendChild(button);
