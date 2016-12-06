@@ -180,7 +180,9 @@ function init(){
         if (image.width * image.height > 0) {
             context.drawImage(image, 0, 0, streamW, streamH);
         } else {
-          context.drawImage(loadingImg, 0, 0, streamW, streamH);
+        //   context.drawImage(loadingImg, 0, 0, streamW, streamH);
+          context.font="15px Verdana";
+          context.fillText("Oh no! The stream is not available!\nTell Leon about it!",10,50);
         }
 
         var selectedI = null;
