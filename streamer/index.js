@@ -112,11 +112,7 @@ var writer = new FileOnWrite({
             }
             files.push(filename);
         }
-        // console.log(files);
-        // var ids = Object.keys(changesObject);
-        // for(var i = 0; i < ids.length; i++){
-        //     changesObject[ids[i]] = true;
-        // }
+
         changes = true;
         return filename;
     },
@@ -179,7 +175,7 @@ var writer = new FileOnWrite({
                     clock_index = 0
                     clock = Math.abs(clock - 255);
 
-
+                    console.log("in clock");
                     // increase each data pixels input
                     for(var i = 0; i < db.length; i++){
                         // var this_pixel = stored[pixelsToChange[i]];
