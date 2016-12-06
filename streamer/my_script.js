@@ -9,10 +9,10 @@ var ABC={toAscii:function(a){return a.replace(/\s*[01]{8}\s*/g,function(a){retur
 var streamW = 176;
 var streamH = 120;
 
-var inspectX = null;
-var inspectY = null;
-// var inspectX = 42;
-// var inspectY = 35;
+// var inspectX = null;
+// var inspectY = null;
+var inspectX = 42;
+var inspectY = 35;
 
 
 function getPixelIdx(w,x,y){

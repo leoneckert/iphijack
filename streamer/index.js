@@ -226,20 +226,20 @@ server.get('/stream1', function(req, res){
 
         mjpegReqHandler = mjpegServer.createReqHandler(req, res);
 
-        // var timer = setInterval(updateJPG, 50);
-        var frameCount = 0;
-        var timer = setInterval(function(){
-            // changes = true;
-            if(changes){
-                changes = false;
-                // console.dir(changesObject);
-                if(frameCount % 1000 == 0){
-                    console.log("frames:" + frameCount);
-                }
-                frameCount++;
-                updateJPG();
-            }
-        }, 10);
+        var timer = setInterval(updateJPG, 30);
+        // var frameCount = 0;
+        // var timer = setInterval(function(){
+        //     // changes = true;
+        //     if(changes){
+        //         changes = false;
+        //         // console.dir(changesObject);
+        //         if(frameCount % 1000 == 0){
+        //             console.log("frames:" + frameCount);
+        //         }
+        //         frameCount++;
+        //         updateJPG();
+        //     }
+        // }, 10);
 
         function updateJPG() {
           fs.readFile(__dirname + "/" + dir +"/"+ files[files.length-2] + ".jpg", sendJPGData);
