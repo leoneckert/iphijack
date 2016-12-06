@@ -235,8 +235,8 @@ var writer = new FileOnWrite({
                 // console.log("-");
             }
 
-            ----------------------------------------------------------------------
-            clock business here
+            // ----------------------------------------------------------------------
+            // clock business here
 
             if(clock_index%clockInterval === 0){
                 // console.log("clock strikes again --");
