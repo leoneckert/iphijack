@@ -6,39 +6,6 @@ var fs = require('fs');
 var mjpegServer = require('node-mjpeg-server');
 var jpeg = require('jpeg-js');
 
-//
-// var mongoose = require('mongoose');
-// mongoose.connect('mongodb://leoneckert:itpnyu@ds127428.mlab.com:27428/ipiggybackdb');
-//
-// var db = mongoose.connection;
-// db.on('error', console.error.bind(console, 'connection error:'));
-// db.on('open', function() {
-//   console.log("open");
-// });
-//
-// var message = mongoose.Schema({
-//     name: Number,
-//     x: Number,
-//     y: Number,
-//     text: String,
-//     binary: String,
-//     idx: Number
-// });
-//
-// var TheDB = mongoose.model('TheDB', message);
-//
-//
-// var stored = {};
-// TheDB.find({}, function(err, res){
-//     // console.log(JSON.stringify(res, null, 3));
-//     for(var i = 0; i < res.length; i++){
-//         console.log(res[i]);
-//         stored[String(res[i].name)] = res[i]
-//     }
-// });
-
-
-
 // ABC - a generic, native JS (A)scii(B)inary(C)onverter.
 // (c) 2013 Stephan Schmitz <eyecatchup@gmail.com>
 // License: MIT, http://eyecatchup.mit-license.org
@@ -88,7 +55,6 @@ stored[getPixelIdx(176,30,30)] = {
 //     idx: 0
 // }
 
-
 // clock:
 var clock_binary ="10101010101010101010";
 var clockInterval = 15;
@@ -137,74 +103,6 @@ var writer = new FileOnWrite({
 
             // // --------------------------------------------
             // // ---------- manipulate pixel here:
-            // TheDB.find({}, function(err, db){
-            // //     console.log(JSON.stringify(db, null, 3));
-            //     for(var i = 0; i < db.length; i++){
-            //         // console.log(db[i]);
-            //         var msgObject = db[i];
-            //         var fp = msgObject.name;
-            //         // var x = msgObject.x;
-            //         // var y = msgObject.y;
-            //         // var text = msgObject.text;
-            //         var binary = msgObject.binary;
-            //         var idx = msgObject.idx;
-            //
-            //         var av = (rawImageData.data[fp + 1] + rawImageData.data[fp + 2]) / 2;
-            //         var ch = 40; //changevalue
-            //         var f = 1; //direction of adjustment
-            //         if(av > 127 ){
-            //             f = -1;
-            //         }
-            //
-            //         //     // console.log(rawImageData.data[fp], " ", rawImageData.data[fp+1], " ", rawImageData.data[fp+2]);
-            //         //
-            //         if(binary[idx] == " "){
-            //             console.log(" ");
-            //             // rawImageData.data[fp] = 127;
-            //             rawImageData.data[fp] = av;
-            //             // binary_idx++;
-            //         }else if(binary[idx] == "0"){
-            //             console.log("0");
-            //             // rawImageData.data[fp] = 255;
-            //             rawImageData.data[fp] = av + (ch*f);
-            //             // binary_idx++;
-            //         }else if(binary[idx] == "1"){
-            //             console.log("1");
-            //             rawImageData.data[fp] = av + (ch*f) + (ch*f);
-            //             // binary_idx++;
-            //         }
-            //             // console.log(rawImageData.data[fp], " ", rawImageData.data[fp+1], " ", rawImageData.data[fp+2]);
-            //             // console.log("-");
-            //     }
-            //
-            //     if(clock_index%clockInterval === 0){
-            //         // console.log("clock strikes again --");
-            //         clock_index = 0
-            //         clock = Math.abs(clock - 255);
-            //
-            //         console.log("in clock");
-            //         // increase each data pixels input
-            //         for(var i = 0; i < db.length; i++){
-            //             console.log(db[i]);
-            //             // var this_pixel = stored[pixelsToChange[i]];
-            //             db[i].idx++;
-            //             if(db[i].idx > db[i].binary.length-1){
-            //                 db[i].idx = 0;
-            //             }
-            //         }
-            //     }
-            //     clock_index++;
-            //     rawImageData.data[0] = clock;
-            //
-            // });
-            // // ----------------------------------------------------------------------------------------
-            // // ----------------------------------------------------------------------------------------
-            //
-            // newJPG = jpeg.encode(rawImageData, 100);
-            // // return newJPG.data;
-            // callback(newJPG.data);
-
-
 
             var pixelsToChange = Object.keys(stored);
 
@@ -249,7 +147,6 @@ var writer = new FileOnWrite({
                 // console.log("clock strikes again --");
                 clock_index = 0
                 clock = Math.abs(clock - 255);
-
 
                 // increase each data pixels input
                 for(var i = 0; i < pixelsToChange.length; i++){
