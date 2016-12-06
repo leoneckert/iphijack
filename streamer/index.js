@@ -218,7 +218,7 @@ var express = require('express');
 var server = express();
 server.use('/public', express.static(__dirname + '/public'));
 
-server.get('/stream', function(req, res){
+server.get('/stream1', function(req, res){
 
         var myID = guid();
         console.log("req " + myID);
@@ -256,6 +256,10 @@ server.get('/stream', function(req, res){
           //   mjpegReqHandler.close();
         }
 });
+
+var MjpegProxy = require('mjpeg-proxy').MjpegProxy;
+app.get('/stream', new MjpegProxy('http://localhost:1805/stream1').proxyRequest);
+
 
 server.get('/my_script.js', function(req, res){
     console.log(__dirname + '/my_script.js');
