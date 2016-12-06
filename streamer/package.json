@@ -13,6 +13,7 @@
     "file-on-write": "^1.1.1",
     "jpeg-js": "^0.2.0",
     "mjpeg-consumer": "^1.1.0",
-    "mjpeg-proxy": "^0.2.0"
+    "mjpeg-proxy": "^0.2.0",
+    "mongoose": "^4.7.1"
   }
 }
