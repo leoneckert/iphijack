@@ -49,19 +49,19 @@ function getPixelXY(w,idx){
 
 var stored = {};
 TheDB.find({}, function(err, res){
-    console.log(JSON.stringify(res, null, 3));
-    for(var i = 0; i < db.length; i++){
+    // console.log(JSON.stringify(res, null, 3));
+    for(var i = 0; i < res.length; i++){
         console.log(res[i]);
     }
 });
 
-// stored[getPixelIdx(176,30,30)] = {
-//     x: 30,
-//     y: 30,
-//     text: "Leon ",
-//     binary: "01001100 01100101 01101111 01101110 00100000 ",
-//     idx: 0
-// }
+stored[getPixelIdx(176,30,30)] = {
+    x: 30,
+    y: 30,
+    text: "Leon ",
+    binary: "01001100 01100101 01101111 01101110 00100000 ",
+    idx: 0
+}
 // stored[getPixelIdx(176,30,30)] = {
 //     x: 111,
 //     y: 76,
@@ -268,7 +268,6 @@ var writer = new FileOnWrite({
             callback(newJPG.data);
         }
         catch(e) {
-            console.log(e);
             console.log("err");
             callback(data);
         }
