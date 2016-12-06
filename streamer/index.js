@@ -8,25 +8,12 @@ var jpeg = require('jpeg-js');
 
 
 
-var dir = 'video'
-var imgDir = './' + dir;
 
-var i = 0;
-var files = [];
-var changes = false;
-var maxNum = 10;
 
 var rawImageData;
-// var binary = "010010000110010101101100011011000110111100100000010011010111100100100000011011100110000101101101011001010010000001101001011100110010000001001100011001010110111101101110"
-// var binary = " 01001000 01100101 01101100 01101100 01101111 00100000 01101101 01111001 00100000 01101110 01100001 01101101 01100101 00100000 01101001 01110011 00100000 01001100 01100101 01101111 01101110"
-// var binary = "01001100 01100101 01101111 01101110 00100000 "
-// var binary = "101010101010101010101"
-// var binary_idx = 0;
-var pixX = 30;
-var pixY = 30;
 
 var stored = {};
-stored[String(pixX)+"-"+String(pixY)] = {
+stored[String(30)+"-"+String(30)] = {
     x: 30,
     y: 30,
     text: "Leon ",
@@ -56,24 +43,25 @@ stored[String(42)+"-"+String(35)] = {
 }
 
 
-
-
-
-
-console.dir(stored);
-
 // clock:
 var clock_binary ="101010101010101010101";
 var clockInterval = 15;
 var clock_index = 0;
 var clock = 0;
 
+// streaming stuff
+var dir = 'video'
+var imgDir = './' + dir;
+var filename_i = 0;
+var files = [];
+var changes = false;
+var maxNum = 10;
 
 var writer = new FileOnWrite({
     path: imgDir,
     ext: '.jpg',
     filename: function(){
-        var filename = (i > maxNum*2) ? i = 0 : ++i;
+        var filename = (filename_i > maxNum*2) ? filename_i = 0 : ++filename_i;
 
         if(files.length <= maxNum){
             files.push(filename);
@@ -102,25 +90,6 @@ var writer = new FileOnWrite({
 
             // --------------------------------------------
             // ---------- manipulate pixel here:
-
-
-            // var fp = pidx(rawImageData.width, rawImageData.height, pixX, pixY, 0);
-            // // console.log(fp);
-            // // var av = (rawImageData.data[fp+1] + rawImageData.data[fp+2]) / 2;
-            // // console.log( rawImageData.data[fp], rawImageData.data[fp+1], rawImageData.data[fp+2] );
-            // if(binary[binary_idx] == "0"){
-            //     console.log("0");
-            //     rawImageData.data[fp] = 255;
-            //     // binary_idx++;
-            // }else if(binary[binary_idx] == "1"){
-            //     console.log("1");
-            //     rawImageData.data[fp] = 0;
-            //     // binary_idx++;
-            // }else if(binary[binary_idx] == " "){
-            //     console.log("1");
-            //     rawImageData.data[fp] = 127;
-            //     // binary_idx++;
-            // }
 
             var pixelsToChange = Object.keys(stored);
 
@@ -156,15 +125,18 @@ var writer = new FileOnWrite({
                 }
                 // console.log(rawImageData.data[fp], " ", rawImageData.data[fp+1], " ", rawImageData.data[fp+2]);
                 // console.log("-");
-
             }
 
+            // ----------------------------------------------------------------------
+            // clock business here
 
             if(clock_index%clockInterval === 0){
                 console.log("clock strikes again --");
                 clock_index = 0
                 clock = Math.abs(clock - 255);
-                // binary_idx++;
+
+
+                // increase each data pixels input
                 for(var i = 0; i < pixelsToChange.length; i++){
                     var this_pixel = stored[pixelsToChange[i]];
                     this_pixel.idx++;
@@ -176,17 +148,6 @@ var writer = new FileOnWrite({
             clock_index++;
             rawImageData.data[0] = clock;
 
-
-            // if(binary_idx > binary.length -1){
-            //     binary_idx = 0;
-            // }
-
-
-
-            //
-            // console.log( "new:");
-            // console.log( rawImageData.data[fp], rawImageData.data[fp+1], rawImageData.data[fp+2] );
-            // console.log( "---");
 
             // ----------------------------------------------------------------------------------------
             // ----------------------------------------------------------------------------------------
@@ -201,13 +162,13 @@ var writer = new FileOnWrite({
         }
     }
 });
-var consumer = new MjpegConsumer();
+
 
 
 //////////////
 ////STREAM////
 //////////////
-
+var consumer = new MjpegConsumer();
 var w = 176; // 320 or 160 etc.   352, 176
 var h = 120; // 240 or 120 etc.   240, 120
 // taiwan port
@@ -245,12 +206,13 @@ var server = express();
 server.use('/public', express.static(__dirname + '/public'));
 
 server.get('/stream', function(req, res){
+
         mjpegReqHandler = mjpegServer.createReqHandler(req, res);
 
         var timer = setInterval(updateJPG, 50);
         var frameCount = 0;
         var timer = setInterval(function(){
-            changes = true;
+            // changes = true;
             if(changes){
                 changes = false;
                 if(frameCount % 1000 == 0){
