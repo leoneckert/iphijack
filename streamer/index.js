@@ -24,14 +24,14 @@ function getPixelXY(w,idx){
 }
 
 var stored = {};
-//
-//
-stored[getPixelIdx(176,30,30)] = {
-    x: 30,
-    y: 30,
-    text: "Leon ",
-    binary: "01001100 01100101 01101111 01101110 00100000 ",
+
+stored[getPixelIdx(176,18,5)] = {
+    x: 18,
+    y: 5,
+    text: "first ",
+    binary: "01100110 01101001 01110010 01110011 01110100 00100000 ",
     idx: 0
+
 }
 // stored[getPixelIdx(176,30,30)] = {
 //     x: 111,
