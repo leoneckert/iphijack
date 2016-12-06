@@ -83,7 +83,7 @@ function getPixelXY(w,idx){
 
 
 // clock:
-var clock_binary ="101010101010101010101";
+var clock_binary ="10101010101010101010";
 var clockInterval = 15;
 var clock_index = 0;
 var clock = 0;
