@@ -201,6 +201,7 @@ function init(){
                     // console.log(pix[i]);
                     picker.style.background = 'rgb('+pix[i]+', '+pix[i+1]+', '+pix[i+2]+')';
                     picker.style.border = '1px solid black';
+                    pickerExit.style.display = "block";
                     addToLog(selectedI, pix[i], pix[i+1], pix[i+2]);
 
                     var av = (pix[i+1] + pix[i+2])/2;
@@ -281,7 +282,7 @@ function init(){
     function mouseClick(e){
         inspectX = e.layerX;
         inspectY = e.layerY;
-        pickerExit.style.display = "block";
+        // pickerExit.style.display = "block";
         document.getElementById('data').innerHTML = "";
     }
     pickerExit.addEventListener('click', function(){
