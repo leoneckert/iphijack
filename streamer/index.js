@@ -274,19 +274,25 @@ server.get('/encodeReq', function(req, res){
     console.log("req");
     var name = Object.keys(req.query)[0];
     console.log(name);
+    var x = getPixelXY(176, parseInt(name)).x;
+    var y = getPixelXY(176, parseInt(name)).y
+    // console.log( getPixelXY(176, parseInt(name)).x );
+    // console.log( getPixelXY(176, parseInt(name)).y );
+    var text = "here is data" + " ";
+    // console.log("|here is data" + " |");
+    var binary = ABC.toBinary("here is data" + " ");
+    // console.log("|"+ABC.toBinary("here is data" + " ") + "|");
+    // console.log("idx=0");
+    stored[name] = {
+        x: x,
+        y: y,
+        text: text,
+        binary: binary,
+        idx: 0
+    }
 
-    console.log( getPixelXY(176, parseInt(name)).x );
-    console.log( getPixelXY(176, parseInt(name)).y );
-    console.log("|here is data" + " |");
-    console.log("|"+ABC.toBinary("here is data" + " ") + " |");
-    console.log("idx=0");
-    // stored[getPixelIdx(176,30,30)] = {
-    //     x: 30,
-    //     y: 30,
-    //     text: "Leon ",
-    //     binary: "01001100 01100101 01101111 01101110 00100000 ",
-    //     idx: 0
-    // }
+    console.log("stored changed");
+    console.log(stored);
 
 
   // res.sendFile(__dirname + '/loading_img.png');
