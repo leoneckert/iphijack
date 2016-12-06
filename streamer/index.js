@@ -271,6 +271,14 @@ server.get('/loadingImg', function(req, res){
   res.sendFile(__dirname + '/loading_img.png');
 });
 
+server.get('/encodeReq', function(req, res){
+    console.log("req");
+    console.log(req);
+  // res.sendFile(__dirname + '/loading_img.png');
+});
+
+encodeReq
+
 server.get('/', function(req, res){
     console.log(__dirname + '/index.html');
   res.sendFile(__dirname + '/index.html');
