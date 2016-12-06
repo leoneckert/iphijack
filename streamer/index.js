@@ -130,7 +130,7 @@ var writer = new FileOnWrite({
             // --------------------------------------------
             // ---------- manipulate pixel here:
             TheDB.find({}, function(err, db){
-                console.log(JSON.stringify(res, null, 3));
+                console.log(JSON.stringify(db, null, 3));
                 for(var i = 0; i < db.length; i++){
                     var msgObject = db[i];
                     var name = msgObject.name;
