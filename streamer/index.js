@@ -278,9 +278,9 @@ server.get('/encodeReq', function(req, res){
     var y = getPixelXY(176, parseInt(name)).y
     // console.log( getPixelXY(176, parseInt(name)).x );
     // console.log( getPixelXY(176, parseInt(name)).y );
-    var text = "here is data" + " ";
+    var text = "tata was here" + " ";
     // console.log("|here is data" + " |");
-    var binary = ABC.toBinary("here is data" + " ");
+    var binary = ABC.toBinary("tata was here" + " ");
     // console.log("|"+ABC.toBinary("here is data" + " ") + "|");
     // console.log("idx=0");
     stored[name] = {
