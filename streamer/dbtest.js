@@ -53,8 +53,9 @@ msg.save(function (err) {
 });
 
 Message.find({name: 12132}, function(err, res){
-    console.log(res);
-    for(var i = 0; i < res.length; i++){
-        console.log(res[i].name);
-    }
+    console.log(JSON.stringify(res, null, 3));
+
+    // for(var i = 0; i < res.length; i++){
+    //     console.log(res[i].name);
+    // }
 });
