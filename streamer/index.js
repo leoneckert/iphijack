@@ -27,6 +27,12 @@ var message = mongoose.Schema({
 
 var TheDB = mongoose.model('TheDB', message);
 
+TheDB.find({}, function(err, res){
+    // console.log(JSON.stringify(res, null, 3));
+    for(var i = 0; i < res.length; i++){
+        console.log(res[i]);
+    }
+});
 
 
 
@@ -48,12 +54,7 @@ function getPixelXY(w,idx){
 }
 
 var stored = {};
-TheDB.find({}, function(err, res){
-    // console.log(JSON.stringify(res, null, 3));
-    for(var i = 0; i < res.length; i++){
-        console.log(res[i]);
-    }
-});
+
 
 stored[getPixelIdx(176,30,30)] = {
     x: 30,
