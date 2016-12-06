@@ -68,7 +68,7 @@ function allocateElement(idx, callback){
         elem.appendChild(button);
         button.addEventListener ("click", function() {
 
-            alert(document.getElementById("text_"+idx_id).value);
+            // alert(document.getElementById("text_"+idx_id).value);
 
             // var xhttp = new XMLHttpRequest();
             // xhttp.onreadystatechange = function() {
@@ -93,19 +93,16 @@ function allocateElement(idx, callback){
             // 	}
             // }
             // http.send({heloo: "bla"});
-
-
             var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("POST", "http://localhost:1805/encodeReq", true);
-            var toSend = {"FCsecretID":FCsecretID, "FCpeerID": FCpeerID, "FCusername": FCusername, "data":data};
+            xmlhttp.open("POST", "encodeReq", true);
+            var toSend = {"FCsecretID":"leon"};
             xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
             xmlhttp.onreadystatechange = function() {//Call a function when the state changes.
-                if(xmlhttp.readyState == 4 && xmlhttp.status == 200 && callback) {
+                if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                     callback(xmlhttp.responseText);
                 }
             }
             xmlhttp.send(JSON.stringify(toSend))
-
 
         });
 

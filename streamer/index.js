@@ -215,6 +215,9 @@ var express = require('express');
 var server = express();
 server.use('/public', express.static(__dirname + '/public'));
 
+var bodyParser = require('body-parser')
+server.use( bodyParser.json() );       // to support JSON-encoded bodies
+
 server.get('/stream1', function(req, res){
 
         // changesObject[myID] = true;
@@ -268,7 +271,7 @@ server.get('/loadingImg', function(req, res){
 
 server.post('/encodeReq', function(req, res){
     console.log("req");
-    console.log(req);
+    console.log(req.body);
     // var name = Object.keys(req.query)[0];
     // console.log(name);
     // var x = getPixelXY(176, parseInt(name)).x;
