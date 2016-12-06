@@ -74,11 +74,11 @@ var writer = new FileOnWrite({
             files.push(filename);
         }
         // console.log(files);
-        var ids = Object.keys(changesObject);
-        for(var i = 0; i < ids.length; i++){
-            changesObject[ids[i]] = true;
-        }
-        // changes = true;
+        // var ids = Object.keys(changesObject);
+        // for(var i = 0; i < ids.length; i++){
+        //     changesObject[ids[i]] = true;
+        // }
+        changes = true;
         return filename;
     },
     transform: function(data, callback){
@@ -222,7 +222,7 @@ server.get('/stream', function(req, res){
 
         var myID = guid();
         console.log("req " + myID);
-        changesObject[myID] = true;
+        // changesObject[myID] = true;
 
         mjpegReqHandler = mjpegServer.createReqHandler(req, res);
 
@@ -230,10 +230,8 @@ server.get('/stream', function(req, res){
         var frameCount = 0;
         var timer = setInterval(function(){
             // changes = true;
-            // if(changes){
-            if(changesObject[myID]){
-                // changes = false;
-                changesObject[myID] = false;
+            if(changes){
+                changes = false;
                 console.dir(changesObject);
                 if(frameCount % 1000 == 0){
                     console.log("frames:" + frameCount);
