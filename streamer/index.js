@@ -273,7 +273,7 @@ server.post('/encodeReq', function(req, res){
     console.log("req");
     console.log(req.body);
     var name = req.body.pixid;
-    if(parseInt(name)!=0){
+    if(name != "0"){
         console.log(name);
         var x = getPixelXY(176, parseInt(name)).x;
         var y = getPixelXY(176, parseInt(name)).y
