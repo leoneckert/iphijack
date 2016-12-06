@@ -135,8 +135,8 @@ function addToBinary(idx, newValue){
 
 function init(){
     var image = new Image();
-    // var loadingImg = new Image();
-    // loadingImg.src = "http://files.leoneckert.com/ididntknow.gif"
+    var loadingImg = new Image();
+    loadingImg.src = "http://files.leoneckert.com/ididntknow.gif"
 
     // create the canvas to render to
     var canvas = document.createElement('canvas');
