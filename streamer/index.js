@@ -219,8 +219,9 @@ var server = express();
 server.use('/public', express.static(__dirname + '/public'));
 
 server.get('/stream', function(req, res){
-        console.log(req);
+
         var myID = guid();
+        console.log("req " + myID);
         changesObject[myID] = true;
 
         mjpegReqHandler = mjpegServer.createReqHandler(req, res);
