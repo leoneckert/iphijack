@@ -79,8 +79,8 @@ function allocateElement(idx, callback){
             // };
             // xhttp.open("GET", "encodeReq?pid="+idx_id = "&text", true);
             // xhttp.send();
-
-            http.open("POST", "/encodeReq", true);
+            var http = new XMLHttpRequest();
+            http.open("POST", "encodeReq", true);
 
             //Send the proper header information along with the request
             http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
