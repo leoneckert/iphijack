@@ -6,6 +6,29 @@ var fs = require('fs');
 var mjpegServer = require('node-mjpeg-server');
 var jpeg = require('jpeg-js');
 
+// database stuff:
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/ipggybackDB');
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.on('open', function() {
+  console.log("open");
+});
+
+var message = mongoose.Schema({
+    name: Number,
+    x: Number,
+    y: Number,
+    text: String,
+    binary: String,
+    idx: Number
+});
+
+var TheDB = mongoose.model('TheDB', message);
+
+
+
 // ABC - a generic, native JS (A)scii(B)inary(C)onverter.
 // (c) 2013 Stephan Schmitz <eyecatchup@gmail.com>
 // License: MIT, http://eyecatchup.mit-license.org
@@ -23,14 +46,14 @@ function getPixelXY(w,idx){
     return {x:x,y:y}
 }
 
-var stored = {};
-stored[getPixelIdx(176,30,30)] = {
-    x: 30,
-    y: 30,
-    text: "Leon ",
-    binary: "01001100 01100101 01101111 01101110 00100000 ",
-    idx: 0
-}
+// var stored = {};
+// stored[getPixelIdx(176,30,30)] = {
+//     x: 30,
+//     y: 30,
+//     text: "Leon ",
+//     binary: "01001100 01100101 01101111 01101110 00100000 ",
+//     idx: 0
+// }
 // stored[getPixelIdx(176,30,30)] = {
 //     x: 111,
 //     y: 76,
@@ -106,42 +129,71 @@ var writer = new FileOnWrite({
 
             // --------------------------------------------
             // ---------- manipulate pixel here:
+            TheDB.find({}, function(err, db){
+                // console.log(JSON.stringify(res, null, 3));
+                for(var i = 0; i < db.length; i++){
+                    var msgObject = db[i];
+                    var name = msgObject.name;
+                    var x = msgObject.x;
+                    var y = msgObject.y
+                    var text = msgObject.text;
+                    var binary = msgObject.binary;
+                    var idx = msgObject.idx;
+                    console.log(name);
+                    console.log(x);
+                    console.log(y);
+                    console.log(text);
+                    console.log(binary);
+                    console.log(idx);
+                    console.log("---");
 
-            var pixelsToChange = Object.keys(stored);
 
-            for(var i = 0; i < pixelsToChange.length; i++){
-                var this_pixel = stored[pixelsToChange[i]]
-                var fp = pidx(rawImageData.width, rawImageData.height, this_pixel.x, this_pixel.y, 0);
-                var binary = this_pixel.binary;
-                var idx = this_pixel.idx;
-                var av = (rawImageData.data[fp + 1] + rawImageData.data[fp + 2]) / 2;
 
-                var ch = 40; //changevalue
-                var f = 1; //direction of adjustment
-                if(av > 127 ){
-                    f = -1;
                 }
 
-                // console.log(rawImageData.data[fp], " ", rawImageData.data[fp+1], " ", rawImageData.data[fp+2]);
 
-                if(binary[idx] == " "){
-                    // console.log("1");
-                    // rawImageData.data[fp] = 127;
-                    rawImageData.data[fp] = av;
-                    // binary_idx++;
-                }else if(binary[idx] == "0"){
-                    // console.log("0");
-                    // rawImageData.data[fp] = 255;
-                    rawImageData.data[fp] = av + (ch*f);
-                    // binary_idx++;
-                }else if(binary[idx] == "1"){
-                    // console.log("1");
-                    rawImageData.data[fp] = av + (ch*f) + (ch*f);
-                    // binary_idx++;
-                }
-                // console.log(rawImageData.data[fp], " ", rawImageData.data[fp+1], " ", rawImageData.data[fp+2]);
-                // console.log("-");
-            }
+
+
+
+            });
+
+
+
+            // var pixelsToChange = Object.keys(stored);
+            //
+            // for(var i = 0; i < pixelsToChange.length; i++){
+            //     var this_pixel = stored[pixelsToChange[i]]
+            //     var fp = pidx(rawImageData.width, rawImageData.height, this_pixel.x, this_pixel.y, 0);
+            //     var binary = this_pixel.binary;
+            //     var idx = this_pixel.idx;
+            //     var av = (rawImageData.data[fp + 1] + rawImageData.data[fp + 2]) / 2;
+            //
+            //     var ch = 40; //changevalue
+            //     var f = 1; //direction of adjustment
+            //     if(av > 127 ){
+            //         f = -1;
+            //     }
+            //
+            //     // console.log(rawImageData.data[fp], " ", rawImageData.data[fp+1], " ", rawImageData.data[fp+2]);
+            //
+            //     if(binary[idx] == " "){
+            //         // console.log("1");
+            //         // rawImageData.data[fp] = 127;
+            //         rawImageData.data[fp] = av;
+            //         // binary_idx++;
+            //     }else if(binary[idx] == "0"){
+            //         // console.log("0");
+            //         // rawImageData.data[fp] = 255;
+            //         rawImageData.data[fp] = av + (ch*f);
+            //         // binary_idx++;
+            //     }else if(binary[idx] == "1"){
+            //         // console.log("1");
+            //         rawImageData.data[fp] = av + (ch*f) + (ch*f);
+            //         // binary_idx++;
+            //     }
+            //     // console.log(rawImageData.data[fp], " ", rawImageData.data[fp+1], " ", rawImageData.data[fp+2]);
+            //     // console.log("-");
+            // }
 
             // ----------------------------------------------------------------------
             // clock business here
@@ -283,16 +335,16 @@ server.get('/encodeReq', function(req, res){
     var binary = " " + ABC.toBinary("renata was here" + " ");
     // console.log("|"+ABC.toBinary("here is data" + " ") + "|");
     // console.log("idx=0");
-    stored[name] = {
-        x: x,
-        y: y,
-        text: text,
-        binary: binary,
-        idx: 0
-    }
-
-    console.log("stored changed");
-    console.log(stored);
+    // stored[name] = {
+    //     x: x,
+    //     y: y,
+    //     text: text,
+    //     binary: binary,
+    //     idx: 0
+    // }
+    //
+    // console.log("stored changed");
+    // console.log(stored);
 
 
   // res.sendFile(__dirname + '/loading_img.png');
