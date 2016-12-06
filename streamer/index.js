@@ -30,7 +30,7 @@ var TheDB = mongoose.model('TheDB', message);
 var db;
 TheDB.find({}, function(err, res){
     db = res;
-}
+});
 
 
 
