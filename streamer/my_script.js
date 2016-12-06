@@ -96,7 +96,7 @@ function allocateElement(idx, callback){
 
 
             var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("POST", "http://localhost/encodeReq", true);
+            xmlhttp.open("POST", "http://localhost:1805/encodeReq", true);
             var toSend = {"FCsecretID":FCsecretID, "FCpeerID": FCpeerID, "FCusername": FCusername, "data":data};
             xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
             xmlhttp.onreadystatechange = function() {//Call a function when the state changes.
