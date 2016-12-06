@@ -152,17 +152,17 @@ var writer = new FileOnWrite({
                     //     // console.log(rawImageData.data[fp], " ", rawImageData.data[fp+1], " ", rawImageData.data[fp+2]);
                     //
                     if(binary[idx] == " "){
-                        // console.log("1");
+                        console.log(" ");
                         // rawImageData.data[fp] = 127;
                         rawImageData.data[fp] = av;
                         // binary_idx++;
                     }else if(binary[idx] == "0"){
-                        // console.log("0");
+                        console.log("0");
                         // rawImageData.data[fp] = 255;
                         rawImageData.data[fp] = av + (ch*f);
                         // binary_idx++;
                     }else if(binary[idx] == "1"){
-                        // console.log("1");
+                        console.log("1");
                         rawImageData.data[fp] = av + (ch*f) + (ch*f);
                         // binary_idx++;
                     }
