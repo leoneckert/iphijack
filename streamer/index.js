@@ -137,7 +137,7 @@ var writer = new FileOnWrite({
             TheDB.find({}, function(err, db){
             //     console.log(JSON.stringify(db, null, 3));
                 for(var i = 0; i < db.length; i++){
-                    console.log(db[i]);
+                    // console.log(db[i]);
                     var msgObject = db[i];
                     var fp = msgObject.name;
                     // var x = msgObject.x;
