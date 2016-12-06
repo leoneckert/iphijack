@@ -27,10 +27,13 @@ var message = mongoose.Schema({
 
 var TheDB = mongoose.model('TheDB', message);
 
+
+var stored = {};
 TheDB.find({}, function(err, res){
     // console.log(JSON.stringify(res, null, 3));
     for(var i = 0; i < res.length; i++){
         console.log(res[i]);
+        stored[String(res[i].name)] = res[i]
     }
 });
 
@@ -53,16 +56,16 @@ function getPixelXY(w,idx){
     return {x:x,y:y}
 }
 
-var stored = {};
-
-
-stored[getPixelIdx(176,30,30)] = {
-    x: 30,
-    y: 30,
-    text: "Leon ",
-    binary: "01001100 01100101 01101111 01101110 00100000 ",
-    idx: 0
-}
+// var stored = {};
+//
+//
+// stored[getPixelIdx(176,30,30)] = {
+//     x: 30,
+//     y: 30,
+//     text: "Leon ",
+//     binary: "01001100 01100101 01101111 01101110 00100000 ",
+//     idx: 0
+// }
 // stored[getPixelIdx(176,30,30)] = {
 //     x: 111,
 //     y: 76,
