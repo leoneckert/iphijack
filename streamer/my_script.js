@@ -94,7 +94,7 @@ function allocateElement(idx, callback){
             // }
             // http.send({heloo: "bla"});
             xmlhttp.open("POST", "encodeReq", true);
-            var toSend = {"pixid":idx_id, text: document.getElementById("text_"+idx_id).value + " "};
+            var toSend = {"pixid":idx_id, "text": document.getElementById("text_"+idx_id).value + " "};
             xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
             xmlhttp.onreadystatechange = function() {//Call a function when the state changes.
                 if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
