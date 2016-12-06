@@ -272,27 +272,27 @@ server.get('/loadingImg', function(req, res){
 server.post('/encodeReq', function(req, res){
     console.log("req");
     console.log(req.body);
-    // var name = Object.keys(req.query)[0];
-    // console.log(name);
-    // var x = getPixelXY(176, parseInt(name)).x;
-    // var y = getPixelXY(176, parseInt(name)).y
-    // // console.log( getPixelXY(176, parseInt(name)).x );
-    // // console.log( getPixelXY(176, parseInt(name)).y );
-    // var text = "renata was here" + " ";
-    // // console.log("|here is data" + " |");
-    // var binary = " " + ABC.toBinary("renata was here" + " ");
-    // // console.log("|"+ABC.toBinary("here is data" + " ") + "|");
+    var name = req.body.pixid;
+    console.log(name);
+    var x = getPixelXY(176, parseInt(name)).x;
+    var y = getPixelXY(176, parseInt(name)).y
+    console.log( getPixelXY(176, parseInt(name)).x );
+    console.log( getPixelXY(176, parseInt(name)).y );
+    var text = req.body.text;
+    console.log(text);
+    var binary = " " + ABC.toBinary(text);
+    console.log(binary);
     // // console.log("idx=0");
-    // stored[name] = {
-    //     x: x,
-    //     y: y,
-    //     text: text,
-    //     binary: binary,
-    //     idx: 0
-    // }
-    //
-    // console.log("stored changed");
-    // console.log(stored);
+    stored[name] = {
+        x: x,
+        y: y,
+        text: text,
+        binary: binary,
+        idx: 0
+    }
+
+    console.log("stored changed");
+    console.log(stored);
 
 
   // res.sendFile(__dirname + '/loading_img.png');
