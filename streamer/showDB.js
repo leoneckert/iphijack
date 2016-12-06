@@ -19,6 +19,6 @@ var message = mongoose.Schema({
 
 var Message = mongoose.model('Message', message);
 
-Message.find({}, function(err, res){
-    console.dir(res[0]);
+Message.find({}, function(res){
+    console.dir(res);
 });
