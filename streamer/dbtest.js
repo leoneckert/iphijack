@@ -53,5 +53,5 @@ msg.save(function (err) {
 });
 
 Message.find({}, function(err, res){
-    console.dir(res);
+    console.dir(res[0]);
 });
