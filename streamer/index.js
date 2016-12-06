@@ -218,7 +218,7 @@ var express = require('express');
 var server = express();
 server.use('/public', express.static(__dirname + '/public'));
 
-server.get('/stream', function(req, res){
+server.get('/stream1', function(req, res){
 
         var myID = guid();
         console.log("req " + myID);
