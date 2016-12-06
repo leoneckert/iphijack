@@ -6,14 +6,21 @@ var fs = require('fs');
 var mjpegServer = require('node-mjpeg-server');
 var jpeg = require('jpeg-js');
 
-
-
-
+// ABC - a generic, native JS (A)scii(B)inary(C)onverter.
+// (c) 2013 Stephan Schmitz <eyecatchup@gmail.com>
+// License: MIT, http://eyecatchup.mit-license.org
+// URL: https://gist.github.com/eyecatchup/6742657
+var ABC={toAscii:function(a){return a.replace(/\s*[01]{8}\s*/g,function(a){return String.fromCharCode(parseInt(a,2))})},toBinary:function(a,b){return a.replace(/[\s\S]/g,function(a){a=ABC.zeroPad(a.charCodeAt().toString(2));return!1==b?a:a+" "})},zeroPad:function(a){return"00000000".slice(String(a).length)+a}};
 
 var rawImageData;
 
 function getPixelIdx(w,x,y){
     return (w * 4 * y) + (x * 4);
+}
+function getPixelXY(w,idx){
+    var x = (idx/4)%w;
+    var y = ((idx/4)-x)/w;
+    return {x:x,y:y}
 }
 
 var stored = {};
@@ -266,6 +273,21 @@ server.get('/loadingImg', function(req, res){
 server.get('/encodeReq', function(req, res){
     console.log("req");
     console.log(req.query);
+
+    console.log(getPixelXY(parseInt(req.query)).x );
+    console.log(getPixelXY(parseInt(req.query)).y );
+    console.log("|here is data" + " |");
+    console.log("|"+ABC.toBinary("here is data" + " ") + " |");
+    console.log("idx=0");
+    // stored[getPixelIdx(176,30,30)] = {
+    //     x: 30,
+    //     y: 30,
+    //     text: "Leon ",
+    //     binary: "01001100 01100101 01101111 01101110 00100000 ",
+    //     idx: 0
+    // }
+
+
   // res.sendFile(__dirname + '/loading_img.png');
 });
 
