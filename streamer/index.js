@@ -108,7 +108,7 @@ var writer = new FileOnWrite({
         }else{
             while(files.length > maxNum){
                 var del = files.shift();
-                fs.unlink(imgDir+"/"+del+".jpg");
+                fs.unlink(imgDir+"/"+del+".jpg", function(){});
             }
             files.push(filename);
         }
