@@ -266,6 +266,11 @@ server.get('/my_script.js', function(req, res){
   res.sendFile(__dirname + '/my_script.js');
 });
 
+server.get('/loadingImg', function(req, res){
+    console.log(__dirname + '/loading_img.png');
+  res.sendFile(__dirname + '/loading_img.png');
+});
+
 server.get('/', function(req, res){
     console.log(__dirname + '/index.html');
   res.sendFile(__dirname + '/index.html');

@@ -136,7 +136,7 @@ function addToBinary(idx, newValue){
 function init(){
     var image = new Image();
     var loadingImg = new Image();
-    loadingImg.src = "http://files.leoneckert.com/ididntknow.gif"
+    loadingImg.src = "http://lke229.itp.io:1805/loadingImg"
 
     // create the canvas to render to
     var canvas = document.createElement('canvas');
@@ -180,9 +180,8 @@ function init(){
         if (image.width * image.height > 0) {
             context.drawImage(image, 0, 0, streamW, streamH);
         } else {
-        //   context.drawImage(loadingImg, 0, 0, streamW, streamH);
-          context.font="15px Verdana";
-          context.fillText("Oh no! The stream is not available!\nTell Leon about it!",10,50);
+          context.drawImage(loadingImg, 0, 0, streamW, streamH);
+
         }
 
         var selectedI = null;
