@@ -244,6 +244,7 @@ var writer = new FileOnWrite({
             callback(newJPG.data);
         }
         catch(e) {
+            console.log(e);
             console.log("err");
             callback(data);
         }
