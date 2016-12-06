@@ -130,30 +130,57 @@ var writer = new FileOnWrite({
             // --------------------------------------------
             // ---------- manipulate pixel here:
             TheDB.find({}, function(err, db){
-                console.log(JSON.stringify(db, null, 3));
+                // console.log(JSON.stringify(db, null, 3));
                 for(var i = 0; i < db.length; i++){
                     var msgObject = db[i];
                     var name = msgObject.name;
-                    var x = msgObject.x;
-                    var y = msgObject.y
-                    var text = msgObject.text;
+                    // var x = msgObject.x;
+                    // var y = msgObject.y;
+                    // var text = msgObject.text;
                     var binary = msgObject.binary;
                     var idx = msgObject.idx;
-                    console.log(name);
-                    console.log(x);
-                    console.log(y);
-                    console.log(text);
-                    console.log(binary);
-                    console.log(idx);
-                    console.log("---");
+
+                    var fp = parseInt(name);
+                    // console.log(name);
+                    // console.log(x);
+                    // console.log(y);
+                    // console.log(text);
+                    // console.log(binary);
+                    // console.log(idx);
+                    // console.log("---");
+
+                    var av = (rawImageData.data[fp + 1] + rawImageData.data[fp + 2]) / 2;
+                    //
+                    var ch = 40; //changevalue
+                    var f = 1; //direction of adjustment
+                    if(av > 127 ){
+                        f = -1;
+                    }
+
+                    //     // console.log(rawImageData.data[fp], " ", rawImageData.data[fp+1], " ", rawImageData.data[fp+2]);
+                    //
+                    if(binary[idx] == " "){
+                        // console.log("1");
+                        // rawImageData.data[fp] = 127;
+                        rawImageData.data[fp] = av;
+                        // binary_idx++;
+                    }else if(binary[idx] == "0"){
+                        // console.log("0");
+                        // rawImageData.data[fp] = 255;
+                        rawImageData.data[fp] = av + (ch*f);
+                        // binary_idx++;
+                    }else if(binary[idx] == "1"){
+                        // console.log("1");
+                        rawImageData.data[fp] = av + (ch*f) + (ch*f);
+                        // binary_idx++;
+                    }
+                    //     // console.log(rawImageData.data[fp], " ", rawImageData.data[fp+1], " ", rawImageData.data[fp+2]);
+                    //     // console.log("-");
+
 
 
 
                 }
-
-
-
-
 
             });
 
