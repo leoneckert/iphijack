@@ -7,7 +7,6 @@ db.on('open', function() {
   console.log("open");
 });
 
-
 var message = mongoose.Schema({
     name: Number,
     x: Number,
@@ -19,6 +18,6 @@ var message = mongoose.Schema({
 
 var Message = mongoose.model('Message', message);
 
-Message.find({}, function(res){
-    console.dir(res);
+Message.find({}, function(err, res){
+    console.log(JSON.stringify(res, null, 3));
 });
