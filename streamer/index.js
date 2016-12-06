@@ -206,7 +206,7 @@ var server = express();
 server.use('/public', express.static(__dirname + '/public'));
 
 server.get('/stream', function(req, res){
-
+        console.log(req);
         mjpegReqHandler = mjpegServer.createReqHandler(req, res);
 
         var timer = setInterval(updateJPG, 50);
