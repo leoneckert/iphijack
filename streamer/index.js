@@ -178,6 +178,7 @@ var writer = new FileOnWrite({
                     console.log("in clock");
                     // increase each data pixels input
                     for(var i = 0; i < db.length; i++){
+                        console.log(db[i]);
                         // var this_pixel = stored[pixelsToChange[i]];
                         db[i].idx++;
                         if(db[i].idx > db[i].binary.length-1){
