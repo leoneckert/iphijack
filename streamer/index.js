@@ -277,7 +277,6 @@ server.get('/encodeReq', function(req, res){
   // res.sendFile(__dirname + '/loading_img.png');
 });
 
-encodeReq
 
 server.get('/', function(req, res){
     console.log(__dirname + '/index.html');
