@@ -52,6 +52,6 @@ msg.save(function (err) {
   if (err) return console.error(err);
 });
 
-Message.find({}, function(err, res){
+Message.find({name: 12132}, function(err, res){
     console.log(res);
 });
