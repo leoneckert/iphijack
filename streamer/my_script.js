@@ -6,8 +6,8 @@ var ABC={toAscii:function(a){return a.replace(/\s*[01]{8}\s*/g,function(a){retur
 
 
 // inspo from here: https://github.com/rctoris/mjpegcanvasjs/blob/develop/src/visualization/Viewer.js
-var streamW = 176;
-var streamH = 120;
+var streamW = 176*2;
+var streamH = 120*2;
 
 // var inspectX = null;
 // var inspectY = null;
