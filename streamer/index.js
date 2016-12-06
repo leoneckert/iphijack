@@ -311,7 +311,10 @@ var express = require('express');
 
 var server = express();
 server.use('/public', express.static(__dirname + '/public'));
-
+server.use(function (err, req, res, next) {
+  console.error(err.stack)
+  res.status(500).send('Something broke!')
+})
 server.get('/stream1', function(req, res){
 
         // changesObject[myID] = true;
