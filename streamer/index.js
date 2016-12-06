@@ -55,13 +55,13 @@ TheDB.find({}, function(err, res){
     }
 });
 
-stored[getPixelIdx(176,30,30)] = {
-    x: 30,
-    y: 30,
-    text: "Leon ",
-    binary: "01001100 01100101 01101111 01101110 00100000 ",
-    idx: 0
-}
+// stored[getPixelIdx(176,30,30)] = {
+//     x: 30,
+//     y: 30,
+//     text: "Leon ",
+//     binary: "01001100 01100101 01101111 01101110 00100000 ",
+//     idx: 0
+// }
 // stored[getPixelIdx(176,30,30)] = {
 //     x: 111,
 //     y: 76,
