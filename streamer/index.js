@@ -232,7 +232,7 @@ server.get('/stream', function(req, res){
             // changes = true;
             if(changes){
                 changes = false;
-                console.dir(changesObject);
+                // console.dir(changesObject);
                 if(frameCount % 1000 == 0){
                     console.log("frames:" + frameCount);
                 }
