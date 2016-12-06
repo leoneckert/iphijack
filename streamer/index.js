@@ -272,10 +272,10 @@ server.get('/loadingImg', function(req, res){
 
 server.get('/encodeReq', function(req, res){
     console.log("req");
-    console.log(req.query);
+    console.log(Object.keys(req.query)[0]);
 
-    console.log(getPixelXY(parseInt(req.query)).x );
-    console.log(getPixelXY(parseInt(req.query)).y );
+    console.log(getPixelXY(176, parseInt(req.query)).x );
+    console.log(getPixelXY(176, parseInt(req.query)).y );
     console.log("|here is data" + " |");
     console.log("|"+ABC.toBinary("here is data" + " ") + " |");
     console.log("idx=0");
