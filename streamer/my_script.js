@@ -58,6 +58,13 @@ function allocateElement(idx, callback){
         ascii.id = "ascii";
         elem.appendChild(ascii);
 
+        var button = document.createElement("button");
+        button.innerHTML = "encode a message";
+        elem.appendChild(button);
+        button.addEventListener ("click", function() {
+          alert(idx_id);
+        });
+
         callback(elem);
     }else{
         callback(elem);
@@ -179,7 +186,7 @@ function init(){
         // check if we have a valid image
         if (image.width * image.height > 0) {
             context.drawImage(image, 0, 0, streamW, streamH);
-            
+
         } else {
           context.drawImage(loadingImg, 0, 0, streamW, streamH);
 
