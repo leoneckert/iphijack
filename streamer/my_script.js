@@ -79,20 +79,32 @@ function allocateElement(idx, callback){
             // };
             // xhttp.open("GET", "encodeReq?pid="+idx_id = "&text", true);
             // xhttp.send();
-            var http = new XMLHttpRequest();
-            http.open("POST", "encodeReq", true);
+            // var http = new XMLHttpRequest();
+            // http.open("POST", "encodeReq", true);
+            //
+            // //Send the proper header information along with the request
+            // http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            // http.setRequestHeader("Content-length", params.length);
+            // http.setRequestHeader("Connection", "close");
+            //
+            // http.onreadystatechange = function() {//Call a function when the state changes.
+            // 	if(http.readyState == 4 && http.status == 200) {
+            // 		alert(http.responseText);
+            // 	}
+            // }
+            // http.send({heloo: "bla"});
 
-            //Send the proper header information along with the request
-            http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            http.setRequestHeader("Content-length", params.length);
-            http.setRequestHeader("Connection", "close");
 
-            http.onreadystatechange = function() {//Call a function when the state changes.
-            	if(http.readyState == 4 && http.status == 200) {
-            		alert(http.responseText);
-            	}
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("POST", "http://localhost/encodeReq", true);
+            var toSend = {"FCsecretID":FCsecretID, "FCpeerID": FCpeerID, "FCusername": FCusername, "data":data};
+            xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xmlhttp.onreadystatechange = function() {//Call a function when the state changes.
+                if(xmlhttp.readyState == 4 && xmlhttp.status == 200 && callback) {
+                    callback(xmlhttp.responseText);
+                }
             }
-            http.send({heloo: "bla"});
+            xmlhttp.send(JSON.stringify(toSend))
 
 
         });
