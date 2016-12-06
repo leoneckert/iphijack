@@ -8,7 +8,7 @@ var jpeg = require('jpeg-js');
 
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/ipggybackDB');
+mongoose.connect('mongodb://leoneckert:itpnyu@ds127428.mlab.com:27428/ipiggybackdb');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
