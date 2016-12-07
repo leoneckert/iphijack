@@ -6,6 +6,44 @@ var fs = require('fs');
 var mjpegServer = require('node-mjpeg-server');
 var jpeg = require('jpeg-js');
 
+
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/ipiggybackDB');
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.on('open', function() {
+  console.log("open");
+});
+
+var message = mongoose.Schema({
+    name: Number,
+    x: Number,
+    y: Number,
+    text: String,
+    binary: String,
+    idx: Number
+});
+
+var TheDB = mongoose.model('TheDB', message);
+
+
+stored = {}
+TheDB.find({}, function(err, res){
+    // console.log(JSON.stringify(res, null, 3));
+    for(var i = 0; i < res.length; i++){
+        // console.log(res[i]);
+        stored[res[i].name] = res[i]
+        if(i == res.length - 1){
+            console.log("ready");
+            console.log(stored);
+        }
+    }
+});
+
+
+
+
 // ABC - a generic, native JS (A)scii(B)inary(C)onverter.
 // (c) 2013 Stephan Schmitz <eyecatchup@gmail.com>
 // License: MIT, http://eyecatchup.mit-license.org
@@ -23,16 +61,16 @@ function getPixelXY(w,idx){
     return {x:x,y:y}
 }
 
-var stored = {};
-
-stored[getPixelIdx(176,18,5)] = {
-    x: 18,
-    y: 5,
-    text: "first ",
-    binary: "01100110 01101001 01110010 01110011 01110100 00100000 ",
-    idx: 0
-
-}
+// var stored = {};
+//
+// stored[getPixelIdx(176,18,5)] = {
+//     x: 18,
+//     y: 5,
+//     text: "first ",
+//     binary: "01100110 01101001 01110010 01110011 01110100 00100000 ",
+//     idx: 0
+//
+// }
 // stored[getPixelIdx(176,30,30)] = {
 //     x: 111,
 //     y: 76,
@@ -111,31 +149,76 @@ var writer = new FileOnWrite({
                 var fp = pidx(rawImageData.width, rawImageData.height, this_pixel.x, this_pixel.y, 0);
                 var binary = this_pixel.binary;
                 var idx = this_pixel.idx;
-                var av = (rawImageData.data[fp + 1] + rawImageData.data[fp + 2]) / 2;
 
+                var tp = null // targetPixel
+                var sp = null // second pixel
+                var lp = null // last pixel
+
+                if(fp%3 === 0){
+                    tp = 0 // targetPixel
+                    sp = 1 // second pixel
+                    lp = 2 // last pixel
+                } else if(fp%3 === 1){
+                    tp = 2 // targetPixel
+                    sp = 0 // second pixel
+                    lp = 1 // last pixel
+                }else if(fp%3 === 2){
+                    tp = 1 // targetPixel
+                    sp = 2 // second pixel
+                    lp = 0 // last pixel
+                }
+
+                var av = (rawImageData.data[fp + sp] + rawImageData.data[fp + lp]) / 2;
                 var ch = 40; //changevalue
                 var f = 1; //direction of adjustment
                 if(av > 127 ){
                     f = -1;
                 }
-
                 // console.log(rawImageData.data[fp], " ", rawImageData.data[fp+1], " ", rawImageData.data[fp+2]);
-
                 if(binary[idx] == " "){
                     // console.log("1");
                     // rawImageData.data[fp] = 127;
-                    rawImageData.data[fp] = av;
+                    rawImageData.data[fp + tp] = av;
                     // binary_idx++;
                 }else if(binary[idx] == "0"){
                     // console.log("0");
                     // rawImageData.data[fp] = 255;
-                    rawImageData.data[fp] = av + (ch*f);
+                    rawImageData.data[fp + tp] = av + (ch*f);
                     // binary_idx++;
                 }else if(binary[idx] == "1"){
                     // console.log("1");
-                    rawImageData.data[fp] = av + (ch*f) + (ch*f);
+                    rawImageData.data[fp + tp] = av + (ch*f) + (ch*f);
                     // binary_idx++;
                 }
+
+
+
+
+                // var av = (rawImageData.data[fp + 1] + rawImageData.data[fp + 2]) / 2;
+                //
+                // var ch = 40; //changevalue
+                // var f = 1; //direction of adjustment
+                // if(av > 127 ){
+                //     f = -1;
+                // }
+                //
+                // // console.log(rawImageData.data[fp], " ", rawImageData.data[fp+1], " ", rawImageData.data[fp+2]);
+                //
+                // if(binary[idx] == " "){
+                //     // console.log("1");
+                //     // rawImageData.data[fp] = 127;
+                //     rawImageData.data[fp] = av;
+                //     // binary_idx++;
+                // }else if(binary[idx] == "0"){
+                //     // console.log("0");
+                //     // rawImageData.data[fp] = 255;
+                //     rawImageData.data[fp] = av + (ch*f);
+                //     // binary_idx++;
+                // }else if(binary[idx] == "1"){
+                //     // console.log("1");
+                //     rawImageData.data[fp] = av + (ch*f) + (ch*f);
+                //     // binary_idx++;
+                // }
                 // console.log(rawImageData.data[fp], " ", rawImageData.data[fp+1], " ", rawImageData.data[fp+2]);
                 // console.log("-");
             }
@@ -273,17 +356,13 @@ server.post('/encodeReq', function(req, res){
     console.log("req");
     console.log(req.body);
     var name = req.body.pixid;
-    if(name != "0"){
-        console.log(name);
+    var text = req.body.text;
+
+    if(name != "0" && text.length < 141 && !stored[name]){
         var x = getPixelXY(176, parseInt(name)).x;
         var y = getPixelXY(176, parseInt(name)).y
-        console.log( getPixelXY(176, parseInt(name)).x );
-        console.log( getPixelXY(176, parseInt(name)).y );
-        var text = req.body.text;
-        console.log(text);
+
         var binary = " " + ABC.toBinary(text);
-        console.log(binary);
-        // // console.log("idx=0");
         stored[name] = {
             x: x,
             y: y,
@@ -291,11 +370,38 @@ server.post('/encodeReq', function(req, res){
             binary: binary,
             idx: 0
         }
-
         console.log("stored changed");
         console.log(stored);
-    }else{
+
+        var msg = new TheDB(
+            {
+                name: parseInt(name),
+                x: x,
+                y: y,
+                text: text,
+                binary: binary,
+                idx: 0
+            }
+        )
+        msg.save(function (err) {
+          if (err) return console.error(err);
+          console.log("mongo changed");
+          TheDB.find({}, function(err, db){
+              console.log(JSON.stringify(db, null, 3));
+          });
+
+        });
+
+        res.send("success");
+    }else if(name === "0"){
         console.log("dont ruin the clock!");
+        res.send("clock");
+    }else if(stored[name]){
+        console.log("pixel already taken");
+        res.send("occupied");
+    }else if(text.length > 140){
+        console.log("text too long");
+        res.send("charlimit");
     }
 
 

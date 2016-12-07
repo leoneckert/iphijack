@@ -22,7 +22,7 @@
     #canvasWrapper div{
         margin-left: auto;
         margin-right: auto;
-        margin-top: 20px;
+        margin-top: 10px;
     }
     .dataBox{
         width: 500px;
@@ -34,12 +34,37 @@
     }
     h3{
         margin-top: 50px;
+        margin-bottom: 10px;
+    }
+    #info{
+        font-size: 0.7em;
+        margin-bottom: 0;
+
+    }
+    #infotext{
+        font-size: 0.9em;
+        display:none;
+    }
+    #subline{
+        font-size: 0.9em;
     }
 </style>
 </head>
 
 <body>
     <h3>ipiggyback</h3>
+    <a id="info" href="#"><i>info</i></a>
+    <p id="infotext">
+        <i id="subline">yes, piggybacking information onto the pixel values of an ip camera in real time.</i><br><br><br>
+        <b>Quick instructions</b> <br><br>
+        1. Click to inspect pixel values (why not start with xy: 18 5 ?).<br>
+        2. Wait for messages to be decoded from the rgb values of a selected pixel.<br>
+        3. Submit own message to be encoded and broadcasted *forever*.<br>
+        4. Tell your friends which pixel to find your message on.<br>
+        5. Find the ip camera, dance in front of it and manually encode a message.<br><br>
+        project by <a target="_blank" href="http://leoneckert.com">Leon Eckert</a><br><br>
+        <a id="hideinfo" href="#"><i>hide info</i></a>
+    </p>
     <div id="canvasWrapper"></div>
     <div id="data">
 

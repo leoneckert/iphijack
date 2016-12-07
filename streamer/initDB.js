@@ -7,7 +7,9 @@
 
 // on digitalocean installed this way: http://fearby.com/installing-mongodb-onto-a-digital-ocean-ubuntu-14-04-server/
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://leoneckert:itpnyu@ds127428.mlab.com:27428/ipiggybackdb');
+// mongoose.connect('mongodb://leoneckert:itpnyu@ds127428.mlab.com:27428/ipiggybackdb');
+mongoose.connect('mongodb://localhost/ipiggybackDB');
+
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));

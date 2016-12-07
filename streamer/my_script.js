@@ -11,8 +11,8 @@ var streamH = 120;
 
 var inspectX = null;
 var inspectY = null;
-// var inspectX = 42;
-// var inspectY = 35;
+// var inspectX = 18;
+// var inspectY = 5;
 
 
 function getPixelIdx(w,x,y){
@@ -42,13 +42,14 @@ function allocateElement(idx, callback){
         elem.className = "dataBox";
         document.getElementById("data").appendChild(elem);
 
+        var coordinates = document.createElement('div');
+        coordinates.id = "coordinates";
+        elem.appendChild(coordinates);
+
         var rgb = document.createElement('div');
         rgb.id = "rgb";
         elem.appendChild(rgb);
 
-        var coordinates = document.createElement('div');
-        coordinates.id = "coordinates";
-        elem.appendChild(coordinates);
 
         var binary = document.createElement('div');
         binary.id = "binary";
@@ -58,6 +59,10 @@ function allocateElement(idx, callback){
         ascii.id = "ascii";
         elem.appendChild(ascii);
 
+        var notification = document.createElement('div');
+        notification.id = "notification";
+        elem.appendChild(notification);
+
         var input = document.createElement("input");
         input.type = "text";
         input.id = "text_"+idx_id;
@@ -65,41 +70,36 @@ function allocateElement(idx, callback){
 
         var button = document.createElement("button");
         button.innerHTML = "encode a message";
+        button.style.marginTop = "14px";
         elem.appendChild(button);
         button.addEventListener ("click", function() {
 
-            // alert(document.getElementById("text_"+idx_id).value);
-
-            // var xhttp = new XMLHttpRequest();
-            // xhttp.onreadystatechange = function() {
-            //     if (this.readyState == 4 && this.status == 200) {
-            //        // Typical action to be performed when the document is ready:
-            //        alert(xmlhttp.responseText);
-            //     }
-            // };
-            // xhttp.open("GET", "encodeReq?pid="+idx_id = "&text", true);
-            // xhttp.send();
-            // var http = new XMLHttpRequest();
-            // http.open("POST", "encodeReq", true);
-            //
-            // //Send the proper header information along with the request
-            // http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            // http.setRequestHeader("Content-length", params.length);
-            // http.setRequestHeader("Connection", "close");
-            //
-            // http.onreadystatechange = function() {//Call a function when the state changes.
-            // 	if(http.readyState == 4 && http.status == 200) {
-            // 		alert(http.responseText);
-            // 	}
-            // }
-            // http.send({heloo: "bla"});
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.open("POST", "encodeReq", true);
             var toSend = {"pixid":idx_id, "text": document.getElementById("text_"+idx_id).value + " "};
             xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
             xmlhttp.onreadystatechange = function() {//Call a function when the state changes.
                 if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                    callback(xmlhttp.responseText);
+                    console.log(xmlhttp.responseText);
+                    var r = xmlhttp.responseText;
+                    notification.innerHTML = "";
+                    if(r != "charlimit"){
+                        button.style.display = "none";
+                        input.style.display = "none";
+                    }
+                    notification.style.color = "red";
+                    if(r == "success"){
+                        notification.style.color = "green";
+                        notification.innerHTML = "Thanks! Your message is encoded. Give it a little moment though.";
+                    }else if(r == "clock"){
+                        notification.innerHTML = "Sorry, this pixel keeps this thing running.";
+                    }else if(r == "occupied"){
+                        notification.innerHTML = "Sorry, seems like this pixel carries a message already.";
+                    }else if(r == "charlimit"){
+                        notification.innerHTML = "Sorry, messages should not be longer than 140 characters.";
+                    }
+
+
                 }
             }
             xmlhttp.send(JSON.stringify(toSend))
@@ -115,21 +115,24 @@ function addToLog(idx, r, g, b){
     allocateElement(idx, function(elem){
         elem.style.display = "block"
 
+
+        // coordinates
+        var coordinates = elem.childNodes[0];
+        str = "<i>xy:</i> " + inspectX + " " + inspectY;
+        var p2 = document.createElement('p');
+        p2.innerHTML = str;
+        coordinates.innerHTML = "";
+        coordinates.appendChild(p2);
+
         // rgb
-        var rgb = elem.childNodes[0];
-        var str = r + " | " + g + " | " + b;
+        var rgb = elem.childNodes[1];
+        var str = "<i>rgb:</i> " + r + " " + g + " "  +  b;
         var p = document.createElement('p');
         p.innerHTML = str;
         rgb.innerHTML = "";
         rgb.appendChild(p);
 
-        // coordinates
-        var coordinates = elem.childNodes[1];
-        str = inspectX + " | " + inspectY;
-        var p2 = document.createElement('p');
-        p2.innerHTML = str;
-        coordinates.innerHTML = "";
-        coordinates.appendChild(p2);
+
     });
 }
 
@@ -143,6 +146,9 @@ function addToBinary(idx, newValue){
     allocateElement(idx, function(elem){
         var binary = elem.childNodes[2];
         var old_str = binary.innerHTML;
+        if(old_str.length === 0){
+            old_str = "<i>binary:</i> "
+        }
         var new_str = old_str += str;
 
         var parts = new_str.split(" ");
@@ -161,10 +167,11 @@ function addToBinary(idx, newValue){
             }
         }
         var processedstring = parts.join(" ");
+
         binary.innerHTML = processedstring;
 
         var ascii = elem.childNodes[3];
-        ascii.innerHTML = "<b>"+ascii_str+"</b>";
+        ascii.innerHTML = "<i>message:</i> <b>"+ascii_str+"</b>";
 
 
 
@@ -184,7 +191,7 @@ function addToBinary(idx, newValue){
 function init(){
     var image = new Image();
     var loadingImg = new Image();
-    loadingImg.src = "http://lke229.itp.io:1805/loadingImg"
+    loadingImg.src = "http://localhost:1805/loadingImg"
 
     // create the canvas to render to
     var canvas = document.createElement('canvas');
@@ -201,12 +208,12 @@ function init(){
     document.getElementById("canvasWrapper").appendChild(picker);
 
     var pickerExit = document.createElement('a');
-    pickerExit.innerHTML = "x";
+    pickerExit.innerHTML = "<i>exit</i>";
     pickerExit.href = "#";
     pickerExit.style.display = "none";
+    pickerExit.style.fontSize = "0.8em";
+    pickerExit.style.marginTop = "2px";
     document.getElementById("canvasWrapper").appendChild(pickerExit);
-    // var imgd = context.getImageData(20, 20, 2, 2);
-    // console.log(imgd);
 
     var drawInterval = Math.max(1 / 10 * 1000, 30);
     console.log("drawInterval", drawInterval);
@@ -217,7 +224,7 @@ function init(){
     var binary_str = ""
 
     function changeStream(){
-        var src = 'http://lke229.itp.io:1805/stream';
+        var src = 'http://localhost:1805/stream';
         image.src = src;
     }
 
@@ -254,17 +261,36 @@ function init(){
                     pickerExit.style.display = "block";
                     addToLog(selectedI, pix[i], pix[i+1], pix[i+2]);
 
-                    var av = (pix[i+1] + pix[i+2])/2;
+                    var tp = null // targetPixel
+                    var sp = null // second pixel
+                    var lp = null // last pixel
+
+                    if(i%3 === 0){
+                        tp = 0 // targetPixel
+                        sp = 1 // second pixel
+                        lp = 2 // last pixel
+                    } else if(i%3 === 1){
+                        tp = 2 // targetPixel
+                        sp = 0 // second pixel
+                        lp = 1 // last pixel
+                    }else if(i%3 === 2){
+                        tp = 1 // targetPixel
+                        sp = 2 // second pixel
+                        lp = 0 // last pixel
+                    }
+
+
+                    var av = (pix[i+sp] + pix[i+lp])/2;
                     var ch = 40; //changevalue
                     var f = 1; //direction of adjustment, think i dont need on this side because using Math.abs
                     if(av > 127 ){
                         f = -1;
                     }
-                    if(  Math.abs(pix[i] - av) < ch/2 ){
+                    if(  Math.abs(pix[i+tp] - av) < ch/2 ){
                         currentbinary.push(2);
-                    }else if(Math.abs(pix[i] - av) < ch + ch/2 ){
+                    }else if(Math.abs(pix[i+tp] - av) < ch + ch/2 ){
                         currentbinary.push(0);
-                    }else if(Math.abs(pix[i] - av) < ch*2 + ch/2 ){
+                    }else if(Math.abs(pix[i+tp] - av) < ch*2 + ch/2 ){
                         currentbinary.push(1);
                     }
 
@@ -354,24 +380,16 @@ function init(){
     // document.getElementById("canvasWrapper").appendChild(changeTestCanvas);
     var changeTestCanvasContext = changeTestCanvas.getContext('2d');
 
-    // var preClock = 0;
-    // setInterval(function(){
-    //     changeTestCanvasContext.drawImage(image, 0, 0, streamW, streamH);
-    //     var clock = changeTestCanvasContext.getImageData(0, 0, 1, 1).data[0];
-    //     console.log(clock);
-    //     if(Math.abs(clock-preClock) > 100){
-    //         console.log("drawing");
-    //         draw();
-    //     }
-    //     preClock = clock;
-    // }, 80);
-
-    // while(true){
-    //
-    // }
-
-    // setInterval(draw, drawInterval);
     setInterval(draw, 2);
+
+    document.getElementById("info").addEventListener('click', function(){
+        document.getElementById("infotext").style.display = "block";
+        document.getElementById("info").style.display = "none";
+    });
+    document.getElementById("hideinfo").addEventListener('click', function(){
+        document.getElementById("infotext").style.display = "none";
+        document.getElementById("info").style.display = "block";
+    });
 
 }
 
