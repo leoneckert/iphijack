@@ -80,7 +80,7 @@ function allocateElement(idx, callback){
             xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
             xmlhttp.onreadystatechange = function() {//Call a function when the state changes.
                 if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                    console.log(xmlhttp.responseText);
+                    // console.log(xmlhttp.responseText);
                     var r = xmlhttp.responseText;
                     notification.innerHTML = "";
                     if(r != "charlimit"){
@@ -216,7 +216,7 @@ function init(){
     document.getElementById("canvasWrapper").appendChild(pickerExit);
 
     var drawInterval = Math.max(1 / 10 * 1000, 30);
-    console.log("drawInterval", drawInterval);
+    // console.log("drawInterval", drawInterval);
 
     var clock = 0;
     var preClock = 255;
@@ -314,7 +314,7 @@ function init(){
 
         clock = pix[0];
         if(Math.abs(clock-preClock) > 100){
-            console.log("clock strikes");
+            // console.log("clock strikes");
             preClock = clock;
 
             if(selectedI != null){
