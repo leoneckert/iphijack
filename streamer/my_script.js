@@ -191,7 +191,7 @@ function addToBinary(idx, newValue){
 function init(){
     var image = new Image();
     var loadingImg = new Image();
-    loadingImg.src = "http://104.236.30.108:1805/loadingImg"
+    loadingImg.src = "http://lke229.itp.io:1805/loadingImg"
 
     // create the canvas to render to
     var canvas = document.createElement('canvas');
@@ -224,7 +224,7 @@ function init(){
     var binary_str = ""
 
     function changeStream(){
-        var src = 'http://104.236.30.108:1805/stream';
+        var src = 'http://lke229.itp.io:1805/stream';
         image.src = src;
     }
 
